@@ -7,7 +7,7 @@
                <b-col cols="12" lg="8" md="8" sm="12">
                 <b-row>
                     <b-col cols="12" lg="6" md="6" sm="12">
-                        <label class="formLabels">Admin Name</label>
+                        <label class="formLabels">Pokemon Name</label>
                            <b-form-input v-model="product.productName" type="text" ></b-form-input>
                     </b-col>
                     <b-col cols="12" lg="6" md="6" sm="12">
