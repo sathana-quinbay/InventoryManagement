@@ -5,9 +5,9 @@
       <div style=" margin-top:5vh; float:right;"><b-button v-b-toggle.sidebar-variant><ion-icon name="menu-outline"></ion-icon></b-button></div>
       <div class="px-3 py-2">
         <div class="router">
-     <div class="linkhover"><router-link style="text-decoration:none; color:black;" to="/admindashboard">Dashboard</router-link><br></div>
-        <div class="linkhover"><router-link style="text-decoration:none; color:black;" to="/admin">Requests</router-link><br></div>
-       <div class="linkhover"> <router-link style="text-decoration:none; color:black;" to="/sellermanager">Seller Management</router-link><br></div>
+     <div class="linkhover"><router-link style="text-decoration:none; color:black;" to="dashboard">Dashboard</router-link><br></div>
+        <div class="linkhover"><router-link style="text-decoration:none; color:black;" to="request">Requests</router-link><br></div>
+       <div class="linkhover"> <router-link style="text-decoration:none; color:black;" to="manage">Seller Management</router-link><br></div>
       </div></div>
     </b-sidebar>
   </div>

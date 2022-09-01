@@ -59,7 +59,14 @@ export default{
                  
                     localStorage.setItem('role', response.data.data.role);
                     localStorage.setItem('userId', response.data.data.userId);
-                    this.$router.push({path: '/dashboard'});
+                    if( response.data.data.role=='admin')
+                    { this.$router.push({path: '/admin/dashboard'});
+
+                    }
+                    else if( response.data.data.role=='seller')
+                    { this.$router.push({path: '/seller/dashboard'});
+
+                    }
                     }
                 },
                 error: (err)=>{
