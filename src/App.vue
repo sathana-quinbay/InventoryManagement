@@ -1,23 +1,17 @@
 <template>
   <div id="app">
-    <NavBarComponent ></NavBarComponent> 
-       <!-- v-show="" -->
-    <SideBar></SideBar>
-    <router-view></router-view>
+   <router-view/>
   </div>
 </template>
 
 <script>
-import NavBarComponent from './components/NavBarComponent.vue';
-import SideBar from './components/SideBar.vue';
+
 export default {
   name: 'App',
-  components: {
-    NavBarComponent,
-    SideBar
+  
 }
 
-}
+
 </script>
 
 <style>

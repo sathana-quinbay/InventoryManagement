@@ -1,33 +1,32 @@
-import { filterBy } from "@/service/adminrequests.service";
+import { requestList } from "@/service/adminrequests.service";
 
 export default {
     state: {
-        filterby: {},
+        requests:[],
     },
     getters: {
-        getfilter(state){
-            return state.filterby;
+        getRequests(state){
+            return state.requests;
         },
     },
     mutations: {
-        setfilter(state, value){
-            state.filterby = value
+        setRequests(state, value){
+            state.requests = value
         }
     },
     actions:{
-        FILTER_BY(context, {success, error, filter}){
+        REQUEST_LIST(){
             // console.log(state + " | " + user);
-            filterBy({
+            requestList({
                 success: (response)=>{
-                    console.info('Filter Process Success');
+                    console.info('Request Process Success',response);
+                    this.commit('setRequests',response.data)
                     // console.log(response);
-                    success(response);
+                   
                 },
                 error: (err)=>{
-                    console.warn('Something went wrong in filtering' + err);
-                    error(err);
+                    console.warn('request error' + err);
                 },
-                filter
             })
         },
     } 

@@ -2,7 +2,9 @@
 <div>
   <h1 style="background:whitesmoke;">Admin Dashboard</h1><br>
 <div class="sellercnt">
-  Total Sellers : 123  
+  <img src="../assets/sell.png" height="60px" width="60px">Total Sellers : {{(this.$store.state.sellerStore.sellers).length}} <br>
+  Active Sellers : {{this.activeSellersCount}}<br>
+  Disabled Sellers : {{this.disabledSellersCount}}  
 </div>
 </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
-<div style="position:fixed; background:lightgray; padding-botom:10px;">
-      <div style="position:absolute; background:lightgray; height:100vh; border-radius:3px;"><b-button v-b-toggle.sidebar-variant><ion-icon name="menu-outline"></ion-icon></b-button></div>
+<div style="position:fixed; background:lightgray; padding-botom:10px; position: fixed; width:5vw">
+      <div style="position:absolute; background:lightgray; height:100vh; border-radius:3px;"><b-button v-b-toggle.sidebar-variant><ion-icon name="menu-outline"></ion-icon></b-button><hr></div>
     <b-sidebar id="sidebar-variant" title="Sidebar" bg-variant="light" text-variant="dark" shadow>
       <div style=" margin-top:5vh; float:right;"><b-button v-b-toggle.sidebar-variant><ion-icon name="menu-outline"></ion-icon></b-button></div>
       <div class="px-3 py-2">

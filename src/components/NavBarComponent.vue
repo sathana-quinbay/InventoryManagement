@@ -10,7 +10,7 @@
     </div>
     
     <div class="login-register">
-      <router-link to='/' style="font-size:25px; paadding-top:5px;"><ion-icon name="notifications-outline"></ion-icon>&nbsp;&nbsp;</router-link>
+      <router-link to='/' style="font-size:25px; padding-top:5px;"><ion-icon name="notifications-outline"></ion-icon>&nbsp;&nbsp;</router-link>
       <router-link v-if="!isLoggedIn" to="/login" tag="button" class="login-btn"
         >Login</router-link>
         <button @click="logOut()" class="login-btn"
@@ -25,10 +25,12 @@
 .nav-bar {
   overflow: hidden;
   background-color: #01c5a1;
-  position: sticky;
+  position:sticky ;
   top: 0;
-  z-index: 9999;
+  margin-left:5vw;
+  /* z-index: 9999; */
   height: 10vh;
+  width:95vw;
   padding: 0.4em;
   display: flex;
   flex-direction: row;
