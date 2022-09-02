@@ -13,6 +13,7 @@ import SellerMainComponent from '@/components/SellerMainComponent'
 import NetworkErrorComponent from '@/components/NetworkErrorComponent'
 import AdminRequest from '@/components/AdminRequestaccept'
 import SellerManagementComponent from '@/components/SellerManagementComponent'
+import AdminProductListComponent from '@/components/AdminProductListComponent'
 
 var isAuthenticated=false;
 Vue.use(VueRouter);
@@ -24,7 +25,6 @@ Vue.use(VueRouter);
 // }
 const routes = [
   { path: '/register', name: 'RegisterComponent', component: RegisterComponent },
-  
   {
     path: '/', name: 'LoginComponent', component: LoginComponent,
     beforeEnter: (to, from, next) => {
@@ -87,6 +87,7 @@ const routes = [
          name: "SellerManagementComponent",
          component: SellerManagementComponent 
       },
+      { path: '/adminproducts', name: 'AdminProductListComponent', component: AdminProductListComponent },
 
     ]
   },

@@ -46,7 +46,7 @@
 
                <div class="register-seller">
             <button class="register-seller-btn" @click="validateCredentials()">Login</button>
-            <p class="account">D'ont have account ? <router-link to="/register">Register</router-link></p>
+            <p class="account">Dont have account ? <router-link to="/register">Register</router-link></p>
           </div>
             </b-row>
          

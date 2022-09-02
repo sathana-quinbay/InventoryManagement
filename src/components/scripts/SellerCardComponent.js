@@ -28,7 +28,7 @@ export default{
                 this.isInventoryOpened = false
             }, 1000);            
 
-            this.$router.push({path: `/admindashboard/sellers/${userId}`});
+            this.$router.push({path: `/admin/sellers/${userId}`});
             
         },
         disbaleSeller(userId){

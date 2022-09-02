@@ -4,7 +4,7 @@ export default {
   name: "NavBarComponent",
   data() {
     return {
-      
+         isLoggedIn:true
     };
   },
   methods: {
@@ -22,7 +22,7 @@ export default {
   computed: {
     ...mapGetters({
       user: "getUserDetail",
-      isLoggedIn: 'getLoginStatus'
+      // isLoggedIn: 'getLoginStatus'
     }),
   },
 };

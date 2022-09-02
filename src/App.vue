@@ -22,7 +22,7 @@ export default {
 }
 body,html{
   width: 100vw;
-  height: 100%;
+  height: 100vh;
 }
 #app {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;

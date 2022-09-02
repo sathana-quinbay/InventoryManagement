@@ -31,7 +31,7 @@
 }
 .seller-id{
   font-weight: bold;
-  color: #029d80;
+  color: #1b2850;
 }
 .seller-id:hover {
   text-decoration: underline;
@@ -46,6 +46,7 @@
 }
 .view-inventory-btn {
   color: white;
+  background: #0000FF;
 }
 .seller-status-btn{
   background-color: #029d80;
@@ -57,7 +58,7 @@
   background-color: red !important;
 }
 .enabled{
-  background-color: #01c5a1 !important;
+  background-color: green !important;
 }
 @media screen and (min-width: 950px) {
   img {
@@ -92,23 +93,21 @@
 button {
   padding: 0.5em;
   margin-top: 3vh;
-  background-color: #01c5a1 !important;
+  background-color: #1b2850 !important;
   height: 3em !important;
   border: none;
   border-radius: 0.7em !important;
   transition: box-shadow 0.1s;
   width: 17vw;
 }
-button:hover {
-  cursor: pointer;
-  box-shadow: 1px 1px 5px gray;
-  background-color: #029d80 !important;
+button :hover {
+  color: #1b2850  !important;
+  background-color: white !important;
 }
 
 .seller-card:hover {
   background-color: rgb(255, 255, 255);
   box-shadow: 3px 3px 20px rgb(107, 106, 106);
-  cursor: pointer;
 }
 
 @media screen and (max-width: 950px) {
