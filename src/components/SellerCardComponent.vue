@@ -7,7 +7,7 @@
       ><span class="seller-id">{{sellerprop.userId | sellerIdFilter}}</span>
     </p>
 
-    <button style="font-size:15px;" class="view-inventory-btn" @click="openInventory(sellerprop.userId)">
+    <button style="font-size:15px; background:#0000FF;" class="view-inventory-btn" @click="openInventory(sellerprop.userId)">
        View Inventory
     </button>
     <button class="seller-status-btn" :class="[(sellerprop.status)? 'enabled' : 'disabled']" @click="disbaleSeller(sellerprop.userId)">{{sellerprop.status? "Disable" : "Enable"}} Seller</button>
@@ -46,6 +46,7 @@
 }
 .view-inventory-btn {
   color: white;
+  background: #0000FF;
 }
 .seller-status-btn{
   background-color: #029d80;

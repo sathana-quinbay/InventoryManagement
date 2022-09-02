@@ -4,7 +4,7 @@
       <!-- {{getHeaderFromStore}} -->
       <router-link to="/">
         <!-- <img src="@/assets/brand-logo.png" alt="IMA"> -->
-        <h2> Inventory Manager </h2>
+        <h2 style="margin-left:5vw;"> Inventory Manager </h2>
         <span class="nav-bar-copy-right">&copy; Blibli 2022</span>
       </router-link>
     </div>
@@ -24,13 +24,12 @@
 <style scoped>
 .nav-bar {
   overflow: hidden;
-  background-color: #01c5a1;
+  background-color: #1b2850;
   position:sticky ;
   top: 0;
-  margin-left:5vw;
   /* z-index: 9999; */
   height: 10vh;
-  width:95vw;
+  width:100vw;
   padding: 0.4em;
   display: flex;
   flex-direction: row;

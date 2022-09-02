@@ -24,7 +24,7 @@ export default {
  data()
  {
     return{
-        i:1,
+        i:0,
         modalShow:false,
         Description:'Sun Microsystems,we sell computer and accessories related to them',
          fields: ['userid','Description','Approval'],
@@ -46,10 +46,15 @@ export default {
     console.log(this.filterby);
     // this.$store.dispatch('FILTER_BY',this.filterby)
    },
-   approved()
+   Approved()
    {
-      
+     this.$store.dispatch('POST_APPROVAL',);  
+   },
+   Disapproved()
+   {
+
    }
+
 }
 }
 </script>
