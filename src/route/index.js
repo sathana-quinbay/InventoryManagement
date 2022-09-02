@@ -9,10 +9,12 @@ import RegisterComponent from "@/components/RegisterComponent"
 import ProductContainerComponent from '@/components/ProductContainerComponent'
 import AdminComponent from '@/components/AdminComponent'
 import SellerMainComponent from '@/components/SellerMainComponent'
-// import {getStatus} from '@/service/PortalStatusService';
+ import {getStatus} from '@/service/PortalStatusService';
 import NetworkErrorComponent from '@/components/NetworkErrorComponent'
 import AdminRequest from '@/components/AdminRequestaccept'
 import SellerManagementComponent from '@/components/SellerManagementComponent'
+
+var isAuthenticated=false;
 Vue.use(VueRouter);
 // const  = (a, b) => {
 //   if (a > b)
@@ -91,6 +93,7 @@ const routes = [
   {
     path: "/seller", name: "SellerMain", component: SellerMainComponent,
    beforeEnter: (to, from, next) => {
+    console.log("before enter")
       const role = localStorage.getItem('role');
 
       if (role === undefined || role === null || (role.toLocaleLowerCase() !== 'admin' && role.toLocaleLowerCase() !== 'seller')) {
@@ -100,12 +103,15 @@ const routes = [
         console.log('loged in as admin use seller id and try again')
         alert('loged in as admin use seller id and try again')
         next({ path: '/admin/dashboard' });
+        console.log(isAuthenticated)
       }
       else {
         console.log("moving to seller")
         next();
       }
     },
+   
+      
     
     children: [
       {
@@ -237,31 +243,42 @@ const router = new VueRouter({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   getStatus({
-//     success: (response)=>{
-//         console.log(response)
-//     },
-//     error: (err)=>{
-//       if(to.fullPath!='/error')
-//       {
+router.afterEach((to, from, next) => {
+  console.log("after each")
+
+  if(to.path !='/login'&&to.path !='/register'){
+    const role = localStorage.getItem('role');
+    if (role === undefined || role === null || (role.toLocaleLowerCase() !== 'admin' && role.toLocaleLowerCase() !== 'seller')) {
+      router.replace('/login');
+     }
+     
+    
+  }
+getStatus({
+    success: (response)=>{
+        console.log(response)
+    },
+    error: (err)=>{
+      console.log(err)
+      if(to.fullPath!='/error')
+      {
 
 
-//       if(err.code=='ERR_NETWORK')
-//       {
-//         console.log(err)
-//         next ({name: 'errorComponent'});
-//       }
-//     }
-//     else
-//     {
-//       next()
-//     }
+      if(err.code=='ERR_NETWORK')
+      {
+        console.log(err)
+        next ({path:"/error"});
+      }
+    }
+    else
+    {
+      next()
+    }
 
-//     }
-// })
+    }
+})
 
 
-// })
+})
 
 export default router;

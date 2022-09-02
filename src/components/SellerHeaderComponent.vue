@@ -13,7 +13,7 @@
       </b-nav-item-dropdown>
 
       <b-nav-item-dropdown text="User" left>
-        <b-dropdown-item href="#">Account</b-dropdown-item>
+        <b-dropdown-item ><router-link to="/seller/account">Account</router-link></b-dropdown-item>
         <b-dropdown-item href="#">Settings</b-dropdown-item>
         <b-dropdown-item @click="logOut()" href="#">Logout</b-dropdown-item>
       </b-nav-item-dropdown>

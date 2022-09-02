@@ -1,65 +1,76 @@
 <template >
-<b-col cols="12" lg="4" sm="12" md="6">
-   <div v-if="modalShow">
-            <OpenProductComponent :productItem="product" @hideModal="modalShow=false" :timeStamp="new Date().getTime()" :modalShowProp="modalShow=true" />
-         </div>
- 
+  <b-col cols="12" lg="4" sm="12" md="6">
+   
+      <select v-model="sortBy">
+        <option disabled value="">Please select one</option>
+        <option value="name">Name</option>
+        <option value="price">Price</option>
+      </select>
+      <button @click="sortData()">Submit</button>
+    
+    <div v-if="modalShow">
+      <OpenProductComponent
+        :productItem="product"
+        @hideModal="modalShow = false"
+        :timeStamp="new Date().getTime()"
+        :modalShowProp="(modalShow = true)"
+      />
+    </div>
+
     <b-container-fluid class="cards">
       <b-row>
         <b-col cols="12" lg="6" sm="12" md="12">
-                <img class="productImage" :src="require(`@/assets/brand-logo.png`)" />
+          <img class="productImage" :src="require(`@/assets/brand-logo.png`)" />
         </b-col>
-          <b-col class="card-content" cols="12" lg="6" sm="12" md="12">
-               <div class="name">{{ product.productName }}</div>
-              <div class="price">₹{{ product.productPrice }}</div>
-     
-        <div class="quantity">Quantity:{{ product.quantity }}</div>
-        <div class="card-butttons">
-                  <button id="show-btn" @click="modalShow=true"> <b-icon-eye></b-icon-eye> View</button>
-        </div>
-         
+        <b-col class="card-content" cols="12" lg="6" sm="12" md="12">
+          <div class="name">{{ product.productName }}</div>
+          <div class="price">₹{{ product.price }}</div>
+
+          <div class="quantity">Quantity:{{ product.quantity }}</div>
+          <div class="card-butttons">
+            <button id="show-btn" @click="modalShow = true">
+              <b-icon-eye></b-icon-eye> View
+            </button>
+          </div>
         </b-col>
       </b-row>
     </b-container-fluid>
- </b-col>
+  </b-col>
 </template>
 
 <script src="./scripts/SellerProductComponent.js">
 </script>
 
 <style scoped>
-
-.card-butttons{
+.card-butttons {
   width: 100%;
- 
 }
-.card-content{
+.card-content {
   text-align: left;
 }
-#show-btn{
-  width:50%;
+#show-btn {
+  width: 50%;
   background: none;
- 
-  margin-top:5%;
-  border-radius:10px;
+
+  margin-top: 5%;
+  border-radius: 10px;
   padding: 2% 4%;
   /* color:white; */
- background-color: #A760FF;
- color: white;
- 
+  background-color: #a760ff;
+  color: white;
+
   top: 0;
   text-transform: ue;
   text-align: center;
   border: none;
 }
-.price{
+.price {
   color: saddlebrown;
 }
-.name
-{
+.name {
   color: slategray;
   font-weight: 500;
-   font-size:3vh;
+  font-size: 3vh;
 }
 input[type="text"] {
   border-radius: 5px;
@@ -104,9 +115,9 @@ textarea {
 
   transition-duration: 0.3s;
 }
-.productImage{
-  margin-top:2%;
- width: 100%;
+.productImage {
+  margin-top: 2%;
+  width: 100%;
   height: 100%;
 }
 .input[type="button"] {
@@ -163,29 +174,24 @@ textarea {
   visibility: visible;
 }
 .cards {
- 
   width: 100%;
-  margin-left:2%;
+  margin-left: 2%;
   display: flex;
   justify-content: center;
   /* border: none; */
   background-color: white;
   /* flex-wrap: nowrap; */
- 
+
   align-content: center;
   align-items: center;
   border-style: solid;
   border-color: #f9f9f9;
   border-radius: 5px;
   margin: 3%;
-  padding:4%;
+  padding: 4%;
   transition: all 0.35s;
   /* font-size:8px; */
 }
-
-
-
-
 
 /* img {
   height: 200px;
@@ -236,16 +242,13 @@ textarea {
   /* text-align: center; */
   padding: 10;
 }
-@media screen and (max-width:1000px) {
-  .card-content{
-  text-align: center;
+@media screen and (max-width: 1000px) {
+  .card-content {
+    text-align: center;
+  }
+  .productImage {
+    height: 100px;
+    width: 100px;
+  }
 }
-.productImage{
-  height: 100px;
-  width:100px ;
-}
-}
-
-
-
 </style>

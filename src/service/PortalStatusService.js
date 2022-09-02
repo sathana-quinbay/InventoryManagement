@@ -6,9 +6,12 @@ export const getStatus = ({success, error})=>{
    console.log('inside status');
     axios.get(PORTAL_API)
          .then(response =>{
+            console.log("success",response)
             success && success(response);
          })
          .catch(err =>{
+
+            console.log("error",err)
             error && error(err);
         })
 }

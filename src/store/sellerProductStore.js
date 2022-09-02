@@ -127,6 +127,7 @@ export default ({
     mutations:
     {
         setSellerproducts(state, value) {
+            console.log("Set prducts")
             state.sellerproducts = value;
         }
     },
@@ -138,13 +139,14 @@ export default ({
 
             // this.commit('setInput',input);
 
-            // console.log('searchKey Updated to: ' + input);
+             console.log('searchKey Updated to: ');
 
             getsellerproducts({
                 sellerid,
                 success: ({ data }) => {
+                    console.log("get seller service call")
                     console.log(data)
-                    commit('setSellerproducts', data)
+                    commit('setSellerproducts', data.data)
                 },
                 error: (e) => {
                     commit('setSellerproducts', [])

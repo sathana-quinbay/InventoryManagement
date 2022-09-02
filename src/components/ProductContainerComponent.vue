@@ -50,7 +50,7 @@ export default {
   {
     const userId = localStorage.getItem('userId');
     console.log(userId)
-    // this.$store.dispatch('getsellerproductsfromservice', userId);
+     this.$store.dispatch('getsellerproductsfromservice', userId);
   },
 
 
