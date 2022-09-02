@@ -1,154 +1,165 @@
 <template>
-<div class="container-login">
-    <div class="login-card">
-        <form class="login-form" @submit.prevent>
-            <img src="../assets/brand-logo.png" alt="blibli"><br>
+<b-container class="main-container">
+   <div>
+    <b-alert
+      :show="dismissCountDown"
+      dismissible
+      variant="warning"
+      @dismissed="dismissCountDown=0"
+      @dismiss-count-down="countDownChanged"
+    >
+      Registered Succesfully...
+    </b-alert>
+   
+  </div>
+    <b-row class="main-container-row">
+       <b-col class="main-container-img" cols="12" lg="6" md="12" sm="12">
+        <h2>Inventory Management</h2>
+        <img src="../assets/login-img.svg" alt="img" srcset="">
+       </b-col>
+        <b-col cols="12" lg="6" md="12" sm="12" class="main-card">
+             <div class="card">
+ 
+          <form class="create-seller-form" @submit.prevent="">
+          <span class="registered-success-prompt" v-if="isRegisterSuccess">New Merchant has been Register!</span>
+          <b-container>
+              <span class="error-display" v-if="error.errorStatus">{{error.errorMessage}}</span>
 
-            <span class="error-display" v-if="error.errorStatus">{{error.errorMessage}}</span>
-            <br>
-            <input type="text" name="username" id="username" :class="[(!errorFlag.usernameErrorFlag)? 'login-default' : 'login-failure']" v-model="user.emailId" placeholder="username email">
-            <br>
-
-            <input type="password" name="password" :class="[(!errorFlag.passwordErrorFlag)? 'login-default' : 'login-failure']" id="password" v-model="user.password" placeholder="password">
-            <div class="login-button-div">
-                <button name="login-button" :class="loginButtonClass" @click="validateCredentials()">log in</button>
-            </div>
-            <p class="register-msg">Don't have an account? Contact <span class="contact-admin">admin@ima.quinbay</span></p>
+            <b-row>
+                <b-col cols="12" lg="12" md="12" sm="12">
+                    <h2 class="container-heading">Login</h2>
+                  <label class="formLabels"> Email Id </label>
+                       <br> <input  type="text" :class="[(!errorFlag.usernameErrorFlag)? 'login-default' : 'login-failure']"  v-model="user.emailId"/>
+                        
+                </b-col>
+               
+            </b-row>
+             <b-row>
+                <b-col cols="12" lg="12" md="12" sm="12">
+                   <label class="formLabels"> Password</label>
+                       <br>  <input type="password" name="password" :class="[(!errorFlag.passwordErrorFlag)? 'login-default' : 'login-failure']" id="password" v-model="user.password" />
+         
+                </b-col>
+             
+            </b-row>
+             
+          
+            <b-row>
+               <div class="register-seller">
+            <button class="register-seller-btn" @click="validateCredentials()">Login</button>
+            <p class="account">D'ont have account ? <router-link to="/register">Register</router-link></p>
+          </div>
+            </b-row>
+         
+          </b-container>
+         
+       
+         
+         
         </form>
-    </div>
 </div>
+
+        </b-col>
+    </b-row>
+</b-container>
+
 </template>
-
-
-<script src="./scripts/LoginComponent.js"></script>
-
 <style scoped>
-.container-login{
-    margin: 0;
-    border-radius: 1em;
-    height: 85vh;
-    width: 100vw;
-    background-color: #f9f9f9;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+h2.container-heading {
+   
+    text-align: center;
+    margin-top:4%;
+    color:#1b2850;
+}
+input{
+  width:100%;
+      border-color: #f0f0f0;
+    background-color:#ffffff;
+  
+    font-size: 16px;
+
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+}
+.formLabels {
+  padding-top: 0%;
+}
+.main-container-row
+{
+ margin-top:10%;
+}
+.account{
+    margin-top:3%;
+}
+.main-card
+{
+
+   
+    display:  flex;text-align: center;
     align-items: center;
+    justify-content: center;
 }
-.login-default{
-    border: 2px solid #01c5a1 !important;
+.main-container-img{
+  margin-top:4%;
 }
-.login-success{
-    border: 2px solid rgba(0, 128, 0, 0.616) !important;
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 100%;
+  
 }
-.login-failure{
-    border: 2px solid rgba(255, 0, 0, 0.616) !important;
+.error
+{
+  color: red;
+  font-size: 2vh;
+  font-weight: 300;
+}
+.errorInput{
+  border: 1px solid red;
+}
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.register-seller{
+  margin-top:5%;
+  margin-bottom: 5%;
+  
+}
+.register-seller-btn{
+background: #1b2850;
+color: white;
+width:50% ;
+border-radius: 10px;
+padding: 2%;
+}
+.container {
+  padding: 2px 16px;
+
+}
+.main-container{
+  height: 100vh;
+  width:100vw ;
+}
+@media screen and (max-width:1000px) {
+  .main-container-img{
+    display: none;
+  }
+  
 }
 
-input:focus{
-    outline: 2px solid #01c5a1;
-}
-
-.error-display {
-    color: red;
-    padding: .3em 1em;
-    border-radius: 1em;
-    margin-bottom: 3em !important;
-    font-size: xx-small;
-}
-.success-display{
-    color: #01c5a1;
-    padding: .3em 1em;
-    border-radius: 1em;
-    margin-bottom: 3em !important;
-    font-size: xx-small;
-}
-.error-display {
-    background-color: rgba(255, 0, 0, 0.271);
-}
-.login-card {
-    background-color: white;
-    border: none;
-    padding: 1em;
-    border-radius: 1em;
-    box-shadow: 2px 2px 10px lightgrey;
-}
-.login-card img {
-    background-color: #01c5a1;
-    max-width: 10em;
-    margin-bottom: 1em;
-    border-radius: 1em;
-    padding: 1em;
-}
-.register-msg{
-    font-size: xx-small;
-    color: gray;
-}
-.register-msg span{
-    text-decoration: underline;
-    color: gray;
-}
-.register-msg span:hover{
-    cursor: pointer;
-}
-.login-card input:focus{
-    border: none !important;
-}
-.login-button-div{
-    margin: 10% 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.login-form {
-    padding: 1em;
-}
-.login-form input {
-    background-color: whitesmoke;
-    width: 95%;
-    border: none;
-    margin: .5em auto;
-    padding: .5em;
-    height: 2em;
-    border-radius: 1em;
-    justify-content: center;
-    align-items: center;
-}
-.login-form img {
-    border-radius: 20%;
-    max-width: 30%;
-}
-.login-button-div .login-button, .reset-button{
-    color: white;
-    background-color: #01c5a1;
-    border: none;
-    border-radius: 1em;
-    width: 20vw;
-    padding: .7em 1em;
-    margin: .1em .5em;
-    cursor: pointer;
-}
-button :hover{
-    box-shadow: 2px 3px 5px grey;
-}
-
-@media screen and (max-width: 850px){
-    .login-button-div{
-        margin: 10% 17% !important;
-        padding: 0%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .login-button-div .login-button .reset-button{
-        color: white;
-        background-color: #01c5a1;
-        border: none;
-        border-radius: 0.5em !important;
-        width: 25vw !important;
-        padding: 0.5em !important;
-        margin: 0.1em 0.5em !important;
-        cursor: pointer;
-    }
-}
 </style>
+<script src="./scripts/LoginComponent.js">
 
+</script>

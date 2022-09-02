@@ -7,7 +7,7 @@
       <!-- Navbar dropdowns -->
       <b-nav-item-dropdown text="Lang" right>
         <b-dropdown-item><router-link to="/seller/product">Add Product</router-link></b-dropdown-item>
-        <b-dropdown-item href="#">ES</b-dropdown-item>
+        <b-dropdown-item><router-link to="/seller/">All Products</router-link></b-dropdown-item>
         <b-dropdown-item href="#">RU</b-dropdown-item>
         <b-dropdown-item href="#">FA</b-dropdown-item>
       </b-nav-item-dropdown>

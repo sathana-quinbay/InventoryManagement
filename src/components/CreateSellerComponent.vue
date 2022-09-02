@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<script src="./scripts/CreateSellerComponent.js"></script>
+<script src="./scripts/RegisterComponent.js"></script>
 
 <style scoped>
 .password-mismatch, .invalid-contact, .invalid-email {

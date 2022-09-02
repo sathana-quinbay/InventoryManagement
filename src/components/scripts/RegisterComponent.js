@@ -1,5 +1,5 @@
 export default {
-    name: 'CreateSellerComponent',
+    name: 'RegisterComponent',
     data(){
         return {
             seller: {
@@ -8,35 +8,80 @@ export default {
                 contact: '',
                 address: '',
                 password: ''
+
             },
+            dismissSecs: 5,
+            dismissCountDown: 0,
             checkPassword: '',
             passwordErrorFlag: false,
+            nameErrorFlag:false,
+            addressErrorFlag:false,
+            passwordError:'',
             contactErrorFlag: false,
+            confirmPasswordErrorFlag: false,
             emailIdErrorFlag: false,
             isRegisterSuccess: false
         }
     },
     methods:{
         registerNewSeller(){
-            if(this.seller.emailId.includes('@gmail.com') === false){
+            this.nameErrorFlag = false;
+            this.emailIdErrorFlag=false;
+            this.contactErrorFlag=false;
+            this.emailIdErrorFlag=false;
+          
+            this.passwordErrorFlag=false;
+            this.confirmPasswordErrorFlag=false;
+            this.passwordError='';
+            this.addressErrorFlag=false
+            if(this.seller.name.length < 5){
+                this.nameErrorFlag = true;
+                // setInterval(()=>{ this.nameErrorFlag = false; }, 2000);
+                return;
+            }
+           
+            console.log(this.seller.emailId)
+            if(this.seller.emailId==' '|| this.seller.emailId.includes('@gmail.com') === false){
                 this.emailIdErrorFlag = true;
-                setInterval(()=>{ this.emailIdErrorFlag = false; }, 2000);
+               // setInterval(()=>{ this.emailIdErrorFlag = false; }, 2000);
                 return;
             }
             if(this.seller.contact.length !== 10){
                 this.contactErrorFlag = true;
-                setInterval(()=>{ this.contactErrorFlag = false; }, 2000);
+                // setInterval(()=>{ this.contactErrorFlag = false; }, 2000);
                 return;
             }
-            if(this.checkPassword !== this.seller.password){
-                this.passwordErrorFlag = true;
-                setInterval(()=>{ this.passwordErrorFlag = false; }, 2000);
+            if(this.seller.address.length < 5){
+                this.addressErrorFlag = true;
+                // setInterval(()=>{ this.nameErrorFlag = false; }, 2000);
                 return;
-            }else if(this.seller.emailId.includes('@gmail.com')
+            }
+            if(this.seller.password<5)
+            {
+                this.passwordErrorFlag=true
+                this.passwordError="Give strong password"
+                return
+            }
+            if(this.checkPassword != this.seller.password){
+  console.log("inside not match")
+  console.log(this.checkPassword," ",this.seller.password)
+                this.confirmPasswordErrorFlag = true;
+                this.passwordError="does not match"
+                
+                return;
+            }
+            else{
+                console.log("inside match")
+                this.confirmPasswordErrorFlag = false;
+                this.passwordError=" "
+            }
+            if(this.seller.emailId.includes('@gmail.com')
                     && this.seller.contact.length === 10 
                     && this.checkPassword === this.seller.password){
-                       
+                        this.confirmPasswordErrorFlag = false;
+                this.passwordError=" "
                 this.contactErrorFlag = this.passwordErrorFlag = false;
+                this.showAlert()
                 this.$store.dispatch('REGISTER_NEW_SELLER', {
                     sucess: (response)=>{
                         console.log(response);
@@ -53,6 +98,12 @@ export default {
                 })
             }
         },
+        countDownChanged(dismissCountDown) {
+            this.dismissCountDown = dismissCountDown
+          },
+          showAlert() {
+            this.dismissCountDown = this.dismissSecs
+          },
         resetFields(){
             this.seller = {
                 name: '',
