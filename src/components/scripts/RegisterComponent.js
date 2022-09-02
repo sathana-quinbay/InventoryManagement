@@ -10,7 +10,7 @@ export default {
                 password: ''
 
             },
-            dismissSecs: 5,
+            dismissSecs: 10,
             dismissCountDown: 0,
             checkPassword: '',
             passwordErrorFlag: false,
@@ -20,7 +20,8 @@ export default {
             contactErrorFlag: false,
             confirmPasswordErrorFlag: false,
             emailIdErrorFlag: false,
-            isRegisterSuccess: false
+            isRegisterSuccess: false,
+            userMessage:""
         }
     },
     methods:{
@@ -82,9 +83,11 @@ export default {
                 this.passwordError=" "
                 this.contactErrorFlag = this.passwordErrorFlag = false;
                 this.showAlert()
+                
                 this.$store.dispatch('REGISTER_NEW_SELLER', {
                     sucess: (response)=>{
                         console.log(response);
+                        
                         this.isRegisterSuccess = true;
                         setInterval(()=>{
                             this.isRegisterSuccess = false;
@@ -98,11 +101,16 @@ export default {
                 })
             }
         },
-        countDownChanged(dismissCountDown) {
-            this.dismissCountDown = dismissCountDown
+        countDownChanged(c) {
+           
+            this.dismissCountDown = c;
+            if(c==0)
+            {
+                this.$router.push({path:"/login"})
+            }
           },
           showAlert() {
-            this.dismissCountDown = this.dismissSecs
+            this.dismissCountDown = this.dismissSecs;
           },
         resetFields(){
             this.seller = {

@@ -1,15 +1,13 @@
 <template>
 <b-container class="main-container">
-   <div>
-    <b-alert
-      :show="dismissCountDown"
-      dismissible
-      variant="warning"
-      @dismissed="dismissCountDown=0"
-      @dismiss-count-down="countDownChanged"
-    >
-      Registered Succesfully...
+     <div>
+    <b-alert :show="dismissCountDown"
+             dismissible
+             variant="warning"
+             @dismiss-count-down="countDownChanged">
+      Account Created Successfully .. Redirected in  {{dismissCountDown}} seconds...
     </b-alert>
+    
    
   </div>
     <b-row class="main-container-row">
@@ -21,7 +19,6 @@
              <div class="card">
  
           <form class="create-seller-form" @submit.prevent="">
-          <span class="registered-success-prompt" v-if="isRegisterSuccess">New Merchant has been Register!</span>
           <b-container>
             <b-row>
                 <b-col cols="12" lg="12" md="12" sm="12">
