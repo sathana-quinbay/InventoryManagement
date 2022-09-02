@@ -30,11 +30,10 @@ export default {
                 },
             })
         },
-        POST_REQUEST(payload){
+        POST_REQUEST(context,payload){
             postRequestApproval({
                 success: (response)=>{
-                    console.info('Request Approved',response);
-                    this.commit('setRequests',response.data)
+                    console.info('Request Approved',response.data);
                     // console.log(response);
                    
                 },

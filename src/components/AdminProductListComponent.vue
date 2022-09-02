@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
     name:'AdminProductListComponent',
  data()
@@ -24,6 +25,12 @@ export default {
         fields: ['Name','Quantity'],
 
     }
+ },
+ computed:
+ {
+    ...mapGetters({
+        products:'getProducts'
+    })
  },
  created()
  {

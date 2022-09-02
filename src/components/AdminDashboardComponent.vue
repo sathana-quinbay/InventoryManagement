@@ -1,10 +1,11 @@
 <template>
 <div>
-  <h1 style="background:whitesmoke;">Admin Dashboard</h1><br>
-<div class="sellercnt">
-  <img src="../assets/sell.png" height="60px" width="60px">Total Sellers : {{(this.$store.state.sellerStore.sellers).length}} <br>
-  Active Sellers : {{this.activeSellersCount}}<br>
-  Disabled Sellers : {{this.disabledSellersCount}}  
+  <h2 style="margin-top:5vw; width:85vw; background:whitesmoke; border:0.5px solid grey;border-radius:10px;margin-left:10vw; background:white; padding:20px;">Admin Dashboard</h2><br>
+<div class="grid">
+  <div class="cards">
+  <img src="../assets/sell.png" height="60px" width="60px">Total Sellers : {{(this.$store.state.sellerStore.sellers).length}}</div>
+  <div class="cards"><ion-icon style="font-size:60px" name="checkmark-done-circle"></ion-icon>Active Sellers : {{this.activeSellersCount}}</div>
+  <div class="cards"><img src="../assets/disabled.svg" height="60px" width="60px">Disabled Sellers : {{this.disabledSellersCount}}</div> 
 </div>
 </div>
 </template>
@@ -22,6 +23,22 @@
     width: 80%;
     margin-left: 10%;
     margin-top: 5%;
+    display:flex;
 }
- 
+   .grid{
+    display:grid;
+    grid-template-columns: auto auto;
+    margin-left: 4vw;
+    padding:10vh;
+    padding-right:2vw;
+   }
+ .cards{
+    width:40vw;
+    height:10vh;
+    border:0.5px solid black;
+    border-radius:10px;
+    background: white;
+    margin-bottom:2vh;
+    display:flex;
+     }
 </style>

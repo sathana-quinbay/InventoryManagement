@@ -1,8 +1,9 @@
 <template>
-<div>
-  <h1>Sellers</h1>
+<div style="width:90vw; margin-left:8vw;">
+  <h1 style="padding:10px; font-family:impact;">Management</h1>
    <div class="searchbar">Search By: 
-     <select style="border:0.2px solid black; border-radius:7px;padding:5px; background:whitesmoke;" v-model="category">
+     <select style="border:0.2px solid black; border-radius:7px;padding:5px; background:white;" v-model="category" name="category">
+        <option style="color:grey;" value="" disabled selected>--Select category--</option>
         <option value="name">name</option>
         <option value="address">address</option>
         <option value="contact">contact</option>
@@ -17,10 +18,11 @@
     <b-dropdown-item active>Active action</b-dropdown-item>
     <b-dropdown-item disabled>Disabled action</b-dropdown-item> -->
   <!-- </b-dropdown> -->
-  &nbsp;&nbsp;&nbsp;
-        <input style="border:0.2px solid black; border-radius:10px;width:20vw;padding:5px; background:whitesmoke;" type="text" placeholder="search" v-model="searchkey">
-        <button style="background:#01c5a1; color:white; border-radius:3px; padding:5px;" @click="processSearch()"><ion-icon name="search-sharp"></ion-icon></button> 
-        <div style="float:right; margin-right:10vw;"> Sort By:<select style="border:0.2px solid black; border-radius:7px;padding:5px; background:whitesmoke;" v-model="sortby">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input style="border:0.2px solid black; border-radius:10px;width:25vw;padding:7px; background:white;" type="text" placeholder="search seller" v-model="searchkey">
+        <button style="background:white; color:#1b2850; font-size:20px; border-radius:3px; padding:5px;" @click="processSearch()"><ion-icon name="search-sharp"></ion-icon></button> 
+        <div style="float:right; margin-right:10vw;"> Sort By:<select style="border:0.2px solid black; border-radius:7px;padding:5px; background:white;" v-model="sortby">
+          <option style="color:grey;" value="" disabled selected>-select-</option>
         <option value="name">name</option>
         <option value="userid">userid</option>
         </select> </div></div>

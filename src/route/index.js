@@ -4,7 +4,7 @@ import LoginComponent from "@/components/LoginComponent.vue";
 import AdminDashboardComponent from "@/components/AdminDashboardComponent";
 // import CreateSellerComponent from "@/components/CreateSellerComponent";
 import SellerInventoryComponent from '@/components/SellerInventoryComponent'
-// import ViewSellerComponent from "@/components/ViewSellerComponent";
+import  SellerAccountComponent from "@/components/SellerAccountComponent";
 import RegisterComponent from "@/components/RegisterComponent"
 import ProductContainerComponent from '@/components/ProductContainerComponent'
 import AdminComponent from '@/components/AdminComponent'
@@ -118,7 +118,13 @@ const routes = [
     path: 'product',
     name: 'ProductContainerComponent',
     component: ProductContainerComponent,
+  },
+  {
+    path: 'account',
+    name: 'SellerAccountComponent',
+    component: SellerAccountComponent,
   }
+  
   
     
     ]

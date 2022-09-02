@@ -11,7 +11,7 @@ export const requestList= ({success, error})=>{
 }
 export const postRequestApproval= ({success, error,payload})=>{
    console.log("postRequests"+payload);
-   axios.post(`http://10.30.1.2:8002/admin/request/approve/{userId}`)
+   axios.put(`http://10.30.1.2:8002/admin/request/approve/`+payload)
         .then((response)=>{
            console.log("service request success");
            success && success(response);

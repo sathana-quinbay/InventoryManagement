@@ -1,15 +1,13 @@
 <template>
 <b-container class="main-container">
-   <div>
-    <b-alert
-      :show="dismissCountDown"
-      dismissible
-      variant="warning"
-      @dismissed="dismissCountDown=0"
-      @dismiss-count-down="countDownChanged"
-    >
-      Registered Succesfully...
+     <div>
+    <b-alert :show="dismissCountDown"
+             dismissible
+             variant="warning"
+             @dismiss-count-down="countDownChanged">
+       {{userMessage}} <span class="seconds">{{dismissCountDown}} seconds...</span>
     </b-alert>
+    
    
   </div>
     <b-row class="main-container-row">
@@ -21,15 +19,14 @@
              <div class="card">
  
           <form class="create-seller-form" @submit.prevent="">
-          <span class="registered-success-prompt" v-if="isRegisterSuccess">New Merchant has been Register!</span>
+        
           <b-container>
-              <span class="error-display" v-if="error.errorStatus">{{error.errorMessage}}</span>
-
+             
             <b-row>
                 <b-col cols="12" lg="12" md="12" sm="12">
                     <h2 class="container-heading">Login</h2>
                   <label class="formLabels"> Email Id </label>
-                       <br> <input  type="text" :class="[(!errorFlag.usernameErrorFlag)? 'login-default' : 'login-failure']"  v-model="user.emailId"/>
+                       <br> <input  type="text" :class="[(errorFlag.usernameErrorFlag)? 'errorInput' : ' ']"  v-model="user.emailId"/>
                         
                 </b-col>
                
@@ -37,7 +34,7 @@
              <b-row>
                 <b-col cols="12" lg="12" md="12" sm="12">
                    <label class="formLabels"> Password</label>
-                       <br>  <input type="password" name="password" :class="[(!errorFlag.passwordErrorFlag)? 'login-default' : 'login-failure']" id="password" v-model="user.password" />
+                       <br>  <input type="password" name="password" :class="[(errorFlag.passwordErrorFlag)? 'errorInput' : ' ']" id="password" v-model="user.password" />
          
                 </b-col>
              
@@ -45,9 +42,11 @@
              
           
             <b-row>
+               <span class="error-display" v-if="error.errorStatus">{{error.errorMessage}}</span>
+
                <div class="register-seller">
             <button class="register-seller-btn" @click="validateCredentials()">Login</button>
-            <p class="account">D'ont have account ? <router-link to="/register">Register</router-link></p>
+            <p class="account">Dont have account ? <router-link to="/register">Register</router-link></p>
           </div>
             </b-row>
          
@@ -70,6 +69,10 @@ h2.container-heading {
     text-align: center;
     margin-top:4%;
     color:#1b2850;
+}
+.seconds
+{
+  color: #fff3cd;
 }
 input{
   width:100%;
@@ -102,6 +105,11 @@ input{
 }
 .account{
     margin-top:3%;
+}
+.error-display
+{
+  margin-top: 2%;
+  color: red;
 }
 .main-card
 {

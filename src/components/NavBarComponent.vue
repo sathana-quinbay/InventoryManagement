@@ -4,15 +4,15 @@
       <!-- {{getHeaderFromStore}} -->
       <router-link to="/">
         <!-- <img src="@/assets/brand-logo.png" alt="IMA"> -->
-        <h2 style="margin-left:5vw;"> Inventory Manager </h2>
+        <h2 style="margin-left:7vw;"> Inventory Manager </h2>
         <span class="nav-bar-copy-right">&copy; Blibli 2022</span>
       </router-link>
     </div>
     
     <div class="login-register">
       <router-link to='/' style="font-size:25px; padding-top:5px;"><ion-icon name="notifications-outline"></ion-icon>&nbsp;&nbsp;</router-link>
-      <router-link v-if="!isLoggedIn" to="/login" tag="button" class="login-btn"
-        >Login</router-link>
+      <!-- <router-link to="/login" tag="button" class="login-btn"
+        >Login</router-link> -->
         <button @click="logOut()" class="login-btn"
         >Logout</button>
     </div>
@@ -72,10 +72,10 @@
 .login-btn {
   margin: auto .8em;
   padding: 0.4em 2em;
-  background-color: #01c5a1;
+  background-color: white;
   border: 2px solid whitesmoke !important;
   border-radius: 0.5em;
-  color: white;
+  color: #1b2850;
   transition: all 0.3s;
 }
 .register-btn{
