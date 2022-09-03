@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h2 style="margin-top:5vw; width:85vw; background:whitesmoke; border:0.5px solid grey;border-radius:10px;margin-left:10vw; background:white; padding:20px;">Admin Dashboard</h2><br>
+  <h2 style="margin-top:5vw; width:85vw; background:whitesmoke; border:1px solid orange;border-radius:10px;margin-left:10vw;padding:20px;">Admin Dashboard</h2><br>
 <div class="grid">
   <div class="cards">
   <img src="../assets/sell.png" height="60px" width="60px">Total Sellers : {{(this.$store.state.sellerStore.sellers).length}}</div>
@@ -16,7 +16,7 @@
 .sellercnt{
   float: left;
     background: whitesmoke;
-    border: 0.5px solid black;
+    border: 1px solid red;
     border-radius: 10px;
     font-size: 25px;
     padding: 50px;
@@ -35,10 +35,12 @@
  .cards{
     width:40vw;
     height:10vh;
-    border:0.5px solid black;
+    border:1px solid orange;
     border-radius:10px;
-    background: white;
+    background: whitesmoke;
     margin-bottom:2vh;
     display:flex;
+    padding:10px;
+    padding-left:30px;
      }
 </style>

@@ -2,18 +2,16 @@
   <nav class="nav-bar" id="nav-bar">
     <div class="brand">
       <!-- {{getHeaderFromStore}} -->
-      <router-link to="/">
         <!-- <img src="@/assets/brand-logo.png" alt="IMA"> -->
-        <h2 style="margin-left:7vw;"> Inventory Manager </h2>
-        <span class="nav-bar-copy-right">&copy; Blibli 2022</span>
-      </router-link>
+       <h3 style="margin-left:8vw;color:white;"> <ion-icon style="color:white;font-size:25px;" name="logo-web-component"></ion-icon>&nbsp;Inventory Manager</h3>
+        <span style="color:white;font-size:15px;">&copy; Blibli 2022</span>
     </div>
     
     <div class="login-register">
-      <router-link to='/' style="font-size:25px; padding-top:5px;"><ion-icon name="notifications-outline"></ion-icon>&nbsp;&nbsp;</router-link>
+      <router-link to='/' style="font-size:30px; padding-top:5px;"><ion-icon name="notifications-outline"></ion-icon>&nbsp;&nbsp;</router-link>
       <!-- <router-link to="/login" tag="button" class="login-btn"
         >Login</router-link> -->
-        <button @click="logOut()" class="login-btn"
+        <button style="background:#1b2850; color:white; border: 0.1px solid black; font-weight:400;" @click="logOut()" class="login-btn"
         >Logout</button>
     </div>
   </nav>
@@ -68,15 +66,6 @@
 .nav-bar-copy-right:hover{
   color: white;
   cursor: pointer;
-}
-.login-btn {
-  margin: auto .8em;
-  padding: 0.4em 2em;
-  background-color: white;
-  border: 2px solid whitesmoke !important;
-  border-radius: 0.5em;
-  color: #1b2850;
-  transition: all 0.3s;
 }
 .register-btn{
   margin: auto .8em;

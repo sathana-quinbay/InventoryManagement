@@ -1,4 +1,4 @@
-import { requestList } from "@/service/adminrequests.service";
+import { productList } from "@/service/adminProductList";
 
 export default {
     state: {
@@ -19,8 +19,8 @@ export default {
             // console.log(state + " | " + user);
             productList({
                 success: (response)=>{
-                    console.info('Request Process Success',response);
-                    this.commit('setProducts',response.data)
+                    console.info('Request Process Success',response.data.data);
+                    this.commit('setProducts',response.data.data);
                     // console.log(response);
                    
                 },

@@ -87,7 +87,7 @@ const routes = [
          name: "SellerManagementComponent",
          component: SellerManagementComponent 
       },
-      { path: '/adminproducts', name: 'AdminProductListComponent', component: AdminProductListComponent },
+      { path: 'adminproducts', name: 'AdminProductListComponent', component: AdminProductListComponent },
 
     ]
   },
