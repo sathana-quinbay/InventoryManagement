@@ -1,3 +1,4 @@
+import {postsellerproducts} from '@/service/SellerProductService'
 export default {
     name:"AddProductComponent",
     data()
@@ -6,7 +7,9 @@ export default {
         product:{
       productName:"",
       productPrice:"",
-       discription:"",
+      description:"",
+       category:"",
+       sellerId:"",
        quantity:"",
        coupon:"",
        imageUrl:"https://campiazza-media.s3.amazonaws.com/unknown.png",
@@ -14,4 +17,22 @@ export default {
        },
        }
     },
+    methods:{
+      addProduct()
+      {
+        this.product.sellerId = localStorage.getItem('userId');
+        postsellerproducts({
+          success: ({ data }) => {
+              console.log(data)
+             
+          },
+          error: (e) => {
+             
+              console.warn(e);
+          }
+          ,
+          payload:this.product
+      })
+      }
+    }
 }

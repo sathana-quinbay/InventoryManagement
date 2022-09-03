@@ -5,12 +5,19 @@
      <div v-if="addDialog">
        <b-button @click="addDialog=false" class="addButton" variant="info">close</b-button>
  
-      <b-icon-eye></b-icon-eye> 
+     
       <AddProductComponent />
     </div>
   </div>
  
       <b-container class="container-bgColor">
+         <select v-model="sortBy">
+        <option disabled value="">Please select one</option>
+        <option value="name">Name</option>
+        <option value="price">Price</option>
+      </select>
+      <button @click="sortData()">Submit</button>
+    
         <b-row>
          
            <SellerProductsComponent v-for="(data,index) in sellerproductlist" :key="index" :product="data"/> 
@@ -26,6 +33,7 @@
 import SellerProductsComponent from  './SellerProductComponent.vue'
 import AddProductComponent from  './AddProductComponent.vue'
 import { mapGetters } from 'vuex';
+import {sortProduct} from '@/service/SellerProductService'
 export default {
    name: 'ProductContainerComponent',
    components:
@@ -36,7 +44,8 @@ export default {
   data()
   {
    return {
-    addDialog:false
+    addDialog:false,
+    sortBy:[],
    }
   },
   computed:
@@ -50,9 +59,31 @@ export default {
   {
     const userId = localStorage.getItem('userId');
     console.log(userId)
-     this.$store.dispatch('getsellerproductsfromservice', userId);
+    //  this.$store.dispatch('getsellerproductsfromservice', userId);
   },
+  methods:{
+    sortData()
+    {
+    console.log(this.sortBy)
+    const sellerid = localStorage.getItem('userId');
+    var sortBy=this.sortBy
+    sortProduct({
+      sellerid,
+      sortBy,
+      success: ({ data }) => {
+          console.log("success")
+          console.log(data)
+         
+      },
+      error: (e) => {
+         
+          console.warn(e);
+      }
 
+  })
+
+    },
+  }
 
 }
 </script>

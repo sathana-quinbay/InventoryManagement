@@ -1,5 +1,5 @@
 import OpenProductComponent from '@/components/OpenProductComponent.vue'
-import {sortProduct} from '@/service/SellerProductService'
+
 export default {
   props: {
     product: {
@@ -13,7 +13,7 @@ export default {
       clicked: false,
       pname: "",
       modalShow:false,
-      sortBy:[],
+      
       pprice: 0,
       sprice: 0,
       image: "",
@@ -29,27 +29,7 @@ export default {
     changeflag() {
       this.clicked = true;
     },
-    sortData()
-    {
-    console.log(this.sortBy)
-    const sellerid = localStorage.getItem('userId');
-    var sortBy=this.sortBy
-    sortProduct({
-      sellerid,
-      sortBy,
-      success: ({ data }) => {
-          console.log("success")
-          console.log(data)
-         
-      },
-      error: (e) => {
-         
-          console.warn(e);
-      }
-
-  })
-
-    },
+    
     update() {
       this.clicked = false;
       if(this.pname || this.des=='' || this.image=='' || this.sprice==0 || this.pprice==0 || this.quantity==0 || this.pro==0)

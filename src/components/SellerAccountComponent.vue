@@ -1,14 +1,11 @@
 <template>
 
-   <div>
-    <div class="subject">
-      <h2>Your Account details</h2>
-    <hr>
-    </div>
+   <div class="main-container-slot">
+   
      <b-container class="card-container">
      
         <b-row class="card-row">
-          
+           
             <b-col cols="12" lg="6"  md="12" sm="12">
                 
                 <div :class="editButton?'card card-margin':'card small-card'">
@@ -112,6 +109,7 @@
 }
 .subject
 {
+  
   padding: 0% 5%;
   text-align: left;
 }

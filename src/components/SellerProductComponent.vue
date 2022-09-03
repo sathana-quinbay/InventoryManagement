@@ -1,13 +1,7 @@
 <template >
   <b-col cols="12" lg="4" sm="12" md="6">
    
-      <select v-model="sortBy">
-        <option disabled value="">Please select one</option>
-        <option value="name">Name</option>
-        <option value="price">Price</option>
-      </select>
-      <button @click="sortData()">Submit</button>
-    
+     
     <div v-if="modalShow">
       <OpenProductComponent
         :productItem="product"
