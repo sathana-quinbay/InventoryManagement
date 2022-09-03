@@ -5,6 +5,7 @@ import sellerStore from '@/store/sellerStore'
 import sellerProductStore from '@/store/sellerProductStore'
 import specificSellerStore from '@/store/specificSellerStore'
 import RequestStore from '@/store/adminrequests.store'
+import adminProductsList from '@/store/adminProducts.store'
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -13,8 +14,8 @@ export default new Vuex.Store({
         sellerStore,
         sellerProductStore,
         specificSellerStore,
-        RequestStore
-
+        RequestStore,
+        adminProductsList
     }
     
 }) 

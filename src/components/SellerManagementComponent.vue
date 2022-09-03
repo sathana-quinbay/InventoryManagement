@@ -1,8 +1,8 @@
 <template>
-<div style="width:90vw; margin-left:8vw;">
-  <h1 style="padding:10px; font-family:impact;">Management</h1>
+<div style="width:90vw; margin-left:7.5vw;">
+  <h1 style="padding:5px;font-size:28px; font-family:arial,bold;">Management</h1><hr>
    <div class="searchbar">Search By: 
-     <select style="border:0.2px solid black; border-radius:7px;padding:5px; background:white;" v-model="category" name="category">
+     <select style="border:0.5px solid #1b2850; border-radius:7px;padding:4px; background:white;" v-model="category" name="category">
         <option style="color:grey;" value="" disabled selected>--Select category--</option>
         <option value="name">name</option>
         <option value="address">address</option>
@@ -19,9 +19,9 @@
     <b-dropdown-item disabled>Disabled action</b-dropdown-item> -->
   <!-- </b-dropdown> -->
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input style="border:0.2px solid black; border-radius:10px;width:25vw;padding:7px; background:white;" type="text" placeholder="search seller" v-model="searchkey">
-        <button style="background:white; color:#1b2850; font-size:20px; border-radius:3px; padding:5px;" @click="processSearch()"><ion-icon name="search-sharp"></ion-icon></button> 
-        <div style="float:right; margin-right:10vw;"> Sort By:<select style="border:0.2px solid black; border-radius:7px;padding:5px; background:white;" v-model="sortby">
+        <input style="border:0.5px solid #1b2850; border-radius:10px;width:25vw;padding:5px; background:white;" type="text" placeholder="search seller" v-model="searchkey">
+        <button style="background:white; color:#1b2850; font-size:20px; border-radius:10px; padding:5px;" @click="processSearch()"><ion-icon name="search-sharp"></ion-icon></button> 
+        <div style="float:right; margin-right:10vw;"> Sort By:<select style="border:0.5px solid #1b2850; border-radius:7px;padding:4px; background:white;" v-model="sortby">
           <option style="color:grey;" value="" disabled selected>-select-</option>
         <option value="name">name</option>
         <option value="userid">userid</option>

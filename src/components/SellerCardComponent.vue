@@ -2,10 +2,10 @@
   <div class="seller-card">
     <!-- <img :src="require(`@/assets/product_7.jpg`)"> -->
     <img :src="require(`@/assets/seller-profile-img.jpeg`)" alt="Image" />
-    <p style="font-size: small">
+   <b><p style="font-size: small">
       {{sellerprop.name}} <br /><span class="seller-ref-id">Ref ID</span
       ><span class="seller-id">{{sellerprop.userId | sellerIdFilter}}</span>
-    </p>
+    </p></b>
 
     <button style="font-size:15px;" class="view-inventory-btn" @click="openInventory(sellerprop.userId)">
        View Inventory
@@ -76,9 +76,9 @@
 }
 
 .seller-card {
-  background-color: rgb(255, 255, 255);
+  background-color: #fafafa;
   border-radius: 2%;
-  border: 0.02em solid rgba(0, 0, 0, 0.091);
+  border: 1px solid green ;
   padding: 0.5em;
   font-size: 2em;
   text-align: center;

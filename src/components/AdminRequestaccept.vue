@@ -1,6 +1,6 @@
 <template>
 <div>           <!--class="adminrequest"-->
-    <h2>Requests</h2>
+    <h2>Requests</h2><hr>
     <div class="tab">
     <b-table :items="requests" :fields="fields" responsive='sd'>
          <template #cell(Description)="">
@@ -81,9 +81,9 @@ export default {
 <style>
 .tab{
     background: white;
-    width:90%;
-    margin-left:8%;
-    border-radius:8px;
+    width:75%;
+    margin-left:14%;
+    border-radius:5px;
     border:0.5px solid #01c5a1;
     padding:5px;
     height:82vh;
