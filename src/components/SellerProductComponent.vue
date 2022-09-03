@@ -25,6 +25,9 @@
             <button id="show-btn" @click="modalShow = true">
               <b-icon-eye></b-icon-eye> View
             </button>
+            <button id="show-btn" @click="deleteProduct(product)">
+              Delete
+            </button>
           </div>
         </b-col>
       </b-row>

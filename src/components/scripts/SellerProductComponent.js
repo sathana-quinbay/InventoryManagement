@@ -1,5 +1,5 @@
 import OpenProductComponent from '@/components/OpenProductComponent.vue'
-
+import {deleteProduct} from '@/service/SellerProductService'
 export default {
   props: {
     product: {
@@ -69,7 +69,33 @@ export default {
 
       this.$store.dispatch("putsellerproductstoservice", obj);
     },
-
+    deleteProduct(product)
+    {
+      console.log("products",product)
+      deleteProduct({
+           
+        success: ({ data }) => {
+            
+            console.log("success delete")
+            if(data.status_code==200)
+            {
+              console.log("inside code")
+              const userId = localStorage.getItem('userId');
+              console.log("inside created")
+              console.log(userId)
+                this.$store.dispatch('getsellerproductsfromservice', userId);
+            }
+            console.log(data)
+        
+        },
+        error: (e) => {
+          
+            console.warn(e);
+        },
+        payload:product
+  
+    })
+    },
     sub() {
       let obj = {
         sellerId: this.product.sellerId,

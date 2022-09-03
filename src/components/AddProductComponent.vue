@@ -2,6 +2,14 @@
   <b-container class="backgroundColor">
     <b-row>
        <b-container-fluid>
+        <b-row>
+            <label class="btn btn-default">
+      <input type="file" ref="file" @change="selectFile" />
+    </label>
+    <button class="btn btn-success" :disabled="!selectedFiles" @click="uploadFile">
+      Upload
+    </button>
+        </b-row>
 
           <b-row>
                <b-col cols="12" lg="8" md="8" sm="12">

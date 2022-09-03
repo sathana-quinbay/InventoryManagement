@@ -1,6 +1,21 @@
 <template>
 <div class="container-fluid">
   <div class="container">
+    <input type="text" v-model="search">
+     <button @click="findData()">
+      search
+     </button>
+     <br>
+     <select v-model="sortBy">
+        <option disabled value="">Please select one</option>
+        <option value="name">Name</option>
+        <option value="price">Price</option>
+      </select>
+      <button @click="sortData()">Submit</button>
+      <br>
+    
+       <button @click="viewType='list'">List</button>
+          <button @click="viewType='table'">Table</button> 
     <b-button v-if="!addDialog" @click="addDialog=true" class="addButton" variant="info">Add Product</b-button>
      <div v-if="addDialog">
        <b-button @click="addDialog=false" class="addButton" variant="info">close</b-button>
@@ -11,17 +26,16 @@
   </div>
  
       <b-container class="container-bgColor">
-         <select v-model="sortBy">
-        <option disabled value="">Please select one</option>
-        <option value="name">Name</option>
-        <option value="price">Price</option>
-      </select>
-      <button @click="sortData()">Submit</button>
-    
+        
         <b-row>
+       
          
-           <SellerProductsComponent v-for="(data,index) in sellerproductlist" :key="index" :product="data"/> 
+               
+                 <SellerProductsComponent v-for="(data,index) in sellerproductlist" :key="index" :product="data"/> 
          
+         
+              
+          
         </b-row>
       </b-container>
    
@@ -33,7 +47,7 @@
 import SellerProductsComponent from  './SellerProductComponent.vue'
 import AddProductComponent from  './AddProductComponent.vue'
 import { mapGetters } from 'vuex';
-import {sortProduct} from '@/service/SellerProductService'
+
 export default {
    name: 'ProductContainerComponent',
    components:
@@ -46,6 +60,8 @@ export default {
    return {
     addDialog:false,
     sortBy:[],
+    viewType:'list',
+    search:""
    }
   },
   computed:
@@ -58,8 +74,9 @@ export default {
   created()
   {
     const userId = localStorage.getItem('userId');
+    console.log("inside created")
     console.log(userId)
-    //  this.$store.dispatch('getsellerproductsfromservice', userId);
+      this.$store.dispatch('getsellerproductsfromservice', userId);
   },
   methods:{
     sortData()
@@ -67,22 +84,21 @@ export default {
     console.log(this.sortBy)
     const sellerid = localStorage.getItem('userId');
     var sortBy=this.sortBy
-    sortProduct({
-      sellerid,
-      sortBy,
-      success: ({ data }) => {
-          console.log("success")
-          console.log(data)
-         
-      },
-      error: (e) => {
-         
-          console.warn(e);
-      }
-
-  })
+    console.log("contaier",sortBy)
+    this.$store.dispatch('sortSellerProducts',{sellerid,sortBy});
+ 
 
     },
+    findData()
+    {
+      console.log("doind")
+      var payload={
+        sellerId:localStorage.getItem('userId'),
+        searchValue:this.search
+      }
+      this.$store.dispatch('searchProductServiceCall',payload)
+      
+    }
   }
 
 }

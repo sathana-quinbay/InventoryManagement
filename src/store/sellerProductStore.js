@@ -1,5 +1,5 @@
-import { getsellerproducts, postsellerproducts, addsellerproducts } from "@/service/SellerProductService";
-
+import { getsellerproducts,searchProduct,uploadProductViaFile, postsellerproducts, addsellerproducts } from "@/service/SellerProductService";
+import {sortProduct} from '@/service/SellerProductService'
 export default ({
 
 
@@ -134,7 +134,24 @@ export default ({
 
     actions:
     {
-        getsellerproductsfromservice({ commit }, sellerid) {
+        uploadFile(state,payload)
+        {
+            uploadProductViaFile({
+                
+                success: ({ data }) => {
+                    console.log("get seller service call")
+                    console.log(data)
+                    
+                },
+                error: (e) => {
+                   
+                    console.warn(e);
+                },
+                payload
+
+            })
+        },
+        getsellerproductsfromservice(state, sellerid) {
 
 
             // this.commit('setInput',input);
@@ -146,10 +163,10 @@ export default ({
                 success: ({ data }) => {
                     console.log("get seller service call")
                     console.log(data)
-                    commit('setSellerproducts', data.data)
+                    this.commit('setSellerproducts', data.data)
                 },
                 error: (e) => {
-                    commit('setSellerproducts', [])
+                    this.commit('setSellerproducts', [])
                     console.warn(e);
                 }
 
@@ -157,7 +174,43 @@ export default ({
 
 
         },
+       sortSellerProducts(state,{sellerid,sortBy})
+       {
+         console.log(sellerid,sortBy)
+         sortProduct({
+            sellerid,
+            sortBy,
+            success: ({ data }) => {
+                console.log("success")
+                console.log(data)
+                this.commit("setSellerproducts",data.data)
+            },
+            error: (e) => {
+               
+                console.warn(e);
+            }
+      
+        })
+          
+       },
+       searchProductServiceCall(state,payload)
+       {
+        searchProduct({
+        
+            success: ({ data }) => {
+                console.log("success")
+                
+                this.commit("setSellerproducts",data.data)
+            },
+            error: (e) => {
+               
+                console.warn(e);
+            },
+            payload
+      
+        })
 
+       },
         putsellerproductstoservice({ dispatch }, payload) {
 
 
@@ -181,6 +234,7 @@ export default ({
 
 
         },
+
 
         addsellerproductstoservice(context, payload) {
 
