@@ -1,10 +1,8 @@
 # Inventory Manager Application (IMA - UI) 
 
-**Team: Hydra**
 
-### Contributors
-* **[Akash Chouhan](mailto:akash.chouhan@quinbay.com)**
-* **[Daniel Nielson](mailto:daniel.nelson@quinbay.com)**
+
+
 
 ---
 ### Use Case
