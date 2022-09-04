@@ -1,6 +1,6 @@
 <template>
 <div style="width:90vw; margin-left:7.5vw;">
-  <h1 style="padding:5px;font-size:28px; font-family:arial,bold;"><ion-icon style="color:#1b2850; font-size:60px;" name="people-circle-outline"></ion-icon>&nbsp;Management</h1><hr>
+  <div class="cont"><div class="bag"><h3 style="padding:5px;font-size:28px; font-family:arial,bold;"><ion-icon style="color:#1b2850; font-size:60px;" name="people-circle-outline"></ion-icon>&nbsp;Management</h3></div></div><hr>
    <div class="searchbar">Search By: 
      <select style="border:1px solid #1b2850; border-radius:7px;padding:4px; background:white;" v-model="category" name="category">
         <option style="color:grey;" value="" disabled selected>--Select category--</option>
@@ -40,6 +40,21 @@
 <script src="./scripts/sellerManagement.js">
 </script>
 <style scoped>
+.cont{
+   display: flex;
+   width:100% ;
+   justify-content:center;
+   margin-top:10px;
+}
+.bag{
+   border:0.2px solid #1b2850;
+   padding:5px;
+   width:200px;
+   display:flex;
+   border-radius:10px;
+   background:whitesmoke;
+  
+}
 .search-bar{
   padding-bottom:10px;
 }

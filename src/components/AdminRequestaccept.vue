@@ -1,6 +1,6 @@
 <template>
 <div>           <!--class="adminrequest"-->
-    <h2 style="padding:10px;"><ion-icon style="color:#1b2850;" name="newspaper-outline"></ion-icon>&nbsp;Requests</h2><hr>
+    <div class="cont"><div class="bag"><h3 style="padding:5px;"><ion-icon style="color:#1b2850;" name="newspaper-outline"></ion-icon>&nbsp;Requests</h3></div></div><hr>
     <div class="tab">
     <b-table :items="requests" :fields="fields" responsive='sd'>
          <template #cell(Description)="">
@@ -87,6 +87,20 @@ export default {
 </script>
 
 <style>
+.cont{
+   display: flex;
+   width:100% ;
+   justify-content:center;
+   margin-top:10px;
+}
+.bag{
+   border:0.2px solid #1b2850;
+   padding:5px;
+   width:200px;
+   display:flex;
+   border-radius:10px;
+   background:whitesmoke;
+}
 .tab{
     background: white;
     width:75%;
@@ -108,7 +122,8 @@ export default {
     margin-left:5%;
 }
 button.btn.mr-2.viewButton.btn-secondary.btn-sm {
-    background: #1bae;
+    background: white;
     color:#1b2850;
+    font-weight:500;
 }
 </style>

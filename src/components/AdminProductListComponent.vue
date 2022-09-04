@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h3 style="padding:20px;"><ion-icon style="font-size:50px;" name="cube-outline"></ion-icon>&nbsp;Products</h3>
+  <div class="cont"><div class="bag"><h4 style="padding:20px;"><ion-icon style="font-size:50px;" name="cube-outline"></ion-icon>&nbsp;Products</h4></div></div>
     <div class="searchbar">Search By: 
      <select style="border:0.5px solid #1b2850; border-radius:7px;padding:5px; background:white;" v-model="category" name="category">
         <option style="color:grey;" value="" disabled selected>--Select category--</option>
@@ -65,6 +65,21 @@ export default {
 </script>
 
 <style>
+.cont{
+   display: flex;
+   width:100% ;
+   justify-content:center;
+   margin-top:10px;
+}
+.bag{
+   border:0.2px solid #1b2850;
+   padding:0px;
+   width:250px;
+   display:flex;
+   border-radius:10px;
+   background:whitesmoke;
+  text-align: center;
+}
 .tabv{
     background: white;
     width:90%;
