@@ -7,7 +7,7 @@ import AdminDashboardComponent from "@/components/AdminDashboardComponent";
 import ProductDetails from '@/components/productDetails'
 
 import AddProductFormComponent from '@/components/AddProductFormComponent';
-import SellerInventoryComponent from '@/components/SellerInventoryComponent'
+// import SellerInventoryComponent from '@/components/SellerInventoryComponent'
 
 import  SellerAccountComponent from "@/components/SellerAccountComponent";
 import RegisterComponent from "@/components/RegisterComponent"

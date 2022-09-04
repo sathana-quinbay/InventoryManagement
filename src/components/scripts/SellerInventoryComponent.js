@@ -26,14 +26,14 @@ export default {
   },
 
   // e44f6029-31e3-4138-8fcc-3e1390195477
-  created() {
-    const sellerId = localStorage.getItem("userId");
-    console.log(sellerId)
-    this.$store.dispatch(
-      "getsellerdetailsFromService",
-      sellerId
-      // "e44f6029-31e3-4138-8fcc-3e1390195477"
-    );
-    console.log(this.sellerobj)
-  },
+  // created() {
+  //   const sellerId = localStorage.getItem("userId");
+  //   console.log(sellerId)
+  //   this.$store.dispatch(
+  //     "getsellerdetailsFromService",
+  //     sellerId
+  //     // "e44f6029-31e3-4138-8fcc-3e1390195477"
+  //   );
+  //   console.log(this.sellerobj)
+  // },
 };
