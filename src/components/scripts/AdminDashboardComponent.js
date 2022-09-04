@@ -1,42 +1,37 @@
 
-//  import { mapGetters } from 'vuex';
-// import { sellers } from './mockSellers';
+ import { mapGetters } from 'vuex';
+ import axios from 'axios';
 
 export default {
     name: 'AdminDashboardComponent',
     data(){
         return {
             isLoading: false,
-            // sellers: sellers,
-            activeSellersCount:0,
-            disabledSellersCount:0
+            requestCount:0
         }
     },
-    // computed:
-    // {
-    //     // ...mapGetters({
-    //     //     activeSellers:'getSellers',
-    //     // })
-    // },
+    computed:
+    {
+        ...mapGetters({
+            active:'getActiveCount',
+            inactive:'getInactiveCount'
+            
+        })
+    },
     created(){
+        
         this.$store.dispatch('GET_ALL_SELLERS');
-        // this.$store.dispatch('USER_LOGGED_IN')
-        let activeSellers=this.$store.state.sellerStore.sellers;
-        console.log("damn"+activeSellers);
-        for(let i=0;i<activeSellers.length;i++)
-        {
-            if(activeSellers.role=="seller")
-            {
-                if(activeSellers.status=="true")
-                {
-                    this.activeSellersCount++;
-                    console.log("active")
-                }
-                else{
-                    this.disabledSellersCount++;
-                }
-            }
-        }
+        axios.get(`http://10.30.1.2:8002/admin/get/requestlist`)
+        .then((response)=>{
+           console.log("service request success"+response.data.data);
+           this.requestCount=response.data.data
+        })
+        .catch((err)=>{
+           console.log(err);
+        })
+
+        this.$store.dispatch('USER_LOGGED_IN')
+       
     },
     methods: {
         updateLoader(){
@@ -48,7 +43,6 @@ export default {
         },
         createSeller(){
             this.$router.push({path: `/admindashboard/create`})
-        },
-      
+        }
     }
 }

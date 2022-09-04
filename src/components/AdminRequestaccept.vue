@@ -1,11 +1,14 @@
 <template>
 <div>           <!--class="adminrequest"-->
-    <h2>Requests</h2><hr>
+    <h2 style="padding:10px;"><ion-icon style="color:#1b2850;" name="newspaper-outline"></ion-icon>&nbsp;Requests</h2><hr>
     <div class="tab">
     <b-table :items="requests" :fields="fields" responsive='sd'>
          <template #cell(Description)="">
-            <b-button size="sm" class="mr-2" @click="modalShow = !modalShow">View Details</b-button>
-           <b-modal id="modal-center" centered title="Seller Description" v-model="modalShow">{{Description}}</b-modal>
+            <b-button class="mr-2 viewButton" size="sm"  @click="modalShow = !modalShow;desc(requests.userId)">View Details</b-button>
+           <b-modal id="modal-center" centered title="Seller Description" v-model="modalShow">
+            Name:{{desc.name}}<br>
+            
+           </b-modal>
         </template>
         <template #cell(Approval)="item">
         <b-button @click="Approved(item)" size="sm" class="mr-2">
@@ -18,7 +21,7 @@
 </template>
 
 <script>
-// import {mapGetters} from 'vuex'
+ import {mapGetters} from 'vuex'
 import axios from 'axios';
 export default {
  name:'AdminRequest',
@@ -38,6 +41,11 @@ export default {
 //           getRequest:'getRequests',
 //     })
 //  },
+   computed:{
+       ...mapGetters({
+           desc:'getSellers'
+       })
+   },
  created()
  {
     // this.$store.dispatch('REQUEST_LIST');
@@ -70,9 +78,9 @@ export default {
          })
 }
    },
-   Disapproved()
+   desc(value)
    {
-
+      this.$store.dispatch('GET_SELLER_BY_ID',value);
    }
 
 }
@@ -86,7 +94,7 @@ export default {
     border-radius:5px;
     border:0.5px solid #01c5a1;
     padding:5px;
-    height:82vh;
+    height:100;
 }
 .thAlign{
     padding-right:10px;
@@ -98,5 +106,9 @@ export default {
     background:#01c5a1;
     width:90%;
     margin-left:5%;
+}
+button.btn.mr-2.viewButton.btn-secondary.btn-sm {
+    background: #1bae;
+    color:#1b2850;
 }
 </style>

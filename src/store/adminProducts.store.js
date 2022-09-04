@@ -1,4 +1,4 @@
-import { productList } from "@/service/adminProductList";
+import {uniqueProductList, productList } from "@/service/adminProductList";
 
 export default {
     state: {
@@ -27,6 +27,21 @@ export default {
                 error: (err)=>{
                     console.warn('request error' + err);
                 },
+            })
+        },
+        UNIQUE_PRODUCT_LIST(context,payload){
+            // console.log(state + " | " + user);
+            uniqueProductList({
+                success: (response)=>{
+                    console.info('Unique Products Process Success',response);
+                    this.commit('setProducts',response);
+                    // console.log(response);
+                   
+                },
+                error: (err)=>{
+                    console.warn('unique productlist request error' + err);
+                },
+                payload
             })
         },
     } 

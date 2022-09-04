@@ -1,22 +1,30 @@
 <template>
   <div class="seller-card">
     <!-- <img :src="require(`@/assets/product_7.jpg`)"> -->
-    <img :src="require(`@/assets/seller-profile-img.jpeg`)" alt="Image" />
-   <b><p style="font-size: small">
-      {{sellerprop.name}} <br /><span class="seller-ref-id">Ref ID</span
-      ><span class="seller-id">{{sellerprop.userId | sellerIdFilter}}</span>
-    </p></b>
-
-    <button style="font-size:15px;" class="view-inventory-btn" @click="openInventory(sellerprop.userId)">
-       View Inventory
+    <img :src="require(`@/assets/seller-profile-img.jpeg`)" alt="Image" height=70px width=70px />
+  <ul class="ulList">
+       <li><b>Name : </b>{{sellerprop.name}}</li>
+       <li><b>Contact : </b>{{sellerprop.contact}}</li>
+       <li><b>Email : </b>{{sellerprop.emailId}}</li>
+       <li><b>Address : </b>{{sellerprop.address}}</li>
+       </ul>
+  
+   
+    <button style="font-size:15px; font-weight:500" class="view-inventory-btn" @click="openInventory(sellerprop)">
+       View Products
     </button>
-    <button class="seller-status-btn" :class="[(sellerprop.status)? 'enabled' : 'disabled']" @click="disbaleSeller(sellerprop.userId)">{{sellerprop.status? "Disable" : "Enable"}} Seller</button>
+    <button class="seller-status-btn" :class="[sellerprop.status=='enabled'?'enabled' : 'disabled']" @click="disbaleSeller(sellerprop.userId)">{{sellerprop.status=="enabled"? "Disable" : "Enable"}} Seller</button>
   </div>
 </template>
 
 <script src="./scripts/SellerCardComponent.js"></script>
 
 <style scoped>
+.ulList{
+  list-style-type:none;
+  font-size: small;
+   text-align:left;
+}
 .disabled{
   background-color: red !important;
 }
@@ -45,7 +53,7 @@
   margin-bottom: 0.4em;
 }
 .view-inventory-btn {
-  color: white;
+  color: #1b2850;
   background: #0000FF;
 }
 .seller-status-btn{
@@ -76,9 +84,9 @@
 }
 
 .seller-card {
-  background-color: #fafafa;
+  background-color: whitesmoke;
   border-radius: 2%;
-  border: 1px solid green ;
+  border: 1px solid #1b2850 ;
   padding: 0.5em;
   font-size: 2em;
   text-align: center;
@@ -93,9 +101,9 @@
 button {
   padding: 0.5em;
   margin-top: 3vh;
-  background-color: #1b2850 !important;
+  background-color: white !important;
   height: 3em !important;
-  border: none;
+  border: 1px solid #1b2850;
   border-radius: 0.7em !important;
   transition: box-shadow 0.1s;
   width: 17vw;

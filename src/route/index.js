@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import LoginComponent from "@/components/LoginComponent.vue";
 import AdminDashboardComponent from "@/components/AdminDashboardComponent";
 // import CreateSellerComponent from "@/components/CreateSellerComponent";
-import SellerInventoryComponent from '@/components/SellerInventoryComponent'
+import ProductDetails from '@/components/productDetails'
 import  SellerAccountComponent from "@/components/SellerAccountComponent";
 import RegisterComponent from "@/components/RegisterComponent"
 import ProductContainerComponent from '@/components/ProductContainerComponent'
@@ -88,7 +88,11 @@ const routes = [
          component: SellerManagementComponent 
       },
       { path: 'adminproducts', name: 'AdminProductListComponent', component: AdminProductListComponent },
-
+      {
+        path: "manage/products",
+      name: "ProductDetails",
+      component:ProductDetails,
+    },
     ]
   },
   {
@@ -115,11 +119,6 @@ const routes = [
       
     
     children: [
-      {
-      path: "dashboard",
-    name: "SellerInventoryComponent",
-    component: SellerInventoryComponent,
-  },
   {
     path: 'product',
     name: 'ProductContainerComponent',

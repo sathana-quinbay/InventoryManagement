@@ -74,7 +74,7 @@ export const addsellerproducts = ({payload,success,error}) => {
 export const getsellerdetail = ({sellerid,success,error}) => {
     console.log(sellerid)
     axios
-    .get(`http://10.30.1.2:8002/admin/sellerbyId/${sellerid}`)
+    .get(`http://10.30.1.2:8007/seller/get/${sellerid}`)
         .then((response) => {
             console.log(response)
             success && success(response)

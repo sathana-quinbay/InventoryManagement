@@ -4,6 +4,8 @@ import  {getAllSellers,disbaleSeller,getSellerFromSearch,getSellerFromSort} from
 export default {
     state: {
         sellers: [],
+        active:0,
+        inactive:0,
         sellerId: localStorage.getItem('userId') || null,
     },
     getters:{
@@ -15,12 +17,20 @@ export default {
         },
         getSpecificSeller(state, userId){
             let i = 0;
-            while(i< state.sellers.length){
+            while(i<state.sellers.length){
                 if(state.sellers[i].userId == userId)
                     return state.sellers[i];
             }
             return [];
             // return state.sellers[];    
+        },
+        getActiveCount(state)
+        {
+            return state.active;
+        },
+        getInactiveCount(state)
+        {
+            return state.inactive;
         }
     },
     mutations:{
@@ -32,6 +42,14 @@ export default {
         },
         addNewSeller(state, newSeller){
             state.sellers.push(newSeller);
+        },
+        setCount(state,active)
+        {
+            state.active=active;
+        },
+        setC(state,inactive)
+        {
+            state.inactive=inactive;
         }
     },
     actions:{
@@ -50,6 +68,22 @@ export default {
         GET_ALL_SELLERS({commit}){
             getAllSellers({
                 success: (response)=>{
+                    let value=response.data.data;
+                    let a=0,d=0;
+                    for(let i=0;i<value.length;i++)
+                    {
+                        if(value[i].status=="enabled")
+                        {
+                            a++;
+                        }
+                        if(value[i].status=="disabled")
+                        {
+                            d++;
+                        }
+                    }
+                    console.log(a,d);
+                    commit('setCount',a);
+                    commit('setC',d);
                     commit('setSellers', response.data.data);
                     console.log(response.data.data);
                 },
@@ -80,6 +114,8 @@ export default {
             getSellerById({
                 success: (response)=>{
                     success && success(response);
+                    this.commit('setSellers',response.data.data);
+                    console.log(userId);
                 },
                 error: (err)=>{
                     error && error(err);
@@ -90,7 +126,24 @@ export default {
         GET_SELLER_FROM_SEARCH(state,payload){
             getSellerFromSearch({
                 success: (response)=>{
-                    this.commit('setSellers', response.data.data);
+                    let resp=response.data;
+                    let sdata=[]
+                    if(resp.status_CODE==404)
+                    {
+                       this.commit("setSellerproducts",[])
+                    }
+                    else
+                    {
+                        for(let i=0;i<(resp.data).length;i++)
+                        {
+                            if(resp.data[i].status!="waiting for approval")
+                            {
+                                sdata.push(resp.data[i]);
+                            }
+                        }
+                        this.commit('setSellers',sdata);
+    
+                    }
                 },
                 error: (err)=>{
                     console.warn(err);
@@ -102,7 +155,16 @@ export default {
             getSellerFromSort({
                 success: (response)=>{
                     console.log("store response initiated for sort");
-                    this.commit('setSellers', response.data.data);
+                    let resp=response.data.data;
+                    let sdata=[]
+                    for(let i=0;i<resp.length;i++)
+                    {
+                        if(resp[i].status!="waiting for approval")
+                        {
+                            sdata.push(resp[i]);
+                        }
+                    }
+                    this.commit('setSellers',sdata);
                 },
                 error: (err)=>{
                     console.warn(err);

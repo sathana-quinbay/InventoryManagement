@@ -21,15 +21,11 @@ export default{
     //     })
     // },
     methods:{
-        openInventory(userId){
-            
-            this.isInventoryOpened = true;
-            setInterval(()=>{
-                this.isInventoryOpened = false
-            }, 1000);            
+        openInventory(value){
+            this.$router.push({path: `/admin/manage/products`});
+            console.log("opening details"+value.userId)
+            this.$store.dispatch('uniqueSellerId',value.userId);
 
-            this.$router.push({path: `/admin/sellers/${userId}`});
-            
         },
         disbaleSeller(userId){
             // This is a toggle function to disable or enable a seller.

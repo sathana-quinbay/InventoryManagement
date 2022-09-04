@@ -3,12 +3,12 @@
     <div class="brand">
       <!-- {{getHeaderFromStore}} -->
         <!-- <img src="@/assets/brand-logo.png" alt="IMA"> -->
-       <h3 style="margin-left:8vw;color:white;"> <ion-icon style="color:white;font-size:25px;" name="logo-web-component"></ion-icon>&nbsp;Inventory Manager</h3>
+       <h3 style="margin-left:8vw;color:white;"> <ion-icon style="color:#1bae;font-size:30px; margin-top:5px;" name="logo-web-component"></ion-icon>&nbsp;Inventory Manager</h3>
         <span style="color:white;font-size:15px;">&copy; Blibli 2022</span>
     </div>
     
     <div class="login-register">
-      <router-link to='/' style="font-size:30px; padding-top:5px;"><ion-icon name="notifications-outline"></ion-icon>&nbsp;&nbsp;</router-link>
+      <router-link to='/' style="font-size:30px; padding-top:5px;">&nbsp;&nbsp;</router-link>
       <!-- <router-link to="/login" tag="button" class="login-btn"
         >Login</router-link> -->
         <button style="background:#1b2850; color:white; border: 0.1px solid black; font-weight:400;" @click="logOut()" class="login-btn"
@@ -23,7 +23,7 @@
 .nav-bar {
   overflow: hidden;
   background-color: #1b2850;
-  position:sticky ;
+  position:sticky;
   top: 0;
   /* z-index: 9999; */
   height: 10vh;
@@ -173,7 +173,7 @@
   }
 }
 
-@media screen  and (max-width: 700px){
+/* @media screen  and (max-width: 700px){
   .login-btn, .register-btn{
     display: none !important;
   }
@@ -197,8 +197,8 @@
 
 @media screen and (max-width: 450px) {
   .nav-menu,
-  .navigation, .login-btn, .register-btn {
+  .navigation,.login-btn,.register-btn{
     display: none;
   }
-}
+} */
 </style>

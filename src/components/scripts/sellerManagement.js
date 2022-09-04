@@ -6,7 +6,7 @@ export default{
         {
              return{
                 
-                     category:'',
+                     category:'name',
                      searchkey:'', 
                      sortby:''
 
@@ -40,6 +40,20 @@ export default{
         sortby(newvalue,oldvalue)
         {
             this.$store.dispatch('GET_SELLER_FROM_SORT',newvalue);
+            console.log(newvalue,oldvalue);
+        },
+        searchkey(newvalue,oldvalue)
+        {
+            var payload={
+                searchkey:newvalue,
+                category:this.category
+            
+            }
+            if(newvalue=='')
+            {
+                this.$store.dispatch('GET_ALL_SELLERS');
+            }
+            this.$store.dispatch('GET_SELLER_FROM_SEARCH',payload);
             console.log(newvalue,oldvalue);
         }
     },
