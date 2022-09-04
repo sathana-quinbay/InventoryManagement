@@ -19,6 +19,7 @@
                         
                     </div>
                     <p><button v-if="!editButton" @click="editButton=true">Edit</button></p>
+                    <button @click="deleteAccount" class="deleteMyAccount">Delete my account</button>
                     </div>
             </b-col>
             <b-col v-if="editButton" lg="6" cols="12"  md="12" sm="12">
@@ -124,16 +125,21 @@
   text-align: center;
   font-family: arial;
 }
+.deleteMyAccount
+{
+  background: red;
+  width:200px ;
+}
 .small-card
 {
-  height: 300px;
+  height: 400px;
   
   margin-top: 0%;
 }
 .card-margin
 {
-   height: 300px;
-  margin-top: 10%;
+   height: 400px;
+  margin-top: 0%;
 }
 .title {
   color: grey;

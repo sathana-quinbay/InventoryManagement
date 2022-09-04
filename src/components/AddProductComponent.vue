@@ -6,7 +6,7 @@
             <label class="btn btn-default">
       <input type="file" ref="file" @change="selectFile" />
     </label>
-    <button class="btn btn-success" :disabled="!selectedFiles" @click="uploadFile">
+    <button class="btn btn-success" :disabled="!selectedFiles" @click="upload">
       Upload
     </button>
         </b-row>

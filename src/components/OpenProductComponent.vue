@@ -217,6 +217,8 @@ export default {
        editsellerproducts({
           success: ({ data }) => {
               console.log(data)
+               this.$refs["my-modal"].hide();
+              this.$emit("hideModal", false);
              
           },
           error: (e) => {

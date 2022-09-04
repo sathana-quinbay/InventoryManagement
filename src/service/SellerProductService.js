@@ -52,12 +52,17 @@ export const deleteProduct = ({success , error ,payload}) => {
         })
 
 }
-export const uploadProductViaFile = ({success , error ,payload}) => {
+export const uploadProductViaFile = ({success , error,payload}) => {
     console.log("upload file",payload)
-    var url = `http://10.30.1.2:8007/seller/product/import/`
+    var url = `http://10.30.1.2:8007/seller/product/import/${payload.sellerId}`
     console.log("deelete",url)
+    console.log("form data",payload.formData)
     axios
-    .post(url)
+    .post(url,payload.formData,{
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+      })
         .then((response) => {
     console.log(response)
             success && success(response)

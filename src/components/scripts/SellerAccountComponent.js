@@ -1,4 +1,5 @@
-import {getSellerDetails,updateSellerDetails} from '../../service/SellerAccountService'
+import {getSellerDetails,updateSellerDetails,deleteSellerAccount} from '../../service/SellerAccountService'
+import logOut from '@/mixins/logout'
 export default{
     name:"SellerAccountComponent",
     data()
@@ -46,7 +47,23 @@ export default{
             }
         })
     },
+    mixins:[logOut],
     methods:{
+        deleteAccount()
+        {
+            deleteSellerAccount({
+                success: ({ data }) => {
+                    console.log(data)
+                   
+                    this.logOut()
+                },
+                error: (e) => {
+                   
+                    console.warn(e);
+                }
+            })
+        },
+        
         updateSeller(){
             this.nameErrorFlag = false;
             this.emailIdErrorFlag=false;

@@ -5,116 +5,118 @@ export default ({
 
     state:
     {
-        sellerproducts: [{
-            sellerId: '123',
-            productId: '12134',
-            productName: 'upma',
-            discription: 'tasty',
-            productPrice: 123,
-            sellingPrice:140,
-            quantity:10,
-            imageUrl:' this.image',
-            promo: 'this.pro',
-        },
-        {
-            sellerId: '123',
-            productId: '1215',
-            productName: 'dhosa',
-            discription: 'tasty',
-            productPrice: 123,
-            sellingPrice:140,
-            quantity:10,
-            imageUrl:' this.image',
-            promo: 'this.pro',
-        },
-        {
-            sellerId: '123',
-            productId: '1215',
-            productName: 'dhosa',
-            discription: 'tasty',
-            productPrice: 123,
-            sellingPrice:140,
-            quantity:10,
-            imageUrl:' this.image',
-            promo: 'this.pro',
-        },
-        {
-            sellerId: '123',
-            productId: '1215',
-            productName: 'dhosa',
-            discription: 'tasty',
-            productPrice: 123,
-            sellingPrice:140,
-            quantity:10,
-            imageUrl:' this.image',
-            promo: 'this.pro',
-        },
-        {
-            sellerId: '123',
-            productId: '1215',
-            productName: 'dhosa',
-            discription: 'tasty',
-            productPrice: 123,
-            sellingPrice:140,
-            quantity:10,
-            imageUrl:' this.image',
-            promo: 'this.pro',
-        },
-        {
-            sellerId: '123',
-            productId: '1215',
-            productName: 'dhosa',
-            discription: 'tasty',
-            productPrice: 123,
-            sellingPrice:140,
-            quantity:10,
-            imageUrl:' this.image',
-            promo: 'this.pro',
-        },
-        {
-            sellerId: '123',
-            productId: '1215',
-            productName: 'dhosa',
-            discription: 'tasty',
-            productPrice: 123,
-            sellingPrice:140,
-            quantity:10,
-            imageUrl:' this.image',
-            promo: 'this.pro',
-        },
-        {
-            sellerId: '123',
-            productId: '1215',
-            productName: 'dhosa',
-            discription: 'tasty',
-            productPrice: 123,
-            sellingPrice:140,
-            quantity:10,
-            imageUrl:' this.image',
-            promo: 'this.pro',
-        },
-        {
-            sellerId: '123',
-            productId: '1215',
-            productName: 'dhosa',
-            discription: 'tasty',
-            productPrice: 123,
-            sellingPrice:140,
-            quantity:10,
-            imageUrl:' this.image',
-            promo: 'this.pro',
-        },
-        {
-            sellerId: '123',
-            productId: '1215',
-            productName: 'dhosa',
-            discription: 'tasty',
-            productPrice: 123,
-            sellingPrice:140,
-            quantity:10,
-            imageUrl:' this.image',
-            promo: 'this.pro',
-        }]
+        sellerproducts: [
+        //     {
+        //     sellerId: '123',
+        //     productId: '12134',
+        //     productName: 'upma',
+        //     discription: 'tasty',
+        //     productPrice: 123,
+        //     sellingPrice:140,
+        //     quantity:10,
+        //     imageUrl:' this.image',
+        //     promo: 'this.pro',
+        // },
+        // {
+        //     sellerId: '123',
+        //     productId: '1215',
+        //     productName: 'dhosa',
+        //     discription: 'tasty',
+        //     productPrice: 123,
+        //     sellingPrice:140,
+        //     quantity:10,
+        //     imageUrl:' this.image',
+        //     promo: 'this.pro',
+        // },
+        // {
+        //     sellerId: '123',
+        //     productId: '1215',
+        //     productName: 'dhosa',
+        //     discription: 'tasty',
+        //     productPrice: 123,
+        //     sellingPrice:140,
+        //     quantity:10,
+        //     imageUrl:' this.image',
+        //     promo: 'this.pro',
+        // },
+        // {
+        //     sellerId: '123',
+        //     productId: '1215',
+        //     productName: 'dhosa',
+        //     discription: 'tasty',
+        //     productPrice: 123,
+        //     sellingPrice:140,
+        //     quantity:10,
+        //     imageUrl:' this.image',
+        //     promo: 'this.pro',
+        // },
+        // {
+        //     sellerId: '123',
+        //     productId: '1215',
+        //     productName: 'dhosa',
+        //     discription: 'tasty',
+        //     productPrice: 123,
+        //     sellingPrice:140,
+        //     quantity:10,
+        //     imageUrl:' this.image',
+        //     promo: 'this.pro',
+        // },
+        // {
+        //     sellerId: '123',
+        //     productId: '1215',
+        //     productName: 'dhosa',
+        //     discription: 'tasty',
+        //     productPrice: 123,
+        //     sellingPrice:140,
+        //     quantity:10,
+        //     imageUrl:' this.image',
+        //     promo: 'this.pro',
+        // },
+        // {
+        //     sellerId: '123',
+        //     productId: '1215',
+        //     productName: 'dhosa',
+        //     discription: 'tasty',
+        //     productPrice: 123,
+        //     sellingPrice:140,
+        //     quantity:10,
+        //     imageUrl:' this.image',
+        //     promo: 'this.pro',
+        // },
+        // {
+        //     sellerId: '123',
+        //     productId: '1215',
+        //     productName: 'dhosa',
+        //     discription: 'tasty',
+        //     productPrice: 123,
+        //     sellingPrice:140,
+        //     quantity:10,
+        //     imageUrl:' this.image',
+        //     promo: 'this.pro',
+        // },
+        // {
+        //     sellerId: '123',
+        //     productId: '1215',
+        //     productName: 'dhosa',
+        //     discription: 'tasty',
+        //     productPrice: 123,
+        //     sellingPrice:140,
+        //     quantity:10,
+        //     imageUrl:' this.image',
+        //     promo: 'this.pro',
+        // },
+        // {
+        //     sellerId: '123',
+        //     productId: '1215',
+        //     productName: 'dhosa',
+        //     discription: 'tasty',
+        //     productPrice: 123,
+        //     sellingPrice:140,
+        //     quantity:10,
+        //     imageUrl:' this.image',
+        //     promo: 'this.pro',
+        // }
+    ]
     },
 
     getters:
@@ -134,13 +136,18 @@ export default ({
 
     actions:
     {
-        uploadFile(state,payload)
-        {
+        uploadFile(state,{formData,sellerId})
+        { 
+            var payload={
+                formData,
+                sellerId
+            }
             uploadProductViaFile({
                 
                 success: ({ data }) => {
                     console.log("get seller service call")
                     console.log(data)
+                   
                     
                 },
                 error: (e) => {
@@ -198,8 +205,34 @@ export default ({
         searchProduct({
         
             success: ({ data }) => {
-                console.log("success")
+                console.log("success search producrs")
+                console.log(data)
+                if(data.message=='No record Found!!!')
+                {
                 
+                    this.commit("setSellerproducts",[])
+                }
+                else
+                {
+                    this.commit("setSellerproducts",data.data)
+                }
+               
+            },
+            error: (e) => {
+               
+                console.warn(e);
+            },
+            payload
+      
+        })
+
+       },
+       searchProductByPrice(state,payload)
+       {
+        searchProduct({
+        
+            success: ({ data }) => {
+                console.log("success")
                 this.commit("setSellerproducts",data.data)
             },
             error: (e) => {

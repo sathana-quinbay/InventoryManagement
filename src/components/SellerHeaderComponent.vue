@@ -2,25 +2,39 @@
     <div>
   <b-navbar type="dark" variant="dark">
     <b-navbar-nav>
-      <b-nav-item href="#">Home</b-nav-item>
+      <b-nav-item href="#">Inventory Management</b-nav-item>
+     
 
-      <!-- Navbar dropdowns -->
-      <b-nav-item-dropdown text="Lang" right>
-        <b-dropdown-item><router-link to="/seller/product">Add Product</router-link></b-dropdown-item>
-        <b-dropdown-item><router-link to="/seller/">All Products</router-link></b-dropdown-item>
-        <b-dropdown-item href="#">RU</b-dropdown-item>
-        <b-dropdown-item href="#">FA</b-dropdown-item>
+      
+      <b-nav-item-dropdown class="rightAlign" text="Products" right>
+        <b-dropdown-item><router-link class="routerLink" to="/seller/add">Add Product</router-link></b-dropdown-item>
+        <b-dropdown-item><router-link class="routerLink" to="/seller/tableview">List Products</router-link></b-dropdown-item>
+        <b-dropdown-item><router-link class="routerLink" to="/seller/product">All Products</router-link></b-dropdown-item>
+        <b-dropdown-item><router-link class="routerLink" to="/seller/import">Import Products</router-link></b-dropdown-item>
+       
       </b-nav-item-dropdown>
 
-      <b-nav-item-dropdown text="User" left>
-        <b-dropdown-item ><router-link to="/seller/account">Account</router-link></b-dropdown-item>
-        <b-dropdown-item href="#">Settings</b-dropdown-item>
+      <b-nav-item-dropdown class="rightAlign" text="User" right>
+        <b-dropdown-item ><router-link class="routerLink" to="/seller/account">Account</router-link></b-dropdown-item>
+
         <b-dropdown-item @click="logOut()" href="#">Logout</b-dropdown-item>
       </b-nav-item-dropdown>
     </b-navbar-nav>
   </b-navbar>
 </div>
 </template>
+<style scoped>
+.rightAlign
+{
+  float: right;
+  text-align: right;
+}
+.routerLink
+{
+  text-decoration: none;
+  color: black;
+}
+</style>
 <script>
 
 export default{
@@ -33,8 +47,8 @@ export default{
       localStorage.removeItem("emailId");
 
       
-      this.$store.dispatch('LOG_OUT_USER');
-      this.$router.push({path: '/login'});
+     
+      this.$router.replace('/login');
     },
     }
 }

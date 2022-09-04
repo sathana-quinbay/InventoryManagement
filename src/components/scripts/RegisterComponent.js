@@ -1,7 +1,9 @@
+import {reactivateSellerAccount, deleteAndCreateSellerAccount} from '@/service/SellerAccountService'
 export default {
     name: 'RegisterComponent',
     data(){
         return {
+         
             seller: {
                 name: '',
                 emailId: '',
@@ -10,6 +12,7 @@ export default {
                 password: ''
 
             },
+            alertMessage:"",
             dismissSecs: 10,
             dismissCountDown: 0,
             checkPassword: '',
@@ -25,6 +28,12 @@ export default {
         }
     },
     methods:{
+        showModal() {
+            this.$refs['my-modal'].show()
+          },
+          hideModal() {
+            this.$refs['my-modal'].hide()
+          },
         registerNewSeller(){
             this.nameErrorFlag = false;
             this.emailIdErrorFlag=false;
@@ -82,32 +91,85 @@ export default {
                         this.confirmPasswordErrorFlag = false;
                 this.passwordError=" "
                 this.contactErrorFlag = this.passwordErrorFlag = false;
-                this.showAlert()
+                // this.showAlert()
                 
                 this.$store.dispatch('REGISTER_NEW_SELLER', {
-                    sucess: (response)=>{
-                        console.log(response);
+                    success: (response)=>{
+                        console.log("sucessregister",response);
+                        if(response.data.message=='reactivate')
+                        {
+                            this.showModal()
+                        }
+                        else if(response.data.message=='Requested email already exists..')
+                        {
+                      this.userMessage="Requested email already exists.."
+                      this.showAlert()
+                        }
+                        else{
+                            this.userMessage="successfully registered"
+                            this.showAlert()
+                        }
                         
-                        this.isRegisterSuccess = true;
-                        setInterval(()=>{
-                            this.isRegisterSuccess = false;
-                        }, 3000);
-                        this.resetFields();
+                        
                     },
                     error: (err)=>{
+
                         console.warn("New Merchant could not be registered. | " + err);
                     },
                     seller: this.seller
                 })
             }
         },
+        reactivate()
+        {
+            var sellerId=this.seller.emailId;
+            this.hideModal()
+            reactivateSellerAccount({
+                success: (response)=>{
+                    
+                    this.userMessage="Your old account is reactivated try to login"
+                    this.showAlert()
+                    console.log(response);
+                    
+                //    this.$router.push({path:"/login"})
+                },
+                error: (err)=>{
+                    console.warn(err);
+                    this.userMessage="Something went wrong try again aftre some time"
+                    this.showAlert()
+                },
+                payload:sellerId
+               
+            })
+        },
+        deleteAndCreateNew()
+        {
+             var  seller= this.seller
+             this.hideModal()
+            deleteAndCreateSellerAccount({
+                success: (response)=>{
+                    console.log(response);
+                    this.userMessage="Created account successfully"
+                            this.showAlert()
+               
+                },
+                error: (err)=>{
+                    this.userMessage="Something went wrong try again aftre some time"
+                    this.showAlert()
+                    console.warn(err);
+                },
+                payload:seller
+               
+            })
+
+        },
         countDownChanged(c) {
            
             this.dismissCountDown = c;
-            if(c==0)
-            {
-                this.$router.push({path:"/login"})
-            }
+            // if(c==0)
+            // {
+            //     this.$router.push({path:"/login"})
+            // }
           },
           showAlert() {
             this.dismissCountDown = this.dismissSecs;

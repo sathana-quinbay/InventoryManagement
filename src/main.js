@@ -9,6 +9,10 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
+Vue.prototype.$ipAdress = '192.168.43.246'
+Vue.filter('kb', val => {
+  return Math.floor(val/1024);  
+});
 Vue.filter('sellerIdFilter', (sellerId)=>{
     return sellerId.substring(21);
 })
