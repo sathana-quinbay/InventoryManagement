@@ -1,7 +1,9 @@
 <template>
     <div>
         <SellerHeaderComponent/>
-        <router-view/>
+       <div class="main-router">
+         <router-view/>
+       </div>
     </div>
 </template>
 <script>
@@ -13,3 +15,7 @@ export default{
     }
 }
 </script>
+<style scoped>
+
+
+</style>

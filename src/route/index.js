@@ -3,7 +3,12 @@ import VueRouter from "vue-router";
 import LoginComponent from "@/components/LoginComponent.vue";
 import AdminDashboardComponent from "@/components/AdminDashboardComponent";
 // import CreateSellerComponent from "@/components/CreateSellerComponent";
+
 import ProductDetails from '@/components/productDetails'
+
+import AddProductFormComponent from '@/components/AddProductFormComponent';
+import SellerInventoryComponent from '@/components/SellerInventoryComponent'
+
 import  SellerAccountComponent from "@/components/SellerAccountComponent";
 import RegisterComponent from "@/components/RegisterComponent"
 import ProductContainerComponent from '@/components/ProductContainerComponent'
@@ -14,7 +19,8 @@ import NetworkErrorComponent from '@/components/NetworkErrorComponent'
 import AdminRequest from '@/components/AdminRequestaccept'
 import SellerManagementComponent from '@/components/SellerManagementComponent'
 import AdminProductListComponent from '@/components/AdminProductListComponent'
-
+import ImportProductComponent from '@/components/ImportProductComponent'
+import ProductTableComponent from '@/components/ProductTableComponent'
 var isAuthenticated=false;
 Vue.use(VueRouter);
 // const  = (a, b) => {
@@ -87,6 +93,7 @@ const routes = [
          name: "SellerManagementComponent",
          component: SellerManagementComponent 
       },
+      
       { path: 'adminproducts', name: 'AdminProductListComponent', component: AdminProductListComponent },
       {
         path: "manage/products",
@@ -120,6 +127,11 @@ const routes = [
     
     children: [
   {
+    path: "add",
+  name: "AddProductFormComponent",
+  component: AddProductFormComponent,
+},
+  {
     path: 'product',
     name: 'ProductContainerComponent',
     component: ProductContainerComponent,
@@ -128,9 +140,17 @@ const routes = [
     path: 'account',
     name: 'SellerAccountComponent',
     component: SellerAccountComponent,
-  }
-  
-  
+  },
+  {
+    path: 'import',
+    name: 'ImportProductComponent',
+    component: ImportProductComponent,
+  },
+  {
+    path: "tableview",
+    name: "ProductTableComponent",
+    component: ProductTableComponent 
+ },
     
     ]
   },

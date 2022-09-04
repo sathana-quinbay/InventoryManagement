@@ -19,11 +19,11 @@ export const sortProduct = ({sellerid,sortBy,success , error}) => {
     var url=""
    if(sortBy=='name')
    {
-   url=`http://10.30.1.2:8007/product/sortbyname/${sellerid}`
+   url=`http://10.30.1.2:8007/seller/product/sortbyname/${sellerid}`
    }
    else if(sortBy=='price')
    {
-    url = `http://10.30.1.2:8007/product/sortbyprice/${sellerid}`
+    url = `http://10.30.1.2:8007/seller/product/sortbyprice/${sellerid}`
     }
     axios
     .get(url)
@@ -37,20 +37,88 @@ export const sortProduct = ({sellerid,sortBy,success , error}) => {
         })
 
 }
+export const deleteProduct = ({success , error ,payload}) => {
+    var url = `http://10.30.1.2:8007/seller/product/delete/${payload.productId}`
+    console.log("deelete",url)
+    axios
+    .delete(url)
+        .then((response) => {
+    console.log(response)
+            success && success(response)
 
+        }).catch((e) => {
+  console.log(e)
+            error && error(e)
+        })
 
+}
+export const uploadProductViaFile = ({success , error,payload}) => {
+    console.log("upload file",payload)
+    var url = `http://10.30.1.2:8007/seller/product/import/${payload.sellerId}`
+    console.log("deelete",url)
+    console.log("form data",payload.formData)
+    axios
+    .post(url,payload.formData,{
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+      })
+        .then((response) => {
+    console.log(response)
+            success && success(response)
+
+        }).catch((e) => {
+  console.log(e)
+            error && error(e)
+        })
+
+}
+export const searchProduct = ({success , error ,payload}) => {
+    var url = `http://10.30.1.2:8007/seller/product/search?search=${payload.searchValue}&sellerId=${payload.sellerId}`
+    console.log("indie search ",url,payload)
+    axios
+    .get(url)
+        .then((response) => {
+    console.log(response)
+            success && success(response)
+
+        }).catch((e) => {
+  console.log(e)
+            error && error(e)
+        })
+
+}
 export const postsellerproducts = ({payload,success,error}) => {
 
     console.log(payload)
 
     axios
-    .put("http://10.30.1.2:8002/seller/product/edit",payload)
+    .post("http://10.30.1.2:8007/seller/product/add/",payload)
         .then((response) => {
+            console.log(response)
 
             success && success(response)
 
         }).catch((e) => {
+   console.log(e)
+            error && error(e)
+        })
 
+}
+export const editsellerproducts = ({payload,success,error}) => {
+
+    console.log(payload)
+    var url=`http://10.30.1.2:8007/seller/product/edit`
+
+    axios
+    .put(url,payload)
+        .then((response) => {
+            console.log(response)
+
+            success && success(response)
+
+        }).catch((e) => {
+   console.log(e)
             error && error(e)
         })
 

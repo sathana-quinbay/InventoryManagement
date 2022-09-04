@@ -17,6 +17,7 @@ export const getAllSellers = ({success, error})=>{
 }
 
 export const disbaleSeller = ({success, error, userId}) =>{
+      console.log(userId)
    axios.put(DISBALE_SELLER_API + userId, userId)
          .then((response)=>{
                success && success(response);

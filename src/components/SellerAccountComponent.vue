@@ -1,14 +1,11 @@
 <template>
 
-   <div>
-    <div class="subject">
-      <h2>Your Account details</h2>
-    <hr>
-    </div>
+   <div class="main-container-slot">
+   
      <b-container class="card-container">
      
         <b-row class="card-row">
-          
+           
             <b-col cols="12" lg="6"  md="12" sm="12">
                 
                 <div :class="editButton?'card card-margin':'card small-card'">
@@ -22,6 +19,7 @@
                         
                     </div>
                     <p><button v-if="!editButton" @click="editButton=true">Edit</button></p>
+                    <button @click="deleteAccount" class="deleteMyAccount">Delete my account</button>
                     </div>
             </b-col>
             <b-col v-if="editButton" lg="6" cols="12"  md="12" sm="12">
@@ -112,6 +110,7 @@
 }
 .subject
 {
+  
   padding: 0% 5%;
   text-align: left;
 }
@@ -126,16 +125,21 @@
   text-align: center;
   font-family: arial;
 }
+.deleteMyAccount
+{
+  background: red;
+  width:200px ;
+}
 .small-card
 {
-  height: 300px;
+  height: 400px;
   
   margin-top: 0%;
 }
 .card-margin
 {
-   height: 300px;
-  margin-top: 10%;
+   height: 400px;
+  margin-top: 0%;
 }
 .title {
   color: grey;

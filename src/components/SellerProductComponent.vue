@@ -1,13 +1,7 @@
 <template >
   <b-col cols="12" lg="4" sm="12" md="6">
    
-      <select v-model="sortBy">
-        <option disabled value="">Please select one</option>
-        <option value="name">Name</option>
-        <option value="price">Price</option>
-      </select>
-      <button @click="sortData()">Submit</button>
-    
+     
     <div v-if="modalShow">
       <OpenProductComponent
         :productItem="product"
@@ -30,6 +24,9 @@
           <div class="card-butttons">
             <button id="show-btn" @click="modalShow = true">
               <b-icon-eye></b-icon-eye> View
+            </button>
+            <button id="show-btn" @click="deleteProduct(product)">
+              Delete
             </button>
           </div>
         </b-col>

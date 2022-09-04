@@ -1,11 +1,25 @@
 <template>
 <b-container class="main-container">
+  <div>
+   
+    <b-modal ref="my-modal" hide-footer title="Your account is Deleted">
+      <div class="d-block text-center">
+        <p>Reactive your old account and get your data back or delete old account and continue with new with same emailId</p>
+      </div>
+      <div class="button-group">
+ <b-button class="mt-3 reactivate-button" variant="outline-primary" block @click="reactivate">Reactive</b-button>
+      <b-button class="mt-3" variant="outline-danger" block @click="deleteAndCreateNew">Create New</b-button>
+     
+      </div>
+      
+    </b-modal>
+  </div>
      <div>
     <b-alert :show="dismissCountDown"
              dismissible
              variant="warning"
              @dismiss-count-down="countDownChanged">
-      Account Created Successfully .. Redirected in  {{dismissCountDown}} seconds...
+      {{userMessage}} <span class="seconds"></span>
     </b-alert>
     
    
@@ -142,6 +156,15 @@ input{
   transition: 0.3s;
   
 }
+.button-group
+{
+  display: flex;
+  justify-content: space-evenly;
+}
+.seconds
+{
+  color: #fff3cd;
+}
 .error
 {
   color: red;
@@ -158,6 +181,18 @@ input{
   margin-top:5%;
   margin-bottom: 5%;
   
+}
+.reactivate-button
+{
+  color: #1b2850;
+  border: 2px solid #1b2850;
+background-color: white;
+}
+.reactivate-button:hover
+{
+ background: #1b2850;
+ border-color: #1b2850;
+color: white;
 }
 .register-seller-btn{
 background: #1b2850;

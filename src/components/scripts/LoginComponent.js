@@ -85,20 +85,21 @@ export default{
                         }
                         else if(response.data.httpStatusCode==200)
                         {
+                           
                             this.error.errorStatus=false;
-                           this.errorFlag.usernameErrorFlag = this.errorFlag.passwordErrorFlag = false;
+                            this.errorFlag.usernameErrorFlag = this.errorFlag.passwordErrorFlag = false;
                             this.error.errorMessage=""
-                     
-                        localStorage.setItem('role', response.data.data.role);
-                        localStorage.setItem('userId', response.data.data.userId);
-                        if( response.data.data.role=='admin')
-                        { this.$router.push({path: '/admin/dashboard'});
-    
-                        }
-                        else if( response.data.data.role=='seller')
-                        { this.$router.push({path: '/seller/dashboard'});
-    
-                        }
+                        
+                            localStorage.setItem('role', response.data.data.role);
+                            localStorage.setItem('userId', response.data.data.userId);
+                            if( response.data.data.role=='admin')
+                            { this.$router.push({path: '/admin/dashboard'});
+        
+                            }
+                            else if( response.data.data.role=='seller')
+                            { this.$router.push({path: '/seller/dashboard'});
+        
+                            }
                         }
                     },
                     error: (err)=>{

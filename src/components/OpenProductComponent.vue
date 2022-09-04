@@ -164,6 +164,7 @@ button.editIcon:hover {
 }
 </style>
 <script>
+import {editsellerproducts} from '@/service/SellerProductService'
 export default {
   name: "OpenProductComponent",
   props: ["modalShowProp", "productItem"],
@@ -173,6 +174,7 @@ export default {
         productName: "",
         price: "",
         description: "",
+        sellerId:"",
         qunatity: "",
         coupon: "",
         category: "",
@@ -209,6 +211,24 @@ export default {
     updateForm()
     {
       console.log(this.product)
+       this.product.sellerId = localStorage.getItem('userId');
+      
+     
+       editsellerproducts({
+          success: ({ data }) => {
+              console.log(data)
+               this.$refs["my-modal"].hide();
+              this.$emit("hideModal", false);
+             
+          },
+          error: (e) => {
+             
+              console.warn(e);
+          }
+          ,
+          payload:this.product
+      })
+
     }
   },
 };
