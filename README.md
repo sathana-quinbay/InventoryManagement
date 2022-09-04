@@ -49,13 +49,4 @@
     See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ---
-### UI Preview
 
-* **Login**
-    ![Login-Screen](./src/assets/login-screen.png)
-* **Validations**
-    ![Login-Validation](./src//assets/login-validation.png)
-* **Admin Dashboard**
-    ![Admin Dasboard](./src/assets/admin-dashboard.png)
-* **Create Seller/Merchant**
-     ![Create Seller](./src/assets/create-seller.png)
