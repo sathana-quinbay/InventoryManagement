@@ -1,10 +1,10 @@
 <template>
 <div>           <!--class="adminrequest"-->
-    <h2 style="padding:10px;"><ion-icon style="color:#1b2850;" name="newspaper-outline"></ion-icon>&nbsp;Requests</h2><hr>
+    <div class="cont"><div class="bag"><h5 style="padding:5px;margin-left:60px;"><ion-icon style="color:#1b2850;" name="newspaper-outline"></ion-icon>&nbsp;Requests</h5></div></div><hr>
     <div class="tab">
-    <b-table :items="requests" :fields="fields" responsive='sd'>
+    <b-table style="font-size:12px;" :items="requests" :fields="fields" responsive>
          <template #cell(Description)="">
-            <b-button class="mr-2 viewButton" size="sm"  @click="modalShow = !modalShow;desc(requests.userId)">View Details</b-button>
+            <b-button class="mr-2 viewButton" size="sm"  @click="desc(requests.userId)">View Details</b-button>
            <b-modal id="modal-center" centered title="Seller Description" v-model="modalShow">
             Name:{{desc.name}}<br>
             
@@ -14,8 +14,8 @@
         <b-button @click="Approved(item)" size="sm" class="mr-2">
              Approve
         </b-button>&nbsp; 
-         <b-button @click="DisApproved()" size="sm" class="mr-2">
-             Disapprove </b-button>
+         <b-button @click="DisApproved(item)" size="sm" class="mr-2">
+             Reject </b-button>
         </template>
     </b-table></div></div>
 </template>
@@ -76,17 +76,44 @@ export default {
          .catch((err)=>{
             console.log(err);
          })
-}
-   },
+},
+   DisApproved(item)
+   {
+    console.log(item.item.userid);
+     this.$store.dispatch('DECLINE_REQUEST',item.item.userid); 
+    axios.get(`http://10.30.1.2:8002/admin/get/requestlist`)
+         .then((response)=>{
+            console.log("service request success"+response.data.data);
+             this.requests=response.data.data;
+         })
+         .catch((err)=>{
+            console.log(err);
+         })
+},
    desc(value)
    {
+      this.modalShow = !this.modalShow;
       this.$store.dispatch('GET_SELLER_BY_ID',value);
    }
-
+ }
 }
 </script>
 
 <style>
+.cont{
+   display: flex;
+   width:100% ;
+   justify-content:center;
+   margin-top:10px;
+}
+.bag{
+   border:0.2px solid #1b2850;
+   padding:5px;
+   width:200px;
+   display:flex;
+   border-radius:10px;
+   background:whitesmoke;
+}
 .tab{
     background: white;
     width:75%;
@@ -108,7 +135,8 @@ export default {
     margin-left:5%;
 }
 button.btn.mr-2.viewButton.btn-secondary.btn-sm {
-    background: #1bae;
+    background: white;
     color:#1b2850;
+    font-weight:500;
 }
 </style>
