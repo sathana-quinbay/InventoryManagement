@@ -2,8 +2,19 @@
      <div class="main-body">
    
           <div class="page-headers">
-      <h4>Product Add</h4>
-      <h6>Create new product</h6>
+      
+       <b-container-fluid>
+        <b-row>
+          <b-col cols="12" lg="8" md="6" sm="6">
+          <h4>Product List</h4>
+      <h6>Manage your products</h6>
+          </b-col>
+           <b-col cols="12" lg="4" md="6" sm="6">
+           <button class="submitButton" @click="$router.push({path:'/seller/add'})"> Add Product</button>
+           </b-col>
+        </b-row>
+      </b-container-fluid>
+    
     </div>
       
     <div class="main-card">
@@ -25,11 +36,11 @@
     
         
         <div v-if="getListCount==0"  class="notfound">
-                 <img src="../assets/notfound.png" alt="image"/>
+                 <img class="notFoundImg" src="../assets/notfound.png" alt="imageNoutFound"/>
                </div>
                <b-table  v-else id="dataTable"  sticky-header height="700" responsive :fields="fields" :items="sellerproductlist">
           <template #cell(imageUrl)="item">
-               <img class="imageMain" :src="item.item.imageUrl" alt="">
+               <img class="imageMain" :src="item.item.imageUrl" alt="Not found">
           </template>
           <template #cell(action)="item">
            <button class="editIcon" @click="editProduct(item.item)"> <b-icon-pencil></b-icon-pencil></button>
@@ -49,6 +60,11 @@
      </div>
 </template>
 <style scoped>
+.imageMain
+{
+ 
+background-image:url('https://phulbanimunicipality.nic.in/wards.php');
+}
 .filtericon
 {
   font-size: 30px;
@@ -127,6 +143,7 @@ li button{
 }
 .main-card{
   margin: 0 0 25px;
+  margin-top:2%;
  
   border: 1px solid #e8ebed;
   border-radius: 6px;
@@ -154,6 +171,20 @@ li button{
 
   font-size: 18px;
 }
+.submitButton
+{
+    min-width: 120px;
+    float: right;
+  background: #ff9f43;
+  color: #fff;
+  font-size: 14px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  padding: 14px 10px;
+ 
+
+}
 .page-headers h6 {
   font-size: 14px;
   color: #555;
@@ -176,6 +207,14 @@ export default {
       getListCount()
       {
         return this.sellerproductlist.length
+      },
+      sortedData()
+      {
+                  console.log(this.sellerproductlist)
+        // var MyData = {... this.sellerproductlist}
+        // MyData.sort(this.dynamicSort("productName"));
+        // console.log(MyData)
+        return this.sellerproductlist.length
       }
   },
   watch:{
@@ -186,6 +225,7 @@ export default {
     sortBy()
     {
         this.sortData()
+        
     }
   },
 created()
@@ -202,16 +242,52 @@ created()
     data()
     {
         return {
-          fields:['imageUrl','productName','category','price','quantity','description','action'],
+           fields: [
+            {key:'imageUrl',sortable:false},
+          { key: 'productName', sortable: true },
+          { key: 'category', sortable: false },
+          { key: 'price', sortable: true },
+          {key:'quantity',sortable:false},
+          {key:'description',sortable:false},
+ {key:'action',sortable:false}
+
+        ],
            modalShow:false,
            product:[],
            search:"",
             sortBy:[],
       
+      
             
         }
     },
+
+    mounted(){
+        console.log("inside mounteed");
+        console.log(this.sellerproductlist)
+        // var MyData = {... this.sellerproductlist}
+        // MyData.sort(this.dynamicSort("ame"));
+
+// Display data with new order !
+// console.log(MyData);
+    },
     methods:{
+      dynamicSort(property) {
+    var sortOrder = 1;
+
+    if(property[0] === "-") {
+        sortOrder = -1;
+        property = property.substr(1);
+    }
+
+    return function (a,b) {
+        if(sortOrder == -1){
+            return b[property].localeCompare(a[property]);
+        }else{
+            return a[property].localeCompare(b[property]);
+        }        
+    }
+},
       findData()
     {
       console.log("doind")
@@ -219,7 +295,7 @@ created()
         sellerId:localStorage.getItem('userId'),
         searchValue:this.search
       }
-      
+
       this.$store.dispatch('searchProductServiceCall',payload)
       
     },
@@ -228,6 +304,7 @@ created()
     console.log(this.sortBy)
     const sellerid = localStorage.getItem('userId');
     var sortBy=this.sortBy
+    this.search=""
     console.log("contaier",sortBy)
     this.$store.dispatch('sortSellerProducts',{sellerid,sortBy});
     },
@@ -235,6 +312,7 @@ created()
       {
           this.modalShow=true;
           this.product={... item}
+          console.log("edited",this.product)
       },
       removeModal()
       {
@@ -256,7 +334,8 @@ created()
               const userId = localStorage.getItem('userId');
               console.log("inside created")
               console.log(userId)
-                this.$store.dispatch('getsellerproductsfromservice', userId);
+                // this.$store.dispatch('getsellerproductsfromservice', userId);
+                this.findData()
             }
             console.log(data)
         

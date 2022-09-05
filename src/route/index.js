@@ -3,9 +3,9 @@ import VueRouter from "vue-router";
 import LoginComponent from "@/components/LoginComponent.vue";
 import AdminDashboardComponent from "@/components/AdminDashboardComponent";
 // import CreateSellerComponent from "@/components/CreateSellerComponent";
-
+import SettingComponent from "@/components/SettingComponent"
 import ProductDetails from '@/components/productDetails'
-
+import {isSellerActive} from '@/service/SellerAccountService'
 import AddProductFormComponent from '@/components/AddProductFormComponent';
 // import SellerInventoryComponent from '@/components/SellerInventoryComponent'
 
@@ -126,10 +126,20 @@ const routes = [
       
     
     children: [
+      {
+        path: "setting",
+        name: "SettingComponent",
+        component: SettingComponent 
+      },
   {
     path: "add",
   name: "AddProductFormComponent",
   component: AddProductFormComponent,
+},
+{
+  path: "dashboard",
+name: "ProductTableComponent",
+component: ProductTableComponent,
 },
   {
     path: 'product',
@@ -151,7 +161,7 @@ const routes = [
     name: "ProductTableComponent",
     component: ProductTableComponent 
  },
-    
+
     ]
   },
 
@@ -271,9 +281,29 @@ router.afterEach((to, from, next) => {
     if (role === undefined || role === null || (role.toLocaleLowerCase() !== 'admin' && role.toLocaleLowerCase() !== 'seller')) {
       router.replace('/login');
      }
+     isSellerActive({
+      success: (response)=>{
+        console.log(response)
+        if(response.data.message=='not active')
+           {
+            console.warn("User logged out.");
+            localStorage.removeItem('userId');
+            localStorage.removeItem("role");
+            localStorage.removeItem("emailId");
+          
+            router.replace('/login');
+           }
+    },
+    error: (err)=>{
+       console.log(err)
+       
+    }
+     }
+  )
      
     
   }
+
 getStatus({
     success: (response)=>{
         console.log(response)

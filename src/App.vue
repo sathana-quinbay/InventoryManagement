@@ -20,7 +20,7 @@ export default {
 <style>
 *{
   margin: 0;
-
+  font-family: nunito,sans-serif;
   padding: 0;
 }
 body,html{

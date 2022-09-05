@@ -1,11 +1,22 @@
 <template>
 <div class="container-fluid">
-  <div class="container">
-    <!-- <input type="text" v-model="search">
-     <button @click="findData()">
-      search
-     </button>
-     <br> -->
+  <div class="main-body">
+   
+          <div class="page-headers">
+  <div class="container-fluid">
+     <b-container-fluid>
+        <b-row>
+          <b-col cols="12" lg="8" md="6" sm="6">
+           
+             <h4>Product List</h4>
+      <h6>Manage your products</h6>
+          </b-col>
+           <b-col cols="12" lg="4" md="6" sm="6">
+           <button class="submitButton" @click="$router.push({path:'/seller/add'})"> Add Product</button>
+           </b-col>
+        </b-row>
+      </b-container-fluid>
+      
      <!-- <select v-model="sortBy">
         <option disabled value="">Please select one</option>
         <option value="name">Name</option>
@@ -23,30 +34,38 @@
 <button @click="viewType='list'">List</button>
           <button @click="viewType='table'">Table</button> 
  -->   
-       
+<!--        
     <b-button v-if="!addDialog" @click="addDialog=true" class="addButton" variant="info">Add</b-button>
      <div v-if="addDialog">
        <b-button @click="addDialog=false" class="addButton" variant="info">close</b-button>
  
      
-      <!-- <AddProductComponent /> -->
-    </div>
+      
+    </div> -->
+    
   </div>
- 
-      <b-container class="container-bgColor">
+  
+ <div class="main-body-container">
+    <input class="searchButton" type="text" v-model="search">
+     <button class="searchIcon"  @click="findData()">
+      <b-icon icon="search"></b-icon>
+     </button>
+      <b-container-fluid class="container-bgColor">
         
         <b-row>
-       
+         <div class="notFound" v-if="getCount==0"> <img  src="../assets/notfound.png" alt="image"/></div>
          
                
-                 <SellerProductsComponent v-for="(data,index) in sellerproductlist" :key="index" :product="data"/> 
+                 <SellerProductsComponent v-else v-for="(data,index) in sellerproductlist" :key="index" :product="data"/> 
          
          
               
           
         </b-row>
-      </b-container>
-   
+      </b-container-fluid>
+ </div>
+          </div>
+  </div>
  
 </div>
 </template>
@@ -78,7 +97,12 @@ export default {
   {
       ...mapGetters({
         sellerproductlist:'getSellerproducts'
-      })
+      }),
+      getCount()
+      {
+        return this.sellerproductlist.length
+      }
+      
   },
 
   created()
@@ -87,6 +111,12 @@ export default {
     console.log("inside created")
     console.log(userId)
       this.$store.dispatch('getsellerproductsfromservice', userId);
+  },
+  watch:{
+search()
+      {
+        this.findData()
+      }
   },
   methods:{
     findPrice()
@@ -122,7 +152,60 @@ export default {
 </script>
 
 <style scoped>
+.main-body-container
+{
+  margin: 0 0 25px;
+  margin-top:2%;
+ 
+  border: 1px solid #e8ebed;
+  border-radius: 6px;
+  background: white;
+  padding: 20px;
+}
+.searchButton
+{
+      background: 0 0;
+    height: 40px;
+    border: 1px solid rgba(145,158,171,.32);
+    width: 200px;
+    border-radius: 5px;
+    padding: 0 15px 0 30px;
+}
+.searchIcon
+{
+  background: none;
+  border: none;
+  font-size: 20px;
+  margin-left: 10px;
+}
+.main-body {
+  padding: 1% 2%;
+  background: #fafbfe;
+  padding: 1%;
+  text-align: left;
+   height: 100vh;
+  font-family: sans-serif;
+}
+.submitButton
+{
+    min-width: 120px;
+    float: right;
+  background: #ff9f43;
+  color: #fff;
+  font-size: 14px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  padding: 14px 10px;
+ 
 
+}
+.page-headers h4 {
+  font-weight: 700;
+  color: #212b36;
+
+  font-size: 18px;
+}
 .range-slider {
   width: 300px;
   text-align: center;
@@ -208,7 +291,13 @@ input[type=range]::-ms-track {
     z-index: -4;
 
 }
-
+.notFound
+{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  
+}
 input[type=range]::-ms-fill-lower {
   background: #777;
   border-radius: 10px;
@@ -243,7 +332,7 @@ input[type=range]:focus::-ms-fill-upper {
  padding:40px;
   overflow-y:scroll;
   height: 500px;
-    background-color:#f9f9f9;
+   
     border-radius:20px;
 }
 /* .containers

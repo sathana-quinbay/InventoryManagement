@@ -11,20 +11,23 @@
       />
     </div>
 
-    <b-container-fluid class="cards">
+    <b-container-fluid class="cards" >
       <b-row>
         <b-col cols="12" lg="6" sm="12" md="12">
-          <img class="productImage" :src="require(`@/assets/brand-logo.png`)" />
+          <!-- require(`@/assets/brand-logo.png`) -->
+          <img class="productImage" @click="modalShow = true"  :src="product.imageUrl" />
         </b-col>
         <b-col class="card-content" cols="12" lg="6" sm="12" md="12">
-          <div class="name">{{ product.productName }}</div>
+          <div class="card-content-item">
+            <div class="name">{{ product.productName }}</div>
           <div class="price">₹{{ product.price }}</div>
 
           <div class="quantity">Quantity:{{ product.quantity }}</div>
+          </div>
           <div class="card-butttons">
-            <button id="show-btn" @click="modalShow = true">
+            <!-- <button id="show-btn" >
               <b-icon-eye></b-icon-eye> View
-            </button>
+            </button> -->
             <button id="show-btn" @click="deleteProduct(product)">
               Delete
             </button>
@@ -43,6 +46,9 @@
   width: 100%;
 }
 .card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   text-align: left;
 }
 #show-btn {
@@ -53,7 +59,7 @@
   border-radius: 10px;
   padding: 2% 4%;
   /* color:white; */
-  background-color: #a760ff;
+  background-color: #1b2850;
   color: white;
 
   top: 0;
@@ -114,8 +120,8 @@ textarea {
 }
 .productImage {
   margin-top: 2%;
-  width: 100%;
-  height: 100%;
+  max-width: 150px;
+  max-height: 150px;
 }
 .input[type="button"] {
   background-color: #01c5a1;
@@ -176,7 +182,7 @@ textarea {
   display: flex;
   justify-content: center;
   /* border: none; */
-  background-color: white;
+  background-color:#f9f9f9;;
   /* flex-wrap: nowrap; */
 
   align-content: center;

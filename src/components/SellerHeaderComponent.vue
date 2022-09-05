@@ -15,7 +15,7 @@
       </b-nav-item-dropdown>
 
       <b-nav-item-dropdown class="rightAlign" text="User" right>
-        <b-dropdown-item ><router-link class="routerLink" to="/seller/account">Account</router-link></b-dropdown-item>
+        <b-dropdown-item ><router-link class="routerLink" to="/seller/setting">Account</router-link></b-dropdown-item>
 
         <b-dropdown-item @click="logOut()" href="#">Logout</b-dropdown-item>
       </b-nav-item-dropdown>

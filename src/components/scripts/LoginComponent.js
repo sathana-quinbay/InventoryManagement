@@ -70,7 +70,7 @@ export default{
                             this.error.errorMessage=""
                         }
                         else
-                        if(response.data.httpStatusCode==401)
+                        if(response.data.httpStatusCode==403)
                         {
                             this.error.errorStatus=true;
                             this.errorFlag.passwordErrorFlag = true;

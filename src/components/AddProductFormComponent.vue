@@ -10,6 +10,12 @@
     <div class="page-headers">
       <h4>Product Add</h4>
       <h6>Create new product</h6>
+       <b-container-fluid>
+        <b-row>
+          <b-col cols="12" lg="8" md="6" sm="6"></b-col>
+           <b-col cols="12" lg="4" md="6" sm="6"></b-col>
+        </b-row>
+      </b-container-fluid>
     </div>
     
     <div class="main-body-container">
@@ -29,14 +35,17 @@
                 <b-col cols="12" lg="4" md="6" sm="12">
                   <label class="formLabels">Product Price</label>
                   <b-form-input
-                    v-model="product.price"
+                
+                    v-model="price"
                     type="number"
+
                   ></b-form-input>
                 </b-col>
                 <b-col cols="12" lg="4" md="6" sm="12">
                   <label class="formLabels">Quantity</label>
                   <b-form-input
-                    v-model="product.quantity"
+
+                    v-model="quantity"
                     type="text"
                   ></b-form-input>
                 </b-col>
@@ -61,10 +70,11 @@
 
             <b-col cols="12" lg="4" md="6" sm="12">
               <img
+              class="imgFound"
                 width="150px"
                 height="150px"
                 :src="product.imageUrl"
-                alt=""
+                alt="Image not found"
                 srcset=""
               />
             </b-col>
@@ -100,21 +110,43 @@ export default {
           userMessage:"",
       product: {
         productName: "",
-        productPrice: "",
+        productPrice: 0,
         description: "",
         category: "",
+        price:0,
         sellerId: "",
-        quantity: "",
+        quantity: 0,
         coupon: "",
         imageUrl: "https://campiazza-media.s3.amazonaws.com/unknown.png",
         sellingPrice: "",
       },
+       price:0,
+       quantity:0,
       selectedFiles: undefined,
     };
   },
+ watch:{
+  price()
+  {
+      if(this.price<0)
+      {
+         this.price=0
+      }
+  },
+   quantity()
+  {
+      if(this.quantity<0)
+      {
+         this.quantity=0
+      }
+  }
+},
+  
   methods: {
     addProduct() {
       this.product.sellerId = localStorage.getItem("userId");
+      this.product.price=this.price,
+      this.product.quantity=this.quantity
       postsellerproducts({
         success: ({ data }) => {
           console.log(data);
@@ -131,6 +163,8 @@ export default {
         imageUrl: "https://campiazza-media.s3.amazonaws.com/unknown.png",
         sellingPrice: "",
       }
+      this.price=0;
+      this.quantity=0;
         },
         error: (e) => {
           console.warn(e);
@@ -177,6 +211,11 @@ export default {
   border-radius: 6px;
   background: white;
   padding: 20px;
+}
+.imgFound
+{
+  max-width: 200px;
+  max-height: 200px;
 }
 .seconds
 {

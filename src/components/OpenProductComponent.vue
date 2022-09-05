@@ -55,8 +55,9 @@
             <b-col cols="12" md="6" sm="12" xs="12">
               <label class="formLabels">Product Price</label>
               <b-form-input
+               min="0"
                 :disabled="!editForm"
-                v-model="product.price"
+                v-model="price"
                 type="number"
               ></b-form-input>
               <!-- <input v-model="product.price" placeholder="Product Price"> -->
@@ -67,7 +68,8 @@
               <label class="formLabels">Quantity</label>
               <b-form-input
                 :disabled="!editForm"
-                v-model="product.quantity"
+                 min="0"
+                v-model="quantity"
                 type="number"
               ></b-form-input>
               <!-- <input v-model="product.productName" placeholder="Product Name"> -->
@@ -179,6 +181,8 @@ export default {
         coupon: "",
         category: "",
       },
+      price:0,
+      quantity:0,
       editForm: false,
     };
   },
@@ -187,11 +191,29 @@ export default {
       this.check();
       this.product = this.productItem;
     },
+  
+  price()
+  {
+      if(this.price<0)
+      {
+         this.price=0
+      }
   },
+   quantity()
+  {
+      if(this.quantity<0)
+      {
+         this.quantity=0
+      }
+  }
+},
   mounted() {
     console.log(this.modalShowProp);
     this.check();
     this.product = this.productItem;
+    this.price=this.product.price;
+    this.quantity=this.product.quantity;
+    console.log("inside open",this.product)
   },
   methods: {
     check() {
@@ -213,7 +235,8 @@ export default {
       console.log(this.product)
        this.product.sellerId = localStorage.getItem('userId');
       
-     
+      this.product.price=this.price
+      this.product.quantity=this.quantity
        editsellerproducts({
           success: ({ data }) => {
               console.log(data)

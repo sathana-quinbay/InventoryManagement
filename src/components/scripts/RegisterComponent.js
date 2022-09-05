@@ -34,6 +34,18 @@ export default {
           hideModal() {
             this.$refs['my-modal'].hide()
           },
+          clearForm()
+          {
+            this.seller= {
+                name: '',
+                emailId: '',
+                contact: '',
+                address: '',
+                password: ''
+
+            }
+            this.checkPassword='';
+          },
         registerNewSeller(){
             this.nameErrorFlag = false;
             this.emailIdErrorFlag=false;
@@ -61,6 +73,17 @@ export default {
                 // setInterval(()=>{ this.contactErrorFlag = false; }, 2000);
                 return;
             }
+            // if(this.seller.contact.length === 10){
+            //     var phoneno = /^\d{10}$/
+            //     if((this.seller.contact.match(phoneno)))
+            //           {
+                        
+            //             this.contactErrorFlag = true;
+            //           }
+            //     this.contactErrorFlag = true;
+            //     // setInterval(()=>{ this.contactErrorFlag = false; }, 2000);
+            //     return;
+            // }
             if(this.seller.address.length < 5){
                 this.addressErrorFlag = true;
                 // setInterval(()=>{ this.nameErrorFlag = false; }, 2000);
@@ -108,6 +131,7 @@ export default {
                         else{
                             this.userMessage="successfully registered"
                             this.showAlert()
+                            this.clearForm()
                         }
                         
                         
@@ -130,12 +154,13 @@ export default {
                     this.userMessage="Your old account is reactivated try to login"
                     this.showAlert()
                     console.log(response);
+                    this.clearForm()
                     
                 //    this.$router.push({path:"/login"})
                 },
                 error: (err)=>{
                     console.warn(err);
-                    this.userMessage="Something went wrong try again aftre some time"
+                    this.userMessage="Something went wrong try again after some time"
                     this.showAlert()
                 },
                 payload:sellerId
@@ -151,6 +176,8 @@ export default {
                     console.log(response);
                     this.userMessage="Created account successfully"
                             this.showAlert()
+                            this.clearForm()
+                            this.registerNewSeller()
                
                 },
                 error: (err)=>{
