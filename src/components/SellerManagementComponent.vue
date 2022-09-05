@@ -1,8 +1,8 @@
 <template>
 <div style="width:90vw; margin-left:7.5vw;">
-  <div class="cont"><div class="bag"><h3 style="padding:5px;font-size:28px; font-family:arial,bold;"><ion-icon style="color:#1b2850; font-size:60px;" name="people-circle-outline"></ion-icon>&nbsp;Management</h3></div></div><hr>
+  <div class="cont"><div class="bag"><h5 style="padding:5px;font-family:arial,bold;"><ion-icon style="color:#1bae; font-size:30px;" name="people-circle-outline"></ion-icon>&nbsp;Management</h5></div></div><hr>
    <div class="searchbar">Search By: 
-     <select style="border:1px solid #1b2850; border-radius:7px;padding:4px; background:white;" v-model="category" name="category">
+     <select style="border:0.5px solid #1b2850; border-radius:7px;padding:3px; background:whitesmoke;" v-model="category" name="category">
         <option style="color:grey;" value="" disabled selected>--Select category--</option>
         <option value="name">name</option>
         <option value="address">address</option>
@@ -19,13 +19,13 @@
     <b-dropdown-item disabled>Disabled action</b-dropdown-item> -->
   <!-- </b-dropdown> -->
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input style="border:1px solid #1b2850; border-radius:10px;width:25vw;padding:5px; background:white;" type="text" placeholder="search seller" v-model="searchkey">
-        <button style="background:white ; color:#1b2850; font-size:20px; border-radius:10px; padding:5px;" @click="processSearch()"><ion-icon name="search-sharp"></ion-icon></button> 
-        <div style="float:right; margin-right:10vw;"> Sort By:<select style="border:0.5px solid #1b2850; border-radius:7px;padding:4px; background:white;" v-model="sortby">
+        <input style="border:0.5px solid #1b2850; border-radius:10px;width:20vw;padding:3px; background:whitesmoke;" type="text" placeholder="search seller" v-model="searchkey">&nbsp;
+        <button style="background:white; color:#1b2850; font-size:18px; border-radius:50px; padding:4px;" @click="processSearch()"><ion-icon name="search-sharp"></ion-icon></button> 
+        <div style="float:right; margin-right:10vw;"> Sort By:<select style="border:0.5px solid #1b2850; border-radius:7px;padding:2px; background:whitesmoke;" v-model="sortby">
           <option style="color:grey;" value="" disabled selected>-select-</option>
         <option value="name">name</option>
         <option value="userid">userid</option>
-        </select> </div></div>
+        </select> </div></div><hr>
   <div class="admin-display-container">
         <div class="grid-container">
           <SellerCardComponent
@@ -57,6 +57,7 @@
 }
 .search-bar{
   padding-bottom:10px;
+  font-size: 10px;
 }
 .loader {
   margin: 10vh;

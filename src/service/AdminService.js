@@ -1,7 +1,7 @@
 import axios from "axios"
 
 // const GET_SELLERS_API = 'http://http://localhost:8005//admin/getAllUsers'
-const GET_SELLERS_API =    'http://10.30.1.2:8002/admin/seller/getAll'
+const GET_SELLERS_API =    'http://10.30.1.2:8002/admin/sellers'
 const DISBALE_SELLER_API = 'http://10.30.1.2:8002/admin/status/'
 const SELLER_SEARCH_API =  `http://10.30.1.2:8002/admin/search/`
 const SELLER_SORT_API =  `http://10.30.1.2:8002/admin/sort/`

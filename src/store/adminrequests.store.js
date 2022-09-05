@@ -1,5 +1,5 @@
 import { requestList } from "@/service/adminrequests.service";
-import { postRequestApproval } from "@/service/adminrequests.service";
+import { postRequestApproval,postRequestDecline} from "@/service/adminrequests.service";
 
 export default {
     state: {
@@ -32,6 +32,20 @@ export default {
         },
         POST_REQUEST(context,payload){
             postRequestApproval({
+                success: (response)=>{
+                    console.info('Request Approved',response.data);
+                    // console.log(response);
+                   
+                },
+                error: (err)=>{
+                    console.warn('request approval error' + err);
+                },
+                payload
+            })
+        },
+        DECLINE_REQUEST(context,payload)
+        {
+            postRequestDecline({
                 success: (response)=>{
                     console.info('Request Approved',response.data);
                     // console.log(response);

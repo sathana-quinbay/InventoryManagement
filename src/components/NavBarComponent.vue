@@ -3,15 +3,15 @@
     <div class="brand">
       <!-- {{getHeaderFromStore}} -->
         <!-- <img src="@/assets/brand-logo.png" alt="IMA"> -->
-       <h3 style="margin-left:8vw;color:white;"> <ion-icon style="color:#1bae;font-size:30px; margin-top:5px;" name="logo-web-component"></ion-icon>&nbsp;Inventory Manager</h3>
-        <span style="color:white;font-size:15px;">&copy; Blibli 2022</span>
+       <h4 style="margin-left:8vw;color:white;"> <ion-icon style="color:#1bae;font-size:30px; margin-top:5px;" name="logo-web-component"></ion-icon>&nbsp;Inventory Manager</h4>
+        <span style="color:white;font-size:10px;">&copy; Blibli 2022</span>
     </div>
     
     <div class="login-register">
       <router-link to='/' style="font-size:30px; padding-top:5px;">&nbsp;&nbsp;</router-link>
       <!-- <router-link to="/login" tag="button" class="login-btn"
         >Login</router-link> -->
-        <button style="background:#1b2850; color:white; border: 0.1px solid black; font-weight:400;" @click="logOut()" class="login-btn"
+        <button style="background:#1b2850; color:#1bae; border: 0.1px solid black; font-weight:400;" @click="logOut()" class="login-btn"
         >Logout</button>
     </div>
   </nav>

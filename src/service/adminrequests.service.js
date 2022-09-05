@@ -20,3 +20,14 @@ export const postRequestApproval= ({success, error,payload})=>{
            error && error(err);
         })
 }
+export const postRequestDecline= ({success, error,payload})=>{
+   console.log("postRequests"+payload);
+   axios.put(`http://10.30.1.2:8002/admin/seller/decline/`+payload)
+        .then((response)=>{
+           console.log("service request success");
+           success && success(response);
+        })
+        .catch((err)=>{
+           error && error(err);
+        })
+}
