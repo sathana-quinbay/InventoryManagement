@@ -8,7 +8,7 @@ import ProductDetails from '@/components/productDetails'
 
 import AddProductFormComponent from '@/components/AddProductFormComponent';
 // import SellerInventoryComponent from '@/components/SellerInventoryComponent'
-
+import DetailsComponent from '@/components/DetailsComponent';
 import  SellerAccountComponent from "@/components/SellerAccountComponent";
 import RegisterComponent from "@/components/RegisterComponent"
 import ProductContainerComponent from '@/components/ProductContainerComponent'
@@ -94,12 +94,13 @@ const routes = [
          component: SellerManagementComponent 
       },
       
-      { path: 'adminproducts', name: 'AdminProductListComponent', component: AdminProductListComponent },
+      { path: 'products', name: 'AdminProductListComponent', component: AdminProductListComponent },
       {
         path: "manage/products",
       name: "ProductDetails",
       component:ProductDetails,
     },
+    { path: 'request/details', name: 'DetailsComponent', component: DetailsComponent},
     ]
   },
   {

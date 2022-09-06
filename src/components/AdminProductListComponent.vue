@@ -1,14 +1,14 @@
 <template>
 <div>
-  <div class="cont"><div class="bag"><h5 style="padding:3px; margin-left:55px;"><ion-icon style="font-size:30px;" name="cube-outline"></ion-icon>Products</h5></div></div>
-    <hr><div class="searchbar">Search By: 
+  <div class="cont"><div class="bag"><h5 style="padding:3px; margin-left:55px; display:flex;"><ion-icon style="font-size:30px;" name="cube-outline"></ion-icon>Products</h5></div></div>
+    <!-- <div class="searchbar">Search By: 
      <select style="border:0.5px solid #1b2850; border-radius:7px;padding:5px; background:white;" v-model="category" name="category">
         <option style="color:grey;" value="" disabled selected>--Select category--</option>
         <option value="name">Name</option>
         <option value="address">userId</option>
         <option value="contact">Product</option>
         </select>
-        <!-- <b-dropdown v-model="category" id="dropdown-1" text="Category" class="m-md-2">
+         <b-dropdown v-model="category" id="dropdown-1" text="Category" class="m-md-2">
     <b-dropdown-item>Name</b-dropdown-item>
     <b-dropdown-item>Address</b-dropdown-item>
     <b-dropdown-item>Contact No</b-dropdown-item>
@@ -17,16 +17,16 @@
     <b-dropdown-item active>Active action</b-dropdown-item>
     <b-dropdown-item disabled>Disabled action</b-dropdown-item> -->
   <!-- </b-dropdown> -->
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input style="border:0.5px solid #1b2850; border-radius:10px;width:25vw;padding:7px; background:white;" type="text" placeholder="search products" v-model="searchkey">
         <button style="background:white; color:#1b2850; font-size:20px; border-radius:10px; padding:5px;" @click="processSearch()"><ion-icon name="search-sharp"></ion-icon></button> 
-       </div><hr>
+       </div> --> 
          <div class="tabv">
    <b-table style="font-size:12px;" :items="products" :fields="fields" responsive> 
-      <!--:items="getProducts.data"-->
-      <!-- <template #cell(imageUrl)='item'>
+      <!-- :items="getProducts.data" -->
+      <template #cell(imageUrl)='item'>
          <img :src="item.imageUrl" alt="image">
-      </template> -->
+      </template>
            
     </b-table>
   </div>
@@ -76,6 +76,7 @@ export default {
    padding:0px;
    width:250px;
    display:flex;
+   justify-content: baseline;
    border-radius:10px;
    background:whitesmoke;
   text-align: center;

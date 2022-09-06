@@ -70,6 +70,8 @@ export default {
                 success: (response)=>{
                     let value=response.data.data;
                     let a=0,d=0;
+                    let sdata=[];
+                    let resp=response;
                     for(let i=0;i<value.length;i++)
                     {
                         if(value[i].status=="enabled")
@@ -81,10 +83,20 @@ export default {
                             d++;
                         }
                     }
+                    for(let i=0;i<(resp.data.data).length;i++)
+                         {
+                         if(resp.data.data[i].status!="waiting for approval"&&resp.data.data[i].status!="deleted")
+                             {
+                                 sdata.push(resp.data.data[i]);
+                             }
+                         }
+                         commit('setSellers',sdata);
+                        //  console.log("filtered"+sdata);
+                        //  console.log(response.data.data);
                     console.log(a,d);
                     commit('setCount',a);
                     commit('setC',d);
-                    commit('setSellers', response.data.data);
+                    // commit('setSellers',response.data.data);
                     console.log(response.data.data);
                 },
                 error: (err)=>{
@@ -126,22 +138,23 @@ export default {
         GET_SELLER_FROM_SEARCH(state,payload){
             getSellerFromSearch({
                 success: (response)=>{
-                    let resp=response.data;
-                    let sdata=[]
-                    if(resp.status_CODE==404)
+                    let resp=response;
+                    // let sdata=[]
+                    if(resp.data.data==null)
                     {
-                       this.commit("setSellerproducts",[])
+                       this.commit("setSellers",[])
                     }
                     else
                     {
-                        for(let i=0;i<(resp.data).length;i++)
-                        {
-                            if(resp.data[i].status!="waiting for approval")
-                            {
-                                sdata.push(resp.data[i]);
-                            }
-                        }
-                        this.commit('setSellers',sdata);
+                        // for(let i=0;i<(resp.data.data).length;i++)
+                        // {
+                        //     if(resp.data.data[i].status!="waiting for approval")
+                        //     {
+                        //         sdata.push(resp.data[i]);
+                        //     }
+                        // }
+                        // this.commit('setSellers',sdata);
+                        this.commit('setSellers',response.data.data);
     
                     }
                 },

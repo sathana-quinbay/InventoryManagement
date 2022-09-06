@@ -13,7 +13,19 @@
     <button style="font-size:15px; font-weight:500" class="view-inventory-btn" @click="openInventory(sellerprop)">
        View Products
     </button>
-    <button class="seller-status-btn" :class="[sellerprop.status=='enabled'?'enabled' : 'disabled']" @click="disbaleSeller(sellerprop.userId)">{{sellerprop.status=="enabled"? "Disable" : "Enable"}} Seller</button>
+    <button class="seller-status-btn" :class="[sellerprop.status=='enabled'?'enabled' : 'disabled']" @click="disbaleSeller(sellerprop.status,sellerprop.userId)">{{sellerprop.status=="enabled"? "Enabled" : "Disabled"}}</button>
+     <b-modal v-model="show2" hide-footer><center>
+      Are you sure you want to enable seller?<br>
+      <div style="display:flex;justify-content:center;">
+      <b-button style="color:#1bae;background:#1b2850;" @click="makeEnable(sellerprop.userId)" size="sm">Enable Seller</b-button>&nbsp;
+      <b-button style="color:#1bae;background:#1b2850;" @click="close()" size="sm">Close</b-button></div></center>
+    </b-modal>
+    <b-modal v-model="show" hide-footer><center>
+      Are you sure you want to disable seller?<br>
+      <div style="display:flex;justify-content:center;">
+      <b-button style="color:#1bae;background:#1b2850;" @click="confirm(sellerprop.userId)" size="sm">Disable Seller</b-button>&nbsp;
+      <b-button style="color:#1bae;background:#1b2850;" @click="close()" size="sm">Close</b-button></div></center>
+    </b-modal>
   </div>
 </template>
 

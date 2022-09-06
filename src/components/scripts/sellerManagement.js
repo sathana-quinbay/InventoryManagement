@@ -8,7 +8,8 @@ export default{
                 
                      category:'name',
                      searchkey:'', 
-                     sortby:''
+                     sortby:'',
+                     empty:false
 
             }
                 
@@ -42,19 +43,32 @@ export default{
             this.$store.dispatch('GET_SELLER_FROM_SORT',newvalue);
             console.log(newvalue,oldvalue);
         },
+        sellers(newvalue,oldvalue)
+        {
+            if(this.sellers.length==0)
+            {
+                this.empty=true;
+            }
+            console.log(newvalue,oldvalue);
+        },
         searchkey(newvalue,oldvalue)
         {
+            this.empty=false;
             var payload={
                 searchkey:newvalue,
                 category:this.category
-            
             }
             if(newvalue=='')
             {
                 this.$store.dispatch('GET_ALL_SELLERS');
             }
             this.$store.dispatch('GET_SELLER_FROM_SEARCH',payload);
+            console.log('searchkey',this.$store.state.sellerStore.sellers);
             console.log(newvalue,oldvalue);
+        },
+        clear()
+        {
+           this.searchkey="";
         }
     },
     computed:{

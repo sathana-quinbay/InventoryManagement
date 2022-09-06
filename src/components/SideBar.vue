@@ -6,7 +6,7 @@
         <li><router-link style="text-decoration:none; color:black;" to="/admin/dashboard"><ion-icon style="color:#1b2850; font-size:28px; margin-top:15vh;" name="browsers-outline"></ion-icon></router-link></li>
          <li><router-link style="text-decoration:none; color:black;" to="/admin/request"><ion-icon style="color:#1b2850; font-size:28px; margin-top:2vh;" name="newspaper-outline"></ion-icon></router-link></li>
           <li><router-link style="text-decoration:none; color:black;" to="/admin/manage"><ion-icon style="color:#1b2850; font-size:28px; margin-top:2vh;" name="people-circle-outline"></ion-icon></router-link></li>
-           <li><router-link style="text-decoration:none; color:black;" to="/admin/adminproducts"> <ion-icon style="color:#1b2850; font-size:28px; margin-top:2vh;" name="cube-outline"></ion-icon></router-link></li>
+           <li><router-link style="text-decoration:none; color:black;" to="/admin/products"> <ion-icon style="color:#1b2850; font-size:28px; margin-top:2vh;" name="cube-outline"></ion-icon></router-link></li>
         </ul></div>
     <b-sidebar id="sidebar-variant" title="ADMIN" bg-variant="light" text-variant="dark" shadow>
       <div style="float:right;margin-right: 10px;"><b-button style="background:#1b2850;" v-b-toggle.sidebar-variant><ion-icon style="color:#1bae;" name="arrow-back"></ion-icon></b-button></div>
@@ -16,7 +16,7 @@
      <div class="linkhover"><ul style="list-style-type: none;"><li style="padding-top:20px;"><ion-icon style="color:#1bae;" name="browsers-outline"></ion-icon>&nbsp;&nbsp;&nbsp;<router-link style="text-decoration:none; color:white;" to="/admin/dashboard">Dashboard</router-link></li><hr>
        <li><ion-icon style="color:#1bae;" name="newspaper-outline"></ion-icon>&nbsp;&nbsp;&nbsp;<router-link style="text-decoration:none; color:white;;" to="/admin/request">Requests</router-link></li><hr>
       <li><ion-icon  style="color:#1bae;" name="people-circle-outline"></ion-icon>&nbsp;&nbsp;&nbsp;<router-link style="text-decoration:none; color:white;;" to="/admin/manage">Management</router-link></li><hr>
-      <li><ion-icon style="color:#1bae;" name="cube-outline"></ion-icon>&nbsp;&nbsp;&nbsp;<router-link style="text-decoration:none; color:white;;" to="/admin/adminproducts">Products</router-link></li>
+      <li><ion-icon style="color:#1bae;" name="cube-outline"></ion-icon>&nbsp;&nbsp;&nbsp;<router-link style="text-decoration:none; color:white;;" to="/admin/products">Products</router-link></li>
       </ul></div>
       </div></div>
     </b-sidebar>

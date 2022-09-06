@@ -1,13 +1,17 @@
 <template>
 <div>
-  <h4 style="margin-top:5vw; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;width:85vw; background:whitesmoke; border:0.5px solid;border-radius:10px;margin-left:10vw;padding:20px;">Admin Dashboard</h4><br>
+  <h4 style="margin-top:5vw; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;width:85vw; background:whitesmoke; border:0.5px solid;border-radius:10px;margin-left:10vh;margin-left:10vh;padding:15px;">Admin Dashboard</h4><br>
+ <div style="display:flex;">
 <div class="grid">
   <div class="cards1">
-  <p>{{(this.$store.state.sellerStore.sellers).length}}<br>Total Sellers</p><img src="../assets/user.svg" height="60px" width="60px"></div>
-  <div class="cards2"><p>{{active}}<br>Active Sellers</p><img src="../assets/check.svg" height="60px" width="60px"></div>
-  <div class="cards3"><p>{{inactive}}<br>Disabled Sellers</p><img src="../assets/disabled.svg" height="60px" width="60px" ></div>
-  <div class="cards4"><p>{{(requestCount).length}}<br>To Approve</p><img src="../assets/approve.svg" height="60px" width="60px"></div>  
+  <p>{{(this.$store.state.sellerStore.sellers).length==0?("No"):(this.$store.state.sellerStore.sellers.length)}}<br>Sellers</p><img src="../assets/user.svg" height="60px" width="60px"></div>
+  <div class="cards2"><p>{{active==0?("No"):(active)}}<br>Active Sellers</p><img src="../assets/check.svg" height="60px" width="60px"></div>
+  <div class="cards3"><p>{{inactive==0?("No"):(inactive)}}<br>Disabled Sellers</p><img src="../assets/disabled.svg" height="60px" width="60px" ></div>
+  <div class="cards4"><p>{{(requestCount).length==undefined?("No"):(requestCount).length}}<br>Requests Pending</p><img src="../assets/approve.svg" height="60px" width="60px"></div>  
 </div>
+<!-- <img src='../assets/inventory.gif'> -->
+
+ </div>
 </div>
 </template>
 <script src="./scripts/AdminDashboardComponent.js">
@@ -30,15 +34,16 @@ img{
     display:flex;
 }
    .grid{
-    display:flex;
-    margin-left: 4vw;
+    display:grid;
+    grid-template-columns: auto auto auto auto;
+    margin-left: 1vw;
     padding:10vh;
     padding-right:2vw;
    }
  .cards1{
 
     width:20vw;
-    height:10vh;
+    height:13vh;
     border:0px solid;
     border-radius:5px;
     background: skyblue;
@@ -54,7 +59,7 @@ img{
      .cards2{
 
     width:20vw;
-    height:10vh;
+    height:13vh;
     border:0px solid;
     border-radius:5px;
     background: lightgreen;
@@ -70,7 +75,7 @@ img{
      .cards3{
 
     width:20vw;
-    height:10vh;
+    height:13vh;
     border:0px solid;
     border-radius:5px;
     background:lightsalmon;
@@ -85,7 +90,7 @@ img{
      .cards4{
 
     width:20vw;
-    height:10vh;
+    height:13vh;
     border:0px solid;
     border-radius:5px;
     background: lightcoral;
@@ -98,6 +103,95 @@ img{
        font-weight: 400;
      }
      p{
-      font-size:16px;
+      font-size:1.5vw;
      }
+ @media screen  and (max-width:700px){
+     .grid{
+      display: grid;
+      grid-template-columns: auto auto auto;
+   }}
+    @media screen  and (max-width:650px){
+     .grid{
+      display: grid;
+      grid-template-columns: auto auto auto;
+      column-gap: 4vw;
+   }
+     .cards1{
+    width:22vw;
+     }
+      .cards2{
+    width:22vw;
+     }
+      .cards3{
+    width:22vw;
+     }
+      .cards4{
+    width:22vw;
+     }
+     p{
+      font-size:1.7vw;
+     }
+   }
+    @media screen  and (max-width:570px){
+       .grid{
+      display: grid;
+      grid-template-columns: auto auto;
+      column-gap: 4vw;
+   }
+     .cards1{
+    width:30vw;
+     }
+      .cards2{
+    width:30vw;
+     }
+      .cards3{
+    width:30vw;
+     }
+      .cards4{
+    width:30vw;
+     }
+     p{
+      font-size:2vw;
+     }
+    }
+     @media screen  and (max-width:570px){
+          .cards1{
+    width:32vw;
+     }
+      .cards2{
+    width:32vw;
+     }
+      .cards3{
+    width:32vw;
+     }
+      .cards4{
+    width:32vw;
+     }
+      p{
+      font-size:2.5vw;
+     }
+     }
+      @media screen  and (max-width:370px){
+         .grid{
+      display: grid;
+      margin-left:8vw;
+      grid-template-columns: auto ;
+      column-gap: 5vw;
+   }
+    .cards1{
+    width:50vw;
+     }
+      .cards2{
+    width:50vw;
+     }
+      .cards3{
+    width:50vw;
+     }
+      .cards4{
+    width:50vw;
+     }
+      p{
+      font-size:2.8vw;
+     }
+      }
 </style>

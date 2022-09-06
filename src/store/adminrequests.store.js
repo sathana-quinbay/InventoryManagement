@@ -34,6 +34,7 @@ export default {
             postRequestApproval({
                 success: (response)=>{
                     console.info('Request Approved',response.data);
+                    this.commit('setRequests',response.data)
                     // console.log(response);
                    
                 },
@@ -48,6 +49,7 @@ export default {
             postRequestDecline({
                 success: (response)=>{
                     console.info('Request Approved',response.data);
+                    this.commit('setRequests',response.data);
                     // console.log(response);
                    
                 },

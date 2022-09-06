@@ -41,7 +41,7 @@ export const getSellerFromSearch = ({success, error,payload}) =>{
 }
 export const getSellerFromSort = ({success, error,payload}) =>{
       console.log("service",payload)
-      axios.get(SELLER_SORT_API+payload+"/seller")
+      axios.get(SELLER_SORT_API+payload+"/seller"+'/1')
             .then((response)=>{
                   console.log(response);
                   success && success(response);

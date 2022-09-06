@@ -1,23 +1,22 @@
 <template>
 <div>           <!--class="adminrequest"-->
-    <div class="cont"><div class="bag"><h5 style="padding:5px;margin-left:60px;"><ion-icon style="color:#1b2850;" name="newspaper-outline"></ion-icon>&nbsp;Requests</h5></div></div><hr>
+    <div class="cont"><div class="bag"><h5 style="padding:5px;margin-left:60px;"><ion-icon style="color:#1b2850;" name="newspaper-outline"></ion-icon>&nbsp;Requests</h5></div></div>
     <div class="tab">
     <b-table style="font-size:12px;" :items="requests" :fields="fields" responsive>
-         <template #cell(Description)="">
-            <b-button class="mr-2 viewButton" size="sm"  @click="desc(requests.userId)">View Details</b-button>
-           <b-modal id="modal-center" centered title="Seller Description" v-model="modalShow">
-            Name:{{desc.name}}<br>
-            
-           </b-modal>
-        </template>
-        <template #cell(Approval)="item">
+         <!-- <template #cell(Description)="">
+            <button @click="desc()">View Details</button> -->
+             <!-- Name:{{desc.name}}<br> -->
+        <!-- </template> --> -->
+    <template #cell(Approval)="item">
         <b-button @click="Approved(item)" size="sm" class="mr-2">
              Approve
         </b-button>&nbsp; 
          <b-button @click="DisApproved(item)" size="sm" class="mr-2">
-             Reject </b-button>
+             Reject </b-button> 
         </template>
-    </b-table></div></div>
+    </b-table></div>
+    <p class="noreqs" v-show='show'>No requests Pending..!</p>
+    </div>
 </template>
 
 <script>
@@ -29,10 +28,10 @@ export default {
  {
     return{
         i:0,
-        modalShow:false,
         Description:'Sun Microsystems,we sell computer and accessories related to them',
-         fields: ['userid','Description','Approval'],
-         requests:[]
+         fields: ['name','Approval'],
+         requests:[],
+         show:false
     }
  },
 //  computed:
@@ -58,6 +57,13 @@ export default {
             console.log(err);
          })
  },
+ mounted()
+ {
+   if(this.requests==null)
+         {
+            this.show=true
+         }
+ },
  methods:{
    filter()
    {
@@ -66,6 +72,7 @@ export default {
    },
    Approved(item)
    {
+      this.i=1;
     console.log(item.item.userid);
      this.$store.dispatch('POST_REQUEST',item.item.userid); 
     axios.get(`http://10.30.1.2:8002/admin/get/requestlist`)
@@ -79,6 +86,7 @@ export default {
 },
    DisApproved(item)
    {
+      this.i=1;
     console.log(item.item.userid);
      this.$store.dispatch('DECLINE_REQUEST',item.item.userid); 
     axios.get(`http://10.30.1.2:8002/admin/get/requestlist`)
@@ -92,14 +100,19 @@ export default {
 },
    desc(value)
    {
-      this.modalShow = !this.modalShow;
+      this.$router.push({path: "admin/request/details"});
+      console.log("request details now");
       this.$store.dispatch('GET_SELLER_BY_ID',value);
+      
    }
  }
 }
 </script>
 
 <style>
+.noreqs{
+   color:black;
+}
 .cont{
    display: flex;
    width:100% ;
@@ -108,7 +121,7 @@ export default {
 }
 .bag{
    border:0.2px solid #1b2850;
-   padding:5px;
+   margin-bottom:30px;
    width:200px;
    display:flex;
    border-radius:10px;
