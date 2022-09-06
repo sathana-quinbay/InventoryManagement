@@ -3,8 +3,8 @@
   <h2 style="font-family:sans serif;">products</h2>
   <div class="tabv">
    <b-table style="font-size:12px;" :items="products" :fields="fields" responsive> 
-        <template #cell(imageUrl)=''>
-         <img src="" alt="image">
+        <template #cell(imageUrl)='item'>
+         <img :src="item.imageUrl" alt="image">
       </template>
     </b-table>
     </div>
@@ -17,8 +17,7 @@ export default {
     data()
     {
         return{
-            fields:['productName','category',
-'description',
+            fields:['imageUrl','productName','category',
 'price',
 'productId',
 'productName',

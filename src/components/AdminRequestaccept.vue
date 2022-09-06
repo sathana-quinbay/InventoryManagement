@@ -1,6 +1,6 @@
 <template>
 <div>           <!--class="adminrequest"-->
-    <div class="cont"><div class="bag"><h5 style="padding:5px;margin-left:60px;"><ion-icon style="color:#1b2850;" name="newspaper-outline"></ion-icon>&nbsp;Requests</h5></div></div>
+    <div class="cont"><div class="bag"><h5 style="padding:5px;margin-left:40px;"><ion-icon style="color:#1b2850;" name="newspaper-outline"></ion-icon>&nbsp;Requests</h5></div></div>
     <div class="tab">
     <b-table style="font-size:12px;" :items="requests" :fields="fields" responsive>
          <!-- <template #cell(Description)="">
