@@ -40,7 +40,7 @@
         <p>Are you sure to delete?</p>
       </div>
       <div class="button-group">
- <b-button class="mt-3 reactivate-button" variant="outline-primary" block @click="deleteProduct">Yes</b-button>
+ <b-button class="mt-3 reactivate-button" variant="outline-primary" block @click="deleteProductFunction">Yes</b-button>
       <b-button class="mt-3" variant="outline-danger" block @click="hideModal">No</b-button>
      
       </div>
@@ -87,6 +87,11 @@ li:hover{
 li button{
   background: none;
   border: none;
+}
+.button-group
+{
+  display: flex;
+  justify-content: space-around;
 }
 .dropdown-content {
   display: none;
@@ -329,7 +334,7 @@ created()
     },
     hideModal() {
       this.$refs["my-modal"].hide();
-      this.deleteProduct()
+      
       
     },
     sortData()
@@ -353,7 +358,7 @@ created()
          this.$store.dispatch('getsellerproductsfromservice', userId);
         this.modalShow = false
       },
-      deleteProduct()
+      deleteProductFunction()
     {
       var product = this.deleteItem
       console.log("products",product)

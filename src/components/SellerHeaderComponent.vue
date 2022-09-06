@@ -8,9 +8,9 @@
       
       <b-nav-item-dropdown class="rightAlign" text="Products" right>
         <b-dropdown-item><router-link class="routerLink" to="/seller/add">Add Product</router-link></b-dropdown-item>
-        <b-dropdown-item><router-link class="routerLink" to="/seller/tableview">List Products</router-link></b-dropdown-item>
-        <b-dropdown-item><router-link class="routerLink" to="/seller/product">All Products</router-link></b-dropdown-item>
-        <b-dropdown-item><router-link class="routerLink" to="/seller/import">Import Products</router-link></b-dropdown-item>
+        <b-dropdown-item><router-link class="routerLink" to="/seller/products">List Products</router-link></b-dropdown-item>
+        <!-- <b-dropdown-item><router-link class="routerLink" to="/seller/product">All Products</router-link></b-dropdown-item>
+        <b-dropdown-item><router-link class="routerLink" to="/seller/import">Import Products</router-link></b-dropdown-item> -->
        
       </b-nav-item-dropdown>
 

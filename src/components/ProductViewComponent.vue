@@ -24,18 +24,22 @@
   <b-row>
    
       <b-col cols="12" lg="12" md="12" sm="12">
-       <div class="viewButtons">
+        
+       <div  class="viewButtons">
          <button @click="view='table'" :class="view=='table'?'viewByButton tableActive':'viewByButton'">Table</button> 
          <!-- <button class="viewByButtonNot">|</button> -->
         <button @click="view='card'" :class="view=='card'?'viewByButton tableActive':'viewByButton'">Card</button>
+      
        </div>
-      </b-col>
+         
+          </b-col>
   </b-row>
 </b-container-fluid>
   
       </div>
-      <div v-if="view=='table'"><ProductTableComponent/></div>
-      <div v-else><ProductContainerComponent/></div>
+        <!-- <img v-if="sellerproductlist.length==0" class="notFoundImg" src="../assets/notfound.png" alt="imageNoutFound"/> -->
+      <div  v-if="view=='table'"><ProductTableComponent/></div>
+      <div v-if="view=='card'"><ProductContainerComponent/></div>
  </div>
 
 </template>
@@ -255,6 +259,7 @@ li button{
 }
 </style>
 <script>
+import { mapGetters } from 'vuex';
 import ProductTableComponent from '@/components/ProductTableComponent.vue'
 import ProductContainerComponent from '@/components/ProductContainerComponent'
 export default{
@@ -267,6 +272,12 @@ ProductContainerComponent
         return {
             view:'table',
         }
-    }
+    },
+       computed:
+  {
+      ...mapGetters({
+        sellerproductlist:'getSellerproducts'
+      }),
+  }
 }
 </script>

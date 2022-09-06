@@ -192,6 +192,9 @@ export default {
         },
         categoryCheck()
         {
+           var categoryRegx = new RegExp('^[a-zA-Z . ]+$')
+      
+            
           this.categoryError=true
            this.categorySpanError=''
            if(this.product.category.length<2)
@@ -201,6 +204,11 @@ export default {
           //  if (this.seller.password.search(/[^A-Za-z0-9]/) > 0) {
           //      this.nameSpanError='must not contain special characters'
           //   }
+          else if (!categoryRegx.test(this.product.category)){
+
+             this.categorySpanError="Must contain Alphabets only"
+          
+          }
            else{ 
             this.categorySpanError=''
             this.categoryError=false

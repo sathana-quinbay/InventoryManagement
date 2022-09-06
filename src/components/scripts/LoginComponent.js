@@ -97,7 +97,7 @@ export default{
         
                             }
                             else if( response.data.data.role=='seller')
-                            { this.$router.push({path: '/seller/dashboard'});
+                            { this.$router.push({path: '/seller/add'});
         
                             }
                         }
