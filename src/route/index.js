@@ -6,8 +6,12 @@ import DemoComponent from "@/components/DemoComponent";
 import SettingComponent from "@/components/SettingComponent"
 import ProductDetails from '@/components/productDetails'
 import {isSellerActive} from '@/service/SellerAccountService'
+
+import AddProductFormComponent from '@/components/AddProductFormComponent';
+
 import AddProductFormComponent from '@/components/AddProductFormComponent'
 // import SellerInventoryComponent from '@/components/SellerInventoryComponent'
+
 import DetailsComponent from '@/components/DetailsComponent';
 
 import ProductViewComponent from '@/components/ProductViewComponent'

@@ -25,7 +25,7 @@
             <b-row>
                 <b-col cols="12" lg="12" md="12" sm="12">
                     <h2 class="container-heading">Login</h2>
-                  <label class="formLabels"> Email Id </label>
+                  <label class="formLabels"><span class="starClass">*</span>  Email Id </label>
                        <br> <input  type="text" :class="[(errorFlag.usernameErrorFlag)? 'errorInput' : ' ']"  v-model="user.emailId"/>
                         
                 </b-col>
@@ -33,7 +33,7 @@
             </b-row>
              <b-row>
                 <b-col cols="12" lg="12" md="12" sm="12">
-                   <label class="formLabels"> Password</label>
+                   <label class="formLabels"><span class="starClass">*</span>  Password</label>
                        <br>  <input type="password" name="password" :class="[(errorFlag.passwordErrorFlag)? 'errorInput' : ' ']" id="password" v-model="user.password" />
          
                 </b-col>
@@ -64,6 +64,11 @@
 
 </template>
 <style scoped>
+.starClass
+{
+  color: red;
+  font-size: 20px;
+}
 h2.container-heading {
    
     text-align: center;

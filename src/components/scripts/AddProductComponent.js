@@ -15,6 +15,7 @@ export default {
        imageUrl:"https://campiazza-media.s3.amazonaws.com/unknown.png",
        sellingPrice:"",
        },
+       
        selectedFiles: undefined,
        }
     },

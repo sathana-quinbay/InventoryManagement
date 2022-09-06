@@ -7,11 +7,13 @@ export default{
           dismissCountDown: 0,
           userMessage:"",
             csvFileData: [
-                ['Samsung A3','Hello','Mobile','50000.00','45','imageul.png'],
+                ['Samsung A3','New product added succesfully','Mobile','50000.00','45','imageul.png'],
                
              ],
+             fileMessage:"",
              selectedFiles: undefined,
              files:[],
+             fileError:false,
              items: [
                
                 { id:1,Fields:'productName',condition:true },
@@ -33,6 +35,7 @@ export default{
     methods:{
         selectFile() {
             this.selectedFiles = event.target.files[0];
+            
           },
           uploadFile()
           {
@@ -46,6 +49,26 @@ export default{
                 console.log(`${pair[0]}, ${pair[1]}`);
               }
               this.$store.dispatch('uploadFile',{formData,sellerId})
+          },
+          setError(value)
+          {
+            if(value.type!='text/csv')
+          {
+            this.fileError=true
+            this.fileMessage="Type must be csv"
+          }
+          
+          else 
+          if(value.size>1023)
+          {
+            this.fileError=true
+            this.fileMessage="File size must be less than 10mb"
+          }
+          else{
+            this.fileError=false
+            this.fileMessage=''
+          }
+          return true
           },
        download_csv_file() {
 
@@ -74,8 +97,11 @@ export default{
         },
         addFile(e) {
             let droppedFiles = e.dataTransfer.files;
-            console.log(droppedFiles)
+            console.log(droppedFiles[0].type)
+            
             this.files=[];
+          
+            
             if(!droppedFiles) return;
             // this tip, convert FileList to array, credit: https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/
             ([...droppedFiles]).forEach(f => {
@@ -86,12 +112,18 @@ export default{
           },
           uploadFileNow()
       {
+        console.log(this.fileError)
+        if(!this.fileError)
+         {
+
+       
+        
         console.log("file upload")
         console.log(this.selectedFiles)
         var sellerId=localStorage.getItem('userId');
           let formData = new FormData();
           formData.append("file",this.files[0]);
-         console.log(this.files[0])
+         
           for (const pair of formData.entries()) {
             console.log(`${pair[0]}, ${pair[1]}`);
           }
@@ -122,10 +154,13 @@ export default{
           error: (e) => {
              
               console.warn(e);
+              this.userMessage="Something went wrong try again with valid file"
+              this.showAlert()
           },
           payload
 
       })
+         }
       },
       countDownChanged(c) {
            
@@ -149,27 +184,9 @@ export default{
             this.files = this.files.filter(f => {
               return f != file;
             });      
+            this.fileError=false
           },
-          upload() {
-            
-            let formData = new FormData();
-            this.files.forEach((f,x) => {
-              formData.append('file'+(x+1), f);
-            });
-            
-            fetch('https://httpbin.org/post', {
-              method:'POST',
-              body: formData
-            })
-            .then(res => res.json())
-            .then(res => {
-               console.log('done uploading', res);
-            })
-            .catch(e => {
-              console.error(JSON.stringify(e.message));
-            });
-            
-          }
+       
         }
 
     }
