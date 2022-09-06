@@ -1,29 +1,37 @@
 <template>
-<div>
-  <h2 style="font-family:sans serif;">products</h2><hr>
-   <b-table :items="products" :fields="fields" responsive='sd'> 
-        
-           
+<div style="width:80vw;margin-left:100px;">
+  <h2 style="font-family:sans serif;">products</h2>
+   <b-table :items="products" :fields="fields" responsive> 
+        <template #cell(imageUrl)=''>
+         <img src="" alt="image">
+      </template>
     </b-table>
     </div>
 </template>
 
 <script>
-// import {mapGetters} from 'vuex';
+import {mapGetters} from 'vuex';
 export default {
     data()
     {
         return{
-            fields:['productname']
+            fields:['productName','category',
+'description',
+'price',
+'productId',
+'productName',
+'quantity',
+]
         }
     },
        created(){
           this.$store.dispatch('UNIQUE_PRODUCT_LIST',this.$store.state.specificSellerStore.uniqueId);
-          console.log(this.$store.state.specificSellerStore.uniqueId)
        },
-    // ...mapGetters({
-    //     userId:'getUniqueSellerId'
-    // })  
+       computed:{
+     ...mapGetters({
+        products:'getProducts'
+     })  
+       }
 }
 </script>
 

@@ -6,7 +6,8 @@
        <h4 style="margin-left:8vw;color:white;"> <ion-icon style="color:#1bae;font-size:30px; margin-top:5px;" name="logo-web-component"></ion-icon>&nbsp;Inventory Manager</h4>
         <span style="color:white;font-size:10px;">&copy; Blibli 2022</span>
     </div>
-    
+    <!-- <div class="retro">
+    <ion-icon style="float:left;" name="person-circle-outline"></ion-icon><p>Sharon2901</p></div> -->
     <div class="login-register">
       <router-link to='/' style="font-size:30px; padding-top:5px;">&nbsp;&nbsp;</router-link>
       <!-- <router-link to="/login" tag="button" class="login-btn"
@@ -20,6 +21,22 @@
 <script src="./scripts/NavBarComponent.js"></script>
 
 <style scoped>
+.retro{
+    font-size: 40px;
+    color:#1b2850;
+    float:right;
+    margin-right: -55%;
+    background:white;
+    border-radius:30px;
+    width:10vw;
+
+}
+.retro p{
+  display: flex;
+  margin-top: 10%;
+  font-size:12px;
+  font-weight:500      ;
+}
 .nav-bar {
   overflow: hidden;
   background-color: #1b2850;

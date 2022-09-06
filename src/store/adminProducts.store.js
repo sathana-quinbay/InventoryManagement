@@ -33,8 +33,8 @@ export default {
             // console.log(state + " | " + user);
             uniqueProductList({
                 success: (response)=>{
-                    console.info('Unique Products Process Success',response);
-                    this.commit('setProducts',response);
+                    console.info('Unique Products Process Success',response.data.data);
+                    this.commit('setProducts',response.data.data);
                     // console.log(response);
                    
                 },

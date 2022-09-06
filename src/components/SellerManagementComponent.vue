@@ -1,13 +1,14 @@
 <template>
 <div style="width:90vw; margin-left:7.5vw;">
-  <div class="cont"><div class="bag"><h5 style="padding:5px;font-family:arial,bold;"><ion-icon style="color:#1bae; font-size:30px;" name="people-circle-outline"></ion-icon>&nbsp;Management</h5></div></div><hr>
+  <div class="cont"><div class="bag"><h5 style="dispaly:flex;"><ion-icon style="color:#1bae; font-size:30px;" name="people-circle-outline"></ion-icon>&nbsp;Management</h5></div></div>
+   <div class="indef">
    <div class="searchbar">Search By: 
-     <select style="border:0.5px solid #1b2850; border-radius:7px;padding:3px; background:whitesmoke;" v-model="category" name="category">
-        <option style="color:grey;" value="" disabled selected>--Select category--</option>
-        <option value="name">name</option>
-        <option value="address">address</option>
-        <option value="contact">contact</option>
-        <option value="userid">userid</option>
+     <select style="border:0.5px solid #1b2850; border-radius:7px;padding:2px;width:85px; background:whitesmoke;margin-top:3px;" v-model="category" name="category">
+        <option style="color:grey;" value="" selected>--Select category--</option>
+        <option value="name">Name</option>
+        <option value="address">Address</option>
+        <!-- <option value="contact">Contact No</option> -->
+        <option value="emailid">Email Id</option>
         </select>
         <!-- <b-dropdown v-model="category" id="dropdown-1" text="Category" class="m-md-2">
     <b-dropdown-item>Name</b-dropdown-item>
@@ -19,13 +20,17 @@
     <b-dropdown-item disabled>Disabled action</b-dropdown-item> -->
   <!-- </b-dropdown> -->
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input style="border:0.5px solid #1b2850; border-radius:10px;width:20vw;padding:3px; background:whitesmoke;" type="text" placeholder="search seller" v-model="searchkey">&nbsp;
-        <button style="background:white; color:#1b2850; font-size:18px; border-radius:50px; padding:4px;" @click="processSearch()"><ion-icon name="search-sharp"></ion-icon></button> 
-        <div style="float:right; margin-right:10vw;"> Sort By:<select style="border:0.5px solid #1b2850; border-radius:7px;padding:2px; background:whitesmoke;" v-model="sortby">
+  <div style="padding:3px;border:0.5px solid #1b2850; border-radius:10px;width:250px;background:whitesmoke;display:inline;margin-top:10px;">
+        <ion-icon style=" background:whitesmoke;width:20px;" name="search-sharp"></ion-icon><input style="border:0px solid #1b2850; border-radius:10px;width:200px;background:whitesmoke;" type="search" placeholder="search seller" v-model="searchkey">
+        <!-- <button style="background:white; color:#1b2850; font-size:18px; border-radius:10px; padding:2px;" @click="processSearch()"> -->
+          </div>
+          <!-- </button>  -->
+        <!-- <div style="float:right; margin-right:10vw;"> Sort By:<select style="border:0.5px solid #1b2850; border-radius:7px;padding:2px; background:whitesmoke;" v-model="sortby">
           <option style="color:grey;" value="" disabled selected>-select-</option>
-        <option value="name">name</option>
-        <option value="userid">userid</option>
-        </select> </div></div><hr>
+        <option value="name">Name</option>
+        <option value="emailid">Email Id</option>
+        </select> </div>--></div></div>
+        <img v-show="empty" src="../assets/result.webp" class="imgresult">
   <div class="admin-display-container">
         <div class="grid-container">
           <SellerCardComponent
@@ -40,6 +45,18 @@
 <script src="./scripts/sellerManagement.js">
 </script>
 <style scoped>
+.indef{
+  background:white;
+  color:#1b2850;
+  padding:0.5px;
+  border-radius:10px;
+  border:0.2px solid #1b2850;
+  box-shadow:rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+.imgresult{
+  height: 80vh;
+  width:70vw;
+}
 .cont{
    display: flex;
    width:100% ;
@@ -56,8 +73,9 @@
   
 }
 .search-bar{
-  padding-bottom:10px;
   font-size: 10px;
+  display: flex;
+  padding:3px;
 }
 .loader {
   margin: 10vh;
@@ -244,6 +262,11 @@
     width: 48vw;
   }
 } 
+@media screen  and(max-width:600px){
+   .indef{
+       display: list-item;
+   }
+}
 
  @media screen  and(max-width:450px){
     .create-seller-btn{

@@ -5,7 +5,9 @@ export default{
         return {
             uniqueSeller: {},
             isInventoryOpened: false,
-            sellerStatus: true //by default seller is active, can be toggled by the admin
+            sellerStatus: true, //by default seller is active, can be toggled by the admin
+            show:false,
+            show2:false
         }
     },
     props: {
@@ -27,10 +29,36 @@ export default{
             this.$store.dispatch('uniqueSellerId',value.userId);
 
         },
-        disbaleSeller(userId){
+        disbaleSeller(status){
             // This is a toggle function to disable or enable a seller.
-            this.$store.dispatch('DISABLE_SELLER', userId);
+            if(status=="enabled")
+            {
+            this.show=true;
+            this.show2=false;
+            }
+            if(status=="disabled")
+            {
+                this.show=false;
+                this.show2=true;
+            }
+            
+        },
+        makeEnable(userId)
+        {
             this.sellerStatus = !this.sellerStatus;
+            this.$store.dispatch('DISABLE_SELLER', userId);
+            this.show2=false;
+        },
+        confirm(userId)
+        {
+            this.sellerStatus = !this.sellerStatus;
+            this.$store.dispatch('DISABLE_SELLER', userId);
+            this.show=false;
+        },
+        close()
+        {
+            this.show=false;
+            this.show2=false;
         }
     }
 }
