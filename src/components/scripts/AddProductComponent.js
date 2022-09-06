@@ -22,6 +22,7 @@ export default {
       addProduct()
       {
         this.product.sellerId = localStorage.getItem('userId');
+        
         postsellerproducts({
           success: ({ data }) => {
               console.log(data)

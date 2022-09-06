@@ -1,10 +1,7 @@
 <template>
      <div class="main-body">
    
-          <div class="page-headers">
-      <h4>Product Add</h4>
-      <h6>Create new product</h6>
-    </div>
+         
       
     <div class="main-card">
     
@@ -25,19 +22,30 @@
     
         
         <div v-if="getListCount==0"  class="notfound">
-                 <img src="../assets/notfound.png" alt="image"/>
+                 <img class="notFoundImg" src="../assets/notfound.png" alt="imageNoutFound"/>
                </div>
                <b-table  v-else id="dataTable"  sticky-header height="700" responsive :fields="fields" :items="sellerproductlist">
           <template #cell(imageUrl)="item">
-               <img class="imageMain" :src="item.item.imageUrl" alt="">
+               <img class="imageMain" :src="item.item.imageUrl" alt="Not found">
           </template>
           <template #cell(action)="item">
-           <button class="editIcon" @click="editProduct(item.item)"> <b-icon-pencil></b-icon-pencil></button>
-            <button class="deleteIcon" @click="deleteProduct(item.item)"> <b-icon-trash-fill></b-icon-trash-fill></button>
+           <button class="editIcon" @click="editProduct(item.item)"> <b-icon-eye></b-icon-eye></button>
+            <button class="deleteIcon" @click="showModal(item.item)"> <b-icon-trash-fill></b-icon-trash-fill></button>
           </template>
             
         </b-table>
     </div>
+      <b-modal ref="my-modal" hide-footer title="Your account will be Deleted">
+      <div class="d-block text-center">
+        <p>Are you sure to delete?</p>
+      </div>
+      <div class="button-group">
+ <b-button class="mt-3 reactivate-button" variant="outline-primary" block @click="deleteProduct">Yes</b-button>
+      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">No</b-button>
+     
+      </div>
+      
+    </b-modal>
        <div v-if="modalShow">
       <OpenProductComponent
         :productItem="product"
@@ -49,6 +57,11 @@
      </div>
 </template>
 <style scoped>
+.imageMain
+{
+ 
+background-image:url('https://phulbanimunicipality.nic.in/wards.php');
+}
 .filtericon
 {
   font-size: 30px;
@@ -117,6 +130,31 @@ li button{
 {
   color:red
 }
+@media screen and (max-width:600px) {
+  img.notFoundImg {
+    width: 100%;
+}
+.searchButton {
+    background: 0 0;
+    height: 40px;
+    border: 1px solid rgba(145,158,171,.32);
+    width: 140px;
+    border-radius: 5px;
+    padding: 0 15px 0 30px;
+}
+ .submitButton{
+    min-width: 101px;
+    float: right;
+    background: #ff9f43;
+    color: #fff;
+    font-size: 14px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    padding: 4px 10px;
+}
+  
+}
 .b-table-sticky-header {
     overflow-y: auto;
     max-height: 600px;
@@ -127,6 +165,7 @@ li button{
 }
 .main-card{
   margin: 0 0 25px;
+  margin-top:2%;
  
   border: 1px solid #e8ebed;
   border-radius: 6px;
@@ -154,6 +193,20 @@ li button{
 
   font-size: 18px;
 }
+.submitButton
+{
+    min-width: 120px;
+    float: right;
+  background: #ff9f43;
+  color: #fff;
+  font-size: 14px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  padding: 14px 10px;
+ 
+
+}
 .page-headers h6 {
   font-size: 14px;
   color: #555;
@@ -176,6 +229,14 @@ export default {
       getListCount()
       {
         return this.sellerproductlist.length
+      },
+      sortedData()
+      {
+                  console.log(this.sellerproductlist)
+        // var MyData = {... this.sellerproductlist}
+        // MyData.sort(this.dynamicSort("productName"));
+        // console.log(MyData)
+        return this.sellerproductlist.length
       }
   },
   watch:{
@@ -186,6 +247,7 @@ export default {
     sortBy()
     {
         this.sortData()
+        
     }
   },
 created()
@@ -202,16 +264,53 @@ created()
     data()
     {
         return {
-          fields:['imageUrl','productName','category','price','quantity','description','action'],
+           fields: [
+            {key:'imageUrl',sortable:false},
+          { key: 'productName', sortable: false },
+          { key: 'category', sortable: false },
+          { key: 'price', sortable: false },
+          {key:'quantity',sortable:false},
+         
+ {key:'action',sortable:false}
+
+        ],
            modalShow:false,
            product:[],
            search:"",
+           deleteItem:'',
             sortBy:[],
+      
       
             
         }
     },
+
+    mounted(){
+        console.log("inside mounteed");
+        console.log(this.sellerproductlist)
+        // var MyData = {... this.sellerproductlist}
+        // MyData.sort(this.dynamicSort("ame"));
+
+// Display data with new order !
+// console.log(MyData);
+    },
     methods:{
+      dynamicSort(property) {
+    var sortOrder = 1;
+
+    if(property[0] === "-") {
+        sortOrder = -1;
+        property = property.substr(1);
+    }
+
+    return function (a,b) {
+        if(sortOrder == -1){
+            return b[property].localeCompare(a[property]);
+        }else{
+            return a[property].localeCompare(b[property]);
+        }        
+    }
+},
       findData()
     {
       console.log("doind")
@@ -219,8 +318,18 @@ created()
         sellerId:localStorage.getItem('userId'),
         searchValue:this.search
       }
-      
+
       this.$store.dispatch('searchProductServiceCall',payload)
+      
+    },
+    showModal(item) {
+      this.$refs["my-modal"].show();
+      this.deleteItem=item
+      console.log("delete item",this.deleteItem)
+    },
+    hideModal() {
+      this.$refs["my-modal"].hide();
+      this.deleteProduct()
       
     },
     sortData()
@@ -228,6 +337,7 @@ created()
     console.log(this.sortBy)
     const sellerid = localStorage.getItem('userId');
     var sortBy=this.sortBy
+    this.search=""
     console.log("contaier",sortBy)
     this.$store.dispatch('sortSellerProducts',{sellerid,sortBy});
     },
@@ -235,6 +345,7 @@ created()
       {
           this.modalShow=true;
           this.product={... item}
+          console.log("edited",this.product)
       },
       removeModal()
       {
@@ -242,10 +353,11 @@ created()
          this.$store.dispatch('getsellerproductsfromservice', userId);
         this.modalShow = false
       },
-      deleteProduct(product)
+      deleteProduct()
     {
+      var product = this.deleteItem
       console.log("products",product)
-      deleteProduct({
+       deleteProduct({
            
         success: ({ data }) => {
             
@@ -256,9 +368,13 @@ created()
               const userId = localStorage.getItem('userId');
               console.log("inside created")
               console.log(userId)
-                this.$store.dispatch('getsellerproductsfromservice', userId);
+                // this.$store.dispatch('getsellerproductsfromservice', userId);
+                this.findData()
+                this.deleteItem=''
+
             }
             console.log(data)
+            this.hideModal()
         
         },
         error: (e) => {

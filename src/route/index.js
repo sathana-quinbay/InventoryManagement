@@ -2,13 +2,18 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import LoginComponent from "@/components/LoginComponent.vue";
 import AdminDashboardComponent from "@/components/AdminDashboardComponent";
-// import CreateSellerComponent from "@/components/CreateSellerComponent";
-
+import DemoComponent from "@/components/DemoComponent";
+import SettingComponent from "@/components/SettingComponent"
 import ProductDetails from '@/components/productDetails'
-
+import {isSellerActive} from '@/service/SellerAccountService'
 import AddProductFormComponent from '@/components/AddProductFormComponent';
+<<<<<<< HEAD
 // import SellerInventoryComponent from '@/components/SellerInventoryComponent'
 import DetailsComponent from '@/components/DetailsComponent';
+=======
+import ProductViewComponent from '@/components/ProductViewComponent'
+
+>>>>>>> 4ba40b15a24bb78ac4738644d08dfacaf607e308
 import  SellerAccountComponent from "@/components/SellerAccountComponent";
 import RegisterComponent from "@/components/RegisterComponent"
 import ProductContainerComponent from '@/components/ProductContainerComponent'
@@ -127,15 +132,30 @@ const routes = [
       
     
     children: [
+      {
+        path: "setting",
+        name: "SettingComponent",
+        component: SettingComponent 
+      },
   {
     path: "add",
   name: "AddProductFormComponent",
   component: AddProductFormComponent,
 },
+{
+  path: "dashboard",
+name: "ProductTableComponent",
+component: ProductTableComponent,
+},
   {
     path: 'product',
     name: 'ProductContainerComponent',
     component: ProductContainerComponent,
+  },
+  {
+    path: 'products',
+    name: 'ProductViewComponent',
+    component: ProductViewComponent,
   },
   {
     path: 'account',
@@ -152,11 +172,12 @@ const routes = [
     name: "ProductTableComponent",
     component: ProductTableComponent 
  },
-    
+
     ]
   },
 
-  // { path: "/admin", name: "AdminRequest", component: AdminRequest },
+
+   { path: "/*", name: "DemoComponent", component:DemoComponent},
 
   // { path: "/sellermanager", name: "SellerManagementComponent", component: SellerManagementComponent },
 
@@ -272,9 +293,29 @@ router.afterEach((to, from, next) => {
     if (role === undefined || role === null || (role.toLocaleLowerCase() !== 'admin' && role.toLocaleLowerCase() !== 'seller')) {
       router.replace('/login');
      }
+     isSellerActive({
+      success: (response)=>{
+        console.log(response)
+        if(response.data.message=='not active')
+           {
+            console.warn("User logged out.");
+            localStorage.removeItem('userId');
+            localStorage.removeItem("role");
+            localStorage.removeItem("emailId");
+          
+            router.replace('/login');
+           }
+    },
+    error: (err)=>{
+       console.log(err)
+       
+    }
+     }
+  )
      
     
   }
+
 getStatus({
     success: (response)=>{
         console.log(response)

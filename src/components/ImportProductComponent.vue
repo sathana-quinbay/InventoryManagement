@@ -47,12 +47,15 @@
         </b-row>
         <b-row class="fileDiv">
             <b-col cols="12" lg="8" md="6" sm="12">
+             
         <ul>
               <li v-for="file in files" :key="file.size">
-                {{ file.name }} ({{ file.size }} kb)
+                {{ file.name }} ({{ file.size | kb }} kb)
                 <button class="binButton" @click="removeFile(file)" title="Remove">
 <b-icon-trash-fill></b-icon-trash-fill>
                 </button>
+                 <div v-if="file?.size >10000">soo large</div>
+              <div v-else>fine</div>
               </li>
             </ul>
             </b-col>
@@ -141,6 +144,31 @@ th, td {
 .fileDiv
 {
     margin-top:2%;
+}
+@media screen and (max-width:600px) {
+  .addCsv {
+    min-width: 103px;
+    background: #1b2850;
+    color: #fff;
+    font-size: 14px;
+    border: none;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    padding: 5px 10px;
+}
+.download_csv {
+    width: 100%;
+    background: #ff9f43;
+    color: #fff;
+    font-size: 14px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    padding: 14px 10px;
+}
+  
 }
 li{
     list-style-type: none;
