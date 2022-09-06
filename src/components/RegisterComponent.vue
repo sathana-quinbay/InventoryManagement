@@ -36,7 +36,7 @@
           <b-container>
             <b-row>
                 <b-col cols="12" lg="12" md="12" sm="12">
-                  <label class="formLabels"> Full name  <span class="error">{{(nameErrorFlag)? nameErrorMessage : ' '}}</span></label>
+                  <label class="formLabels">  <span class="starClass">*</span>  Full name <span class="error">{{(nameErrorFlag)? nameErrorMessage : ' '}}</span></label>
                        <br> <input  @blur="trimValue('name')" :class="nameErrorFlag?'errorInput':' '" type="text"  v-model="seller.name"/>
                         
                 </b-col>
@@ -44,19 +44,19 @@
             </b-row>
              <b-row>
                 <b-col cols="12" lg="6" md="12" sm="12">
-                   <label class="formLabels"> Email  <span class="error">{{(emailIdErrorFlag)? emailErrorMessage : ' '}}</span></label>
+                 <label class="formLabels">  <span class="starClass">*</span>  Email  <span class="error">{{(emailIdErrorFlag)? emailErrorMessage : ' '}}</span></label>
                        <br> <input @blur="trimValue('emailId')" :class="emailIdErrorFlag?'errorInput':' '"   v-model="seller.emailId" />
          
                 </b-col>
                 <b-col cols="12" lg="6" md="12" sm="12">
-                  <label class="formLabels"> Contact  <span class="error">{{(contactErrorFlag)? contactErrorMessage : ' '}}</span></label>
+                  <label class="formLabels"> <span class="starClass">*</span> Contact  <span class="error">{{(contactErrorFlag)? contactErrorMessage : ' '}}</span></label>
                        <br> <input @blur="trimValue('contact')" type="text" :class="contactErrorFlag?'errorInput':' '" v-model="seller.contact"/>
          
                 </b-col>
             </b-row>
               <b-row>
               <b-col cols="12" lg="12" md="12" sm="12">
-                  <label  class="formLabels">Address <span class="error">{{(addressErrorFlag)? addressErrorMessage : ' '}}</span> </label>
+                  <label  class="formLabels"><span class="starClass">*</span>  Address <span class="error">{{(addressErrorFlag)? addressErrorMessage : ' '}}</span> </label>
                <br>
           <b-form-textarea
       id="textarea"
@@ -70,7 +70,7 @@
             </b-row>
              <b-row>
                 <b-col cols="12" lg="6" md="12" sm="12">
-                  <label class="formLabels">Password  </label>
+                  <label class="formLabels"><span class="starClass">*</span> Password  </label>
                   
                   <br> <input  :class="passwordErrorFlag?'errorInput':' '" type="password" v-model="seller.password"/>
          
@@ -109,6 +109,11 @@
 <style scoped>
 .account{
   margin-top:3%;
+}
+.starClass
+{
+  font-size: 20px;
+  color: red;
 }
 input{
   width:100%;

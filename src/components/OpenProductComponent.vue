@@ -107,13 +107,13 @@
       <div class="button-actions">
         <b-button
           v-if="editForm"
-          class="mt-3 saveButton"
+          class="mt-3 saveButton yesButton"
           variant=""
           block
           @click="updateForm"
           >Save</b-button
         >
-        <b-button class="mt-3" variant="outline-danger" block @click="hideModal"
+        <b-button class="mt-3" variant="outline-danger noButton" block @click="hideModal"
           >Close</b-button
         >
       </div>
@@ -125,13 +125,13 @@ button.close {
   display: none;
 }
 button.saveButton {
-  border: 1px solid purple;
-  color: purple;
+  border: 1px solid #212b36;
+  color: #212b36;
 
   background: none;
 }
 button.saveButton:hover {
-  background: purple;
+ background: #212b36;
   color: white;
 }
 .modalClass {
@@ -143,6 +143,34 @@ button.saveButton:hover {
 }
 .editCartComponent {
   margin-top: 30%;
+}
+.yesButton:hover
+{
+  background: #212b36;
+  color:white;
+  width:40% ;
+  border:none;
+}
+.yesButton
+{
+  background: none;
+  color:#212b36;
+  width:40% ;
+  border:1px solid #212b36;
+}
+.noButton:hover
+{
+    width:40% ;
+  background: #ff9f43;
+  color: white;
+  border: none;
+}
+.noButton
+{
+    width:40% ;
+  background: none;
+  color: #ff9f43;
+  border: 1px solid #ff9f43;
 }
 .button-actions {
   display: flex;

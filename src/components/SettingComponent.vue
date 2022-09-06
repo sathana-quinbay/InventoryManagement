@@ -9,7 +9,7 @@
         <p>Are you sure to continue?</p>
       </div>
       <div class="button-group">
- <b-button class="mt-3 reactivate-button" variant="outline-primary" block @click="deleteAccount">Yes</b-button>
+ <b-button class="mt-3 reactivate-button yesButton" variant="outline-primary" block @click="deleteAccount">Yes</b-button>
       <b-button class="mt-3" variant="outline-danger" block @click="hideModal">No</b-button>
      
       </div>
@@ -93,10 +93,11 @@
   </div>
 </template>
 <style scoped>
+
 .button-group
 {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   
 }
 .button-group button{
@@ -194,6 +195,36 @@ width:100px ;
 }
   
 }
+.yesButton
+{
+  background: none;
+  color:#212b36;
+ 
+  border:1px solid #212b36;
+}
+.yesButton:hover
+{
+  background: #212b36;
+  color:white;
+
+  border:none;
+}
+
+.noButton:hover
+{
+    width:40% ;
+  background: #ff9f43;
+  color: white;
+  border: none;
+}
+.noButton
+{
+    width:40% ;
+  background: none;
+  color: #ff9f43;
+  border: 1px solid #ff9f43;
+}
+
 </style>
 <script>
 import {getSellerDetails,updateSellerDetails,deleteSellerAccount} from '../service/SellerAccountService'
@@ -225,7 +256,19 @@ export default {
         confirmPasswordErrorFlag: false,
         emailIdErrorFlag: false,
         isRegisterSuccess: false,
-        userMessage:""
+        userMessage:"",
+        alertMessage: "",
+           
+            emailErrorMessage: "",
+            contactErrorMessage: "",
+            addressErrorMessage: "",
+          
+          
+          
+          
+            
+            
+            
     }
     },
     mounted()

@@ -8,10 +8,23 @@
 
 export default {
   name: 'App',
-  // mounted()
-  // {
-  //   console.log(this.$ipAdress)
-  // }
+  mounted()
+  {
+    // this.interceptors();
+  },
+  methods:{
+    interceptors()
+    {
+       
+            this.axiosInterceptor = window.axios.interceptors.request.use((config) => {
+                alert('hello')
+                return config
+            }, (error) => {
+                alert('bye')
+                return Promise.reject(error)
+            })
+    }
+  }
 }
 
 

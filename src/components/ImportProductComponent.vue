@@ -50,12 +50,12 @@
              
         <ul>
               <li v-for="file in files" :key="file.size">
-                {{ file.name }} ({{ file.size | kb }} kb)
+                {{ file.name }} ({{ file.size  }} kb)
                 <button class="binButton" @click="removeFile(file)" title="Remove">
 <b-icon-trash-fill></b-icon-trash-fill>
                 </button>
-                 <div v-if="file?.size >10000">soo large</div>
-              <div v-else>fine</div>
+                 <div id="error" v-if="file?.size >1023 && setError(file)">{{fileMessage}}</div>
+                
               </li>
             </ul>
             </b-col>
@@ -84,6 +84,7 @@
     </b-alert>
              <b-col  cols="12" lg="6" md="6" sm="12">
  <button v-if="this.files.length!=0" class="uploadButton" :disabled="uploadDisabled" @click="uploadFileNow">Upload</button>
+          
             </b-col>
         </b-row>
       </b-container-fluid>
@@ -157,6 +158,9 @@ th, td {
     font-weight: 700;
     padding: 3px 10px;
     padding: 5px 10px;
+}
+#error {
+    color: red !important;
 }
 .download_csv {
     width: 100%;
@@ -237,6 +241,9 @@ li{
   background: white;
   padding: 20px;
   max-height: 100px;
+}
+div#error {
+    color: red;
 }
 </style>
 <script src="./scripts/ImportProductComponent.js">

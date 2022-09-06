@@ -35,13 +35,13 @@
             
         </b-table>
     </div>
-      <b-modal ref="my-modal" hide-footer title="Your account will be Deleted">
+      <b-modal ref="my-modal" hide-footer title="Products will be deleted permanently">
       <div class="d-block text-center">
-        <p>Are you sure to delete?</p>
+        <p>Are you sure?</p>
       </div>
       <div class="button-group">
- <b-button class="mt-3 reactivate-button" variant="outline-primary" block @click="deleteProductFunction">Yes</b-button>
-      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">No</b-button>
+ <b-button class="mt-3 reactivate-button yesButton" variant="outline-primary" block @click="deleteProductFunction">Yes</b-button>
+      <b-button class="mt-3 noButton" variant="outline-danger" block @click="hideModal">No</b-button>
      
       </div>
       
@@ -57,6 +57,34 @@
      </div>
 </template>
 <style scoped>
+.yesButton:hover
+{
+  background: #212b36;
+  color:white;
+  width:40% ;
+  border:none;
+}
+.yesButton
+{
+  background: none;
+  color:#212b36;
+  width:40% ;
+  border:1px solid #212b36;
+}
+.noButton:hover
+{
+    width:40% ;
+  background: #ff9f43;
+  color: white;
+  border: none;
+}
+.noButton
+{
+    width:40% ;
+  background: none;
+  color: #ff9f43;
+  border: 1px solid #ff9f43;
+}
 .imageMain
 {
  

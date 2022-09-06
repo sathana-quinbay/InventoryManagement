@@ -7,13 +7,10 @@ import SettingComponent from "@/components/SettingComponent"
 import ProductDetails from '@/components/productDetails'
 import {isSellerActive} from '@/service/SellerAccountService'
 import AddProductFormComponent from '@/components/AddProductFormComponent';
-<<<<<<< HEAD
-// import SellerInventoryComponent from '@/components/SellerInventoryComponent'
 import DetailsComponent from '@/components/DetailsComponent';
-=======
+
 import ProductViewComponent from '@/components/ProductViewComponent'
 
->>>>>>> 4ba40b15a24bb78ac4738644d08dfacaf607e308
 import  SellerAccountComponent from "@/components/SellerAccountComponent";
 import RegisterComponent from "@/components/RegisterComponent"
 import ProductContainerComponent from '@/components/ProductContainerComponent'

@@ -80,6 +80,7 @@
 {
   display: flex;
   padding: 0;
+  background: white;
   margin:0;
   justify-content: space-around;
 }
@@ -206,7 +207,10 @@ li button{
 }
 .tableActive
 {
-  border-bottom: 1px solid black;
+  margin:1%;
+  color:#ff9f43;
+  /* border-bottom: 1px solid black; */
+  background: #fafbfe;
 }
 .page-headers h4 {
   font-weight: 700;

@@ -35,7 +35,7 @@
                 <span class="errorMessage">{{errorSpanMessage}}</span>
                  
                 <b-col cols="12" lg="4" md="6" sm="12">
-                  <label class="formLabels">Product Name</label>
+                  <label class="formLabels"><span class="starClass">*</span> Product Name</label>
                   <b-form-input
                     :class="nameError ? 'inputError' : ''"
                     v-model="product.productName"
@@ -47,7 +47,7 @@
                 </b-col>
 
                 <b-col cols="12" lg="4" md="6" sm="12">
-                  <label class="formLabels">Product Price in ( &#8377; )</label>
+                  <label class="formLabels"><span class="starClass">*</span> Product Price in ( &#8377; )</label>
                   <b-form-input
                  
                     v-model="price"
@@ -55,7 +55,7 @@
                   ></b-form-input>
                 </b-col>
                 <b-col cols="12" lg="4" md="6" sm="12">
-                  <label class="formLabels">Quantity</label>
+                  <label class="formLabels"><span class="starClass">*</span> Quantity</label>
                   <b-form-input
                     @blur="roundOff"
                     v-model="quantity"
@@ -66,7 +66,7 @@
               <b-row>
                 <b-col cols="12" lg="4" md="6" sm="12">
                  
-                  <label class="formLabels">Category</label>
+                  <label class="formLabels"><span class="starClass">*</span> Category</label>
                   <b-form-input
                     v-model="product.category"
                     type="text"
@@ -75,7 +75,7 @@
                    <span class="errorMessage">{{categorySpanError}}</span> 
                 </b-col>
                 <b-col cols="12" lg="4" md="6" sm="12">
-                  <label class="formLabels">Image Url</label>
+                  <label class="formLabels"><span class="starClass">*</span> Image Url</label>
                   <b-form-input
                     v-model="product.imageUrl"
                     type="text"
@@ -100,7 +100,7 @@
       </b-row>
       <b-row>
         <b-col cols="12" lg="12" md="12" sm="12">
-          <label class="formLabels">Descriptions</label>
+          <label class="formLabels"><span class="starClass">*</span> Descriptions</label>
           <b-form-textarea
             id="textarea"
             v-model="product.description"
@@ -144,6 +144,7 @@ export default {
       quantity: 0,
       selectedFiles: undefined,
       nameError: false,
+      errorSpanMessage:"",
       categoryError: false,
       imageError: false,
       descriptionError: false,
@@ -332,7 +333,7 @@ export default {
   font-weight: 700;
   padding: 14px 10px;
 }
-span.errorMessage
+span.errorMessage,.starClass
 {
   color: red;
 }
