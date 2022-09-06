@@ -6,7 +6,7 @@
          <!-- <template #cell(Description)="">
             <button @click="desc()">View Details</button> -->
              <!-- Name:{{desc.name}}<br> -->
-        <!-- </template> --> -->
+        <!-- </template> --> 
     <template #cell(Approval)="item">
         <b-button @click="Approved(item)" size="sm" class="mr-2">
              Approve
@@ -29,7 +29,7 @@ export default {
     return{
         i:0,
         Description:'Sun Microsystems,we sell computer and accessories related to them',
-         fields: ['name','Approval'],
+         fields: ['name','userid','Approval'],
          requests:[],
          show:false
     }
@@ -61,7 +61,7 @@ export default {
  {
    if(this.requests==null)
          {
-            this.show=true
+            this.show=true;
          }
  },
  methods:{
