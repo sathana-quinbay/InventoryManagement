@@ -61,7 +61,8 @@ export default{
                         this.$store.dispatch('USER_LOG_STATUS',true)
                         //this.isloggedIn = true;
                         console.log(response);
-                        if(response.data.httpStatusCode==409)
+                       
+                         if(response.data.httpStatusCode==409)
                         {
                             this.showAlert()
                             this.userMessage=response.data.message
@@ -69,8 +70,7 @@ export default{
                            this.errorFlag.usernameErrorFlag = this.errorFlag.passwordErrorFlag = false;
                             this.error.errorMessage=""
                         }
-                        else
-                        if(response.data.httpStatusCode==403)
+                        else if(response.data.httpStatusCode==403)
                         {
                             this.error.errorStatus=true;
                             this.errorFlag.passwordErrorFlag = true;

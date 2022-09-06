@@ -2,12 +2,12 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import LoginComponent from "@/components/LoginComponent.vue";
 import AdminDashboardComponent from "@/components/AdminDashboardComponent";
-// import CreateSellerComponent from "@/components/CreateSellerComponent";
+import DemoComponent from "@/components/DemoComponent";
 import SettingComponent from "@/components/SettingComponent"
 import ProductDetails from '@/components/productDetails'
 import {isSellerActive} from '@/service/SellerAccountService'
 import AddProductFormComponent from '@/components/AddProductFormComponent';
-// import SellerInventoryComponent from '@/components/SellerInventoryComponent'
+import ProductViewComponent from '@/components/ProductViewComponent'
 
 import  SellerAccountComponent from "@/components/SellerAccountComponent";
 import RegisterComponent from "@/components/RegisterComponent"
@@ -147,6 +147,11 @@ component: ProductTableComponent,
     component: ProductContainerComponent,
   },
   {
+    path: 'products',
+    name: 'ProductViewComponent',
+    component: ProductViewComponent,
+  },
+  {
     path: 'account',
     name: 'SellerAccountComponent',
     component: SellerAccountComponent,
@@ -165,7 +170,8 @@ component: ProductTableComponent,
     ]
   },
 
-  // { path: "/admin", name: "AdminRequest", component: AdminRequest },
+
+   { path: "/*", name: "DemoComponent", component:DemoComponent},
 
   // { path: "/sellermanager", name: "SellerManagementComponent", component: SellerManagementComponent },
 

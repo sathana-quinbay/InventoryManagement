@@ -120,8 +120,9 @@ textarea {
 }
 .productImage {
   margin-top: 2%;
-  max-width: 150px;
-  max-height: 150px;
+  width: 100%;
+  height: 100%;
+  max-height: 200px;
 }
 .input[type="button"] {
   background-color: #01c5a1;
@@ -251,7 +252,7 @@ textarea {
   }
   .productImage {
     height: 100px;
-    width: 100px;
+    width: 100%;
   }
 }
 </style>

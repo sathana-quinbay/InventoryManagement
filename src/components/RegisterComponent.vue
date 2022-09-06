@@ -36,32 +36,32 @@
           <b-container>
             <b-row>
                 <b-col cols="12" lg="12" md="12" sm="12">
-                  <label class="formLabels"> Full name  <span class="error">{{(nameErrorFlag)? 'Required more than 5 characters' : ' '}}</span></label>
-                       <br> <input :class="nameErrorFlag?'errorInput':' '" type="text"  v-model="seller.name"/>
+                  <label class="formLabels"> Full name  <span class="error">{{(nameErrorFlag)? nameErrorMessage : ' '}}</span></label>
+                       <br> <input  @blur="trimValue('name')" :class="nameErrorFlag?'errorInput':' '" type="text"  v-model="seller.name"/>
                         
                 </b-col>
                
             </b-row>
              <b-row>
                 <b-col cols="12" lg="6" md="12" sm="12">
-                   <label class="formLabels"> Email  <span class="error">{{(emailIdErrorFlag)? 'Invalid Email' : ' '}}</span></label>
-                       <br> <input type="email" :class="emailIdErrorFlag?'errorInput':' '"   v-model="seller.emailId" />
+                   <label class="formLabels"> Email  <span class="error">{{(emailIdErrorFlag)? emailErrorMessage : ' '}}</span></label>
+                       <br> <input @blur="trimValue('emailId')" :class="emailIdErrorFlag?'errorInput':' '"   v-model="seller.emailId" />
          
                 </b-col>
                 <b-col cols="12" lg="6" md="12" sm="12">
-                  <label class="formLabels"> Contact  <span class="error">{{(contactErrorFlag)? 'Invalid number' : ' '}}</span></label>
-                       <br> <input type="text" :class="contactErrorFlag?'errorInput':' '" v-model="seller.contact"/>
+                  <label class="formLabels"> Contact  <span class="error">{{(contactErrorFlag)? contactErrorMessage : ' '}}</span></label>
+                       <br> <input @blur="trimValue('contact')" type="text" :class="contactErrorFlag?'errorInput':' '" v-model="seller.contact"/>
          
                 </b-col>
             </b-row>
               <b-row>
               <b-col cols="12" lg="12" md="12" sm="12">
-                  <label class="formLabels">Address <span class="error">{{(addressErrorFlag)? 'Invalid address' : ' '}}</span> </label>
+                  <label  class="formLabels">Address <span class="error">{{(addressErrorFlag)? addressErrorMessage : ' '}}</span> </label>
                <br>
           <b-form-textarea
       id="textarea"
-    placeholder="Address Line"
      v-model="seller.address"
+     @blur="trimValue('address')"
      :class="addressErrorFlag?'errorInput':' '"
       rows="3"
       max-rows="6"
@@ -72,13 +72,13 @@
                 <b-col cols="12" lg="6" md="12" sm="12">
                   <label class="formLabels">Password  </label>
                   
-                  <br> <input :class="passwordErrorFlag?'errorInput':' '" type="password" v-model="seller.password"/>
+                  <br> <input  :class="passwordErrorFlag?'errorInput':' '" type="password" v-model="seller.password"/>
          
-                         
+                     
                 </b-col>
                 <b-col cols="12" lg="6" md="12" sm="12">
                   <label class="formLabels"> Confirm Password  </label>
-                  <br> <input :class="confirmPasswordErrorFlag?'errorInput':' '"  type="password"   v-model="checkPassword"/>
+                  <br> <input  :class="confirmPasswordErrorFlag?'errorInput':' '"  type="password"   v-model="checkPassword"/>
 
                        
                 </b-col>

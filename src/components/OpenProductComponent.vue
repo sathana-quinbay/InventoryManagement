@@ -22,6 +22,7 @@
       </div>
       <div class="d-block text-center">
         <b-container>
+              <span class="errorMessage">{{errorSpanMessage}}</span>
           <b-row>
             <b-col cols="12" md="6" sm="12" xs="12">
               <label class="formLabels">Product Name</label>
@@ -29,13 +30,16 @@
                 :disabled="!editForm"
                 v-model="product.productName"
                 type="text"
+                  :class="nameError ? 'inputError' : ''"
               ></b-form-input>
+                <span class="errorMessage">{{nameSpanError}}</span>
               <!-- <input v-model="product.productName" placeholder="Product Name"> -->
             </b-col>
             <b-col cols="12" md="6" sm="12" xs="12">
               <label class="formLabels">Image Url</label>
               <b-form-input
                 :disabled="!editForm"
+                 :class="imageError ? 'inputError' : ''"
                 v-model="product.imageUrl"
                 type="text"
               ></b-form-input>
@@ -48,8 +52,10 @@
               <b-form-input
                 :disabled="!editForm"
                 v-model="product.category"
+                   :class="categoryError ? 'inputError' : ''"
                 type="text"
               ></b-form-input>
+                <span class="errorMessage">{{categorySpanError}}</span> 
               <!-- <input v-model="product.productName" placeholder="Product Name"> -->
             </b-col>
             <b-col cols="12" md="6" sm="12" xs="12">
@@ -68,7 +74,7 @@
               <label class="formLabels">Quantity</label>
               <b-form-input
                 :disabled="!editForm"
-                 min="0"
+                @blur="roundOff"
                 v-model="quantity"
                 type="number"
               ></b-form-input>
@@ -86,11 +92,14 @@
               <b-form-textarea
                 id="textarea"
                 v-model="product.description"
+                  :class="descriptionError ? 'inputError' : ''"
                 :disabled="!editForm"
                 placeholder="Enter something..."
                 rows="3"
                 max-rows="6"
+
               ></b-form-textarea>
+               <span class="errorMessage">{{descriptionSpanError}}</span> 
             </b-col>
           </b-row>
         </b-container>
@@ -151,6 +160,16 @@ input[type="number"]:focus {
   border-color: purple;
   box-shadow: none;
 }
+span.errorMessage
+{
+  color: red;
+}
+.inputError {
+    border: 1px solid red !important;
+}
+.inputError {
+  border: 1px solid red;
+}
 .edit {
   width: 100%;
   text-align: right;
@@ -184,6 +203,16 @@ export default {
       price:0,
       quantity:0,
       editForm: false,
+     
+      selectedFiles: undefined,
+      nameError: false,
+      categoryError: false,
+      imageError: false,
+      descriptionError: false,
+      errorSpanMessage:"",
+      nameSpanError:'',
+      categorySpanError:'',
+      descriptionSpanError:''
     };
   },
   watch: {
@@ -192,13 +221,13 @@ export default {
       this.product = this.productItem;
     },
   
-  price()
-  {
-      if(this.price<0)
-      {
-         this.price=0
+  price(newvalue, olvalue) {
+      console.log(typeof newvalue, newvalue, typeof olvalue, olvalue);
+      console.log(typeof this.price, this.price);
+      if (this.price < 0) {
+        this.price = 1;
       }
-  },
+    },
    quantity()
   {
       if(this.quantity<0)
@@ -216,6 +245,66 @@ export default {
     console.log("inside open",this.product)
   },
   methods: {
+      roundOff() {
+      if (
+        this.quantity == "" ||
+        this.quantity < 0 ||
+        this.quantity == undefined
+      ) {
+        this.quantity = 0;
+      } else {
+        this.quantity = parseInt(this.quantity);
+      }
+    },
+     nameCheck()
+        {
+          console.log("***** inside name check")
+          this.nameError=true
+           this.nameSpanError=''
+           if(this.product.productName.length<2)
+           this.nameSpanError="Minimum 2 characters"
+           else if(this.product.productName.length>20)
+           this.nameSpanError="Maximum 20 characters"
+          //  if (this.seller.password.search(/[^A-Za-z0-9]/) > 0) {
+          //      this.nameSpanError='must not contain special characters'
+          //   }
+           else{ 
+            this.nameSpanError=''
+            this.nameError=false
+           }
+        },
+        categoryCheck()
+        {
+          this.categoryError=true
+           this.categorySpanError=''
+           if(this.product.category.length<2)
+           this.categorySpanError="Minimum 2 characters"
+           else if(this.product.category.length>20)
+           this.categorySpanError="Maximum 20 characters"
+          //  if (this.seller.password.search(/[^A-Za-z0-9]/) > 0) {
+          //      this.nameSpanError='must not contain special characters'
+          //   }
+           else{ 
+            this.categorySpanError=''
+            this.categoryError=false
+           }
+        },
+        descriptionCheck()
+        {
+          this.descriptionError=true
+           this.descriptionSpanError=''
+           if(this.product.description.length<10)
+           this.descriptionSpanError="Give more information"
+           else if(this.product.description.length>350)
+           this.descriptionSpanError="Limit execeded"
+          //  if (this.seller.password.search(/[^A-Za-z0-9]/) > 0) {
+          //      this.descriptionSpanError='must not contain special characters'
+          //   }
+           else{ 
+            this.descriptionSpanError=''
+            this.descriptionError=false
+           }
+        },
     check() {
       if (this.modalShowProp == true) {
         this.showModal();
@@ -232,6 +321,33 @@ export default {
     },
     updateForm()
     {
+        this.nameError = false;
+      this.categoryError = false;
+      this.descriptionError = false;
+      this.imageError = false;
+      if (this.product.productName.length == 0) this.nameError = true;
+      if (this.product.category.length == 0) this.categoryError = true;
+      if (this.product.imageUrl.length == 0) this.imageError = true;
+      if (this.product.description.length == 0) this.descriptionError = true;
+      if (this.price.length == 0) this.price = 1;
+      console.log(this.nameError)
+      console.log(this.categoryError)
+      console.log(this.imageError)
+      console.log(this.descriptionError)
+      if(!this.nameError&&(!this.categoryError)&&(!this.imageError)&&(!this.descriptionError))
+      { 
+        this.errorSpanMessage=''
+        console.log("inside")
+        this.nameCheck();
+       
+        this.categoryCheck()
+        this.descriptionCheck()
+        console.log(this.nameError)
+        console.log(this.categoryError);
+         console.log(this.imageError);
+        
+       if(!this.nameError&&(!this.categoryError)&&(!this.imageError)&&(!this.descriptionError))
+      { 
       console.log(this.product)
        this.product.sellerId = localStorage.getItem('userId');
       
@@ -251,7 +367,11 @@ export default {
           ,
           payload:this.product
       })
-
+      }
+      }
+      else{
+        this.errorSpanMessage="Please fill all the fields"
+      }
     }
   },
 };

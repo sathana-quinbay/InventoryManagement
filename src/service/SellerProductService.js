@@ -19,11 +19,11 @@ export const sortProduct = ({sellerid,sortBy,success , error}) => {
     var url=""
    if(sortBy=='name')
    {
-   url=`http://10.30.1.2:8007/seller/product/sortbyname/${sellerid}`
+   url=`http://10.30.1.2:8007/seller/product/sort/name/${sellerid}`
    }
    else if(sortBy=='price')
    {
-    url = `http://10.30.1.2:8007/seller/product/sortbyprice/${sellerid}`
+    url = `http://10.30.1.2:8007/seller/product/sort/price/${sellerid}`
     }
     axios
     .get(url)

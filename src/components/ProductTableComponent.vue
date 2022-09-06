@@ -1,21 +1,7 @@
 <template>
      <div class="main-body">
    
-          <div class="page-headers">
-      
-       <b-container-fluid>
-        <b-row>
-          <b-col cols="12" lg="8" md="6" sm="6">
-          <h4>Product List</h4>
-      <h6>Manage your products</h6>
-          </b-col>
-           <b-col cols="12" lg="4" md="6" sm="6">
-           <button class="submitButton" @click="$router.push({path:'/seller/add'})"> Add Product</button>
-           </b-col>
-        </b-row>
-      </b-container-fluid>
-    
-    </div>
+         
       
     <div class="main-card">
     
@@ -43,12 +29,23 @@
                <img class="imageMain" :src="item.item.imageUrl" alt="Not found">
           </template>
           <template #cell(action)="item">
-           <button class="editIcon" @click="editProduct(item.item)"> <b-icon-pencil></b-icon-pencil></button>
-            <button class="deleteIcon" @click="deleteProduct(item.item)"> <b-icon-trash-fill></b-icon-trash-fill></button>
+           <button class="editIcon" @click="editProduct(item.item)"> <b-icon-eye></b-icon-eye></button>
+            <button class="deleteIcon" @click="showModal(item.item)"> <b-icon-trash-fill></b-icon-trash-fill></button>
           </template>
             
         </b-table>
     </div>
+      <b-modal ref="my-modal" hide-footer title="Your account will be Deleted">
+      <div class="d-block text-center">
+        <p>Are you sure to delete?</p>
+      </div>
+      <div class="button-group">
+ <b-button class="mt-3 reactivate-button" variant="outline-primary" block @click="deleteProduct">Yes</b-button>
+      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">No</b-button>
+     
+      </div>
+      
+    </b-modal>
        <div v-if="modalShow">
       <OpenProductComponent
         :productItem="product"
@@ -132,6 +129,31 @@ li button{
 .deleteIcon
 {
   color:red
+}
+@media screen and (max-width:600px) {
+  img.notFoundImg {
+    width: 100%;
+}
+.searchButton {
+    background: 0 0;
+    height: 40px;
+    border: 1px solid rgba(145,158,171,.32);
+    width: 140px;
+    border-radius: 5px;
+    padding: 0 15px 0 30px;
+}
+ .submitButton{
+    min-width: 101px;
+    float: right;
+    background: #ff9f43;
+    color: #fff;
+    font-size: 14px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    padding: 4px 10px;
+}
+  
 }
 .b-table-sticky-header {
     overflow-y: auto;
@@ -244,17 +266,18 @@ created()
         return {
            fields: [
             {key:'imageUrl',sortable:false},
-          { key: 'productName', sortable: true },
+          { key: 'productName', sortable: false },
           { key: 'category', sortable: false },
-          { key: 'price', sortable: true },
+          { key: 'price', sortable: false },
           {key:'quantity',sortable:false},
-          {key:'description',sortable:false},
+         
  {key:'action',sortable:false}
 
         ],
            modalShow:false,
            product:[],
            search:"",
+           deleteItem:'',
             sortBy:[],
       
       
@@ -299,6 +322,16 @@ created()
       this.$store.dispatch('searchProductServiceCall',payload)
       
     },
+    showModal(item) {
+      this.$refs["my-modal"].show();
+      this.deleteItem=item
+      console.log("delete item",this.deleteItem)
+    },
+    hideModal() {
+      this.$refs["my-modal"].hide();
+      this.deleteProduct()
+      
+    },
     sortData()
     {
     console.log(this.sortBy)
@@ -320,10 +353,11 @@ created()
          this.$store.dispatch('getsellerproductsfromservice', userId);
         this.modalShow = false
       },
-      deleteProduct(product)
+      deleteProduct()
     {
+      var product = this.deleteItem
       console.log("products",product)
-      deleteProduct({
+       deleteProduct({
            
         success: ({ data }) => {
             
@@ -336,8 +370,11 @@ created()
               console.log(userId)
                 // this.$store.dispatch('getsellerproductsfromservice', userId);
                 this.findData()
+                this.deleteItem=''
+
             }
             console.log(data)
+            this.hideModal()
         
         },
         error: (e) => {
