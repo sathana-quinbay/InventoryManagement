@@ -258,10 +258,13 @@ export default {
     },
      nameCheck()
         {
+          
           console.log("***** inside name check")
           this.nameError=true
            this.nameSpanError=''
-           if(this.product.productName.length<2)
+           if(this.product.productName[0]>='a'&&this.product.productName[0]<='a')
+           this.nameSpanError="Must start with aplphabet"
+           else if(this.product.productName.length<2)
            this.nameSpanError="Minimum 2 characters"
            else if(this.product.productName.length>20)
            this.nameSpanError="Maximum 20 characters"
@@ -275,12 +278,15 @@ export default {
         },
         categoryCheck()
         {
+           var categoryRegx = new RegExp('^[a-zA-Z . ]+$')
           this.categoryError=true
            this.categorySpanError=''
            if(this.product.category.length<2)
            this.categorySpanError="Minimum 2 characters"
            else if(this.product.category.length>20)
            this.categorySpanError="Maximum 20 characters"
+          else if (!categoryRegx.test(this.product.category))
+             this.categorySpanError="Must contain Alphabets only"
           //  if (this.seller.password.search(/[^A-Za-z0-9]/) > 0) {
           //      this.nameSpanError='must not contain special characters'
           //   }

@@ -297,7 +297,7 @@ export default {
                             if (response.data.message == 'reactivate') {
                                 this.showModal()
                             }
-                            else if (response.data.message == 'success') {
+                            else if (response.data.message == 'Created successfully ..') {
                                 this.userMessage = "successfully registered"
                                 this.$router.push({path:'/login'})
 
@@ -325,9 +325,7 @@ export default {
                     this.userMessage = "Your old account is reactivated try to login"
                     this.showAlert()
                     console.log(response);
-                    
-
-                       this.$router.push({path:"/login"})
+                    this.$router.push({path:"/login"})
                 },
                 error: (err) => {
                     console.warn(err);

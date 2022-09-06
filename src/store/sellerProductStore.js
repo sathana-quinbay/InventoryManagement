@@ -168,6 +168,7 @@ export default ({
             getsellerproducts({
                 sellerid,
                 success: ({ data }) => {
+                    // if()
                     console.log("get seller service call")
                     console.log(data)
                     this.commit('setSellerproducts', data.data)
