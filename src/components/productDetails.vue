@@ -1,11 +1,13 @@
 <template>
 <div style="width:80vw;margin-left:100px;">
   <h2 style="font-family:sans serif;">products</h2>
-   <b-table :items="products" :fields="fields" responsive> 
+  <div class="tabv">
+   <b-table style="font-size:12px;" :items="products" :fields="fields" responsive> 
         <template #cell(imageUrl)=''>
          <img src="" alt="image">
       </template>
     </b-table>
+    </div>
     </div>
 </template>
 
@@ -36,5 +38,13 @@ export default {
 </script>
 
 <style>
-
+  .tabv{
+    background: white;
+    width:90%;
+    margin-left:7%;
+    border-radius:8px;
+    border:0.5px solid green;
+    padding:5px;
+    height:100;
+}
 </style>

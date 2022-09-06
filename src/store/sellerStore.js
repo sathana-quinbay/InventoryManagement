@@ -139,22 +139,22 @@ export default {
             getSellerFromSearch({
                 success: (response)=>{
                     let resp=response;
-                    // let sdata=[]
+                     let sdata=[]
                     if(resp.data.data==null)
                     {
                        this.commit("setSellers",[])
                     }
                     else
                     {
-                        // for(let i=0;i<(resp.data.data).length;i++)
-                        // {
-                        //     if(resp.data.data[i].status!="waiting for approval")
-                        //     {
-                        //         sdata.push(resp.data[i]);
-                        //     }
-                        // }
-                        // this.commit('setSellers',sdata);
-                        this.commit('setSellers',response.data.data);
+                        for(let i=0;i<(resp.data.data).length;i++)
+                        {
+                            if(resp.data.data[i].status!="waiting for approval"&&resp.data.data[i].status!="deleted")
+                            {
+                                sdata.push(resp.data.data[i]);
+                            }
+                        }
+                        this.commit('setSellers',sdata);
+                        // this.commit('setSellers',response.data.data);
     
                     }
                 },
