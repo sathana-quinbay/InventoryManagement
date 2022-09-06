@@ -9,7 +9,7 @@ import {isSellerActive} from '@/service/SellerAccountService'
 
 import AddProductFormComponent from '@/components/AddProductFormComponent';
 
-import AddProductFormComponent from '@/components/AddProductFormComponent'
+// import AddProductFormComponent from '@/components/AddProductFormComponent'
 // import SellerInventoryComponent from '@/components/SellerInventoryComponent'
 
 import DetailsComponent from '@/components/DetailsComponent';

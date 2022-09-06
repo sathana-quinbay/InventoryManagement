@@ -1,6 +1,6 @@
 <template>
 <div style="width:90vw; margin-left:7.5vw;">
-  <div class="cont"><div class="bag"><h5 style="dispaly:flex;"><ion-icon style="color:#1bae; font-size:30px;" name="people-circle-outline"></ion-icon>&nbsp;Management</h5></div></div>
+  <div class="cont"><div class="bag"><h5 style="dispaly:flex;margin-left:20px;"><ion-icon style="color:#1bae; font-size:30px;" name="people-circle-outline"></ion-icon>&nbsp;Management</h5></div></div>
    <div class="indef">
    <div class="searchbar">Search By: 
      <select style="border:0.5px solid #1b2850; border-radius:7px;padding:2px;width:85px; background:whitesmoke;margin-top:3px;" v-model="category" name="category">
