@@ -129,6 +129,7 @@ export default {
   gap: 1em;
   padding: 5vh 5vh;
   scroll-behavior: smooth;
+  margin-left: 25px;
 }
 button {
   padding: 0.5em;

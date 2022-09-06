@@ -290,8 +290,8 @@ export default {
           console.log("***** inside name check")
           this.nameError=true
            this.nameSpanError=''
-           if(this.product.productName[0]>='a'&&this.product.productName[0]<='a')
-           this.nameSpanError="Must start with aplphabet"
+           if(!(this.product.productName[0]>='a'&&this.product.productName[0]<='z')&&(!(this.product.productName[0]>='A'&&this.product.productName[0]<='Z')))
+           this.nameSpanError="Must start with alphabet"
            else if(this.product.productName.length<2)
            this.nameSpanError="Minimum 2 characters"
            else if(this.product.productName.length>20)

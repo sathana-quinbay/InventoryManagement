@@ -321,29 +321,79 @@ export default {
           hideModal() {
             this.$refs['my-modal'].hide()
           },
-      updateSeller(){
-            this.nameErrorFlag = false;
-            this.emailIdErrorFlag=false;
-            this.contactErrorFlag=false;
-            this.emailIdErrorFlag=false;
-            this.addressErrorFlag=false
-            if(this.seller.name.length < 5){
+          nameCheck() {
+            if (this.userNameCheck(this.seller.name) != 'true') {
                 this.nameErrorFlag = true;
-                // setInterval(()=>{ this.nameErrorFlag = false; }, 2000);
-                return;
+                this.nameErrorMessage = this.userNameCheck(this.seller.name)
+            } else {
+                this.nameErrorFlag = false
+                this.nameErrorMessage = ''
             }
-           
-            console.log(this.seller.emailId)
-            if(this.seller.emailId==' '|| this.seller.emailId.includes('@gmail.com') === false){
-                this.emailIdErrorFlag = true;
-               // setInterval(()=>{ this.emailIdErrorFlag = false; }, 2000);
-                return;
+        },
+        trimValue(varible) {
+
+            this.seller[varible] = this.seller[varible].replace(/^\s+|\s+$/gm, '')
+        },
+        
+         addressCheck()
+        {
+             if (this.seller.address.length < 15  ) {
+                this.addressErrorFlag = true;
+                this.addressErrorMessage = "Invalid Address"
             }
-            if(this.seller.contact.length !== 10){
+            else if(this.seller.address.length >= 150)
+            {
+                this.addressErrorFlag = true;
+                this.addressErrorMessage = "Maximum 150 characters"
+            }
+            else{
+                this.addressErrorFlag = false;
+                this.addressErrorMessage = ""
+            }
+
+        },
+        userNameCheck(name) {
+            var userName = new RegExp('^[a-zA-Z . ]+$')
+            if ( name.length < 3) return "Required atleast 3 characters"
+            if (!userName.test(name)) return "must contain alphabets only"
+            if (name[0] == '.') return "Name must not start with dot"
+            if (name[name.length - 1] == '.') return "Name must not end with dot"
+            if (name.length>15) return "Maximum 15 characters"
+            return "true"
+        },
+
+        contactCheck() {
+            if (this.seller.contact.match(/^(\+\d{2}[- ]?)?\d{10}$/g, "") === null) {
+
+                this.contactErrorMessage = 'Invalid '
                 this.contactErrorFlag = true;
-                // setInterval(()=>{ this.contactErrorFlag = false; }, 2000);
-                return;
             }
+            else{
+                this.contactErrorMessage = ''
+                this.contactErrorFlag = false;
+
+            }
+        },
+      updateSeller(){
+          
+          this.nameCheck()
+      
+           this.contactCheck()
+        
+           this.addressCheck()
+
+            
+            console.log(this.contactErrorFlag);
+          
+            console.log(this.addressErrorFlag);
+            
+            console.log(this.nameErrorFlag);
+            if ((!this.contactErrorFlag)  && (!this.nameErrorFlag) && (!this.addressErrorFlag)) {
+               
+          
+           
+            console.log("yes")
+           
             // if(this.seller.contact.length === 10){
             //     var phoneno = /^\d{10}$/
             //     if((!this.seller.contact.match(phoneno)))
@@ -355,14 +405,9 @@ export default {
             //     // setInterval(()=>{ this.contactErrorFlag = false; }, 2000);
             //     return;
             // }
-            if(this.seller.address.length < 5){
-                this.addressErrorFlag = true;
-                // setInterval(()=>{ this.nameErrorFlag = false; }, 2000);
-                return;
-            }
          
-            if(this.seller.emailId.includes('@gmail.com')
-                    && this.seller.contact.length === 10 ){
+         
+           
                         
                 this.contactErrorFlag = this.passwordErrorFlag = false;
                
@@ -383,6 +428,7 @@ export default {
                     payload:this.seller
                 })
             }
+            
         },
    }
 }

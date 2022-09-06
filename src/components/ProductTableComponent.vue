@@ -275,7 +275,13 @@ export default {
   watch:{
     search()
     {
+      if(this.search!='')
       this.findData()
+      else
+       {
+        const userId = localStorage.getItem('userId');
+        this.$store.dispatch('getsellerproductsfromservice', userId);
+       }
     },
     sortBy()
     {
