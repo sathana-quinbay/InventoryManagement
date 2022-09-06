@@ -18,13 +18,13 @@
       Are you sure you want to enable seller?<br>
       <div style="display:flex;justify-content:center;">
       <b-button style="color:#1bae;background:#1b2850;" @click="makeEnable(sellerprop.userId)" size="sm">Enable Seller</b-button>&nbsp;
-      <b-button style="color:#1bae;background:#1b2850;" @click="close()" size="sm">Close</b-button></div></center>
+      <b-button style="color:#1bae;background:#1b2850;" @click="close()" size="sm">Cancel</b-button></div></center>
     </b-modal>
     <b-modal v-model="show" hide-footer><center>
       Are you sure you want to disable seller?<br>
       <div style="display:flex;justify-content:center;">
       <b-button style="color:#1bae;background:#1b2850;" @click="confirm(sellerprop.userId)" size="sm">Disable Seller</b-button>&nbsp;
-      <b-button style="color:#1bae;background:#1b2850;" @click="close()" size="sm">Close</b-button></div></center>
+      <b-button style="color:#1bae;background:#1b2850;" @click="close()" size="sm">Cancel</b-button></div></center>
     </b-modal>
   </div>
 </template>
@@ -38,7 +38,7 @@
    text-align:left;
 }
 .disabled{
-  background-color: red !important;
+  background-color: #E41B17 !important;
 }
 .enabled {
   background-color: #01c5a1 !important;
@@ -98,7 +98,7 @@
 .seller-card {
   background-color: whitesmoke;
   border-radius: 2%;
-  border: 1px solid #1b2850 ;
+  border: 2px solid #1b2850 ;
   padding: 0.5em;
   font-size: 2em;
   text-align: center;
@@ -113,9 +113,9 @@
 button {
   padding: 0.5em;
   margin-top: 3vh;
-  background-color: white !important;
+  background-color:white !important;
   height: 3em !important;
-  border: 1px solid #1b2850;
+  border: 2px solid #1b2850;
   border-radius: 0.7em !important;
   transition: box-shadow 0.1s;
   width: 17vw;
