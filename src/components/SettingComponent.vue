@@ -39,6 +39,7 @@
             <input
               :class="nameErrorFlag ? 'errorInput' : ' '"
               type="text"
+              @blur="changedStatus=true"
               v-model="seller.name"
             />
           </b-col>
@@ -54,6 +55,7 @@
               type="text"
               :class="contactErrorFlag ? 'errorInput' : ' '"
               v-model="seller.contact"
+               @blur="changedStatus=true"
             />
           </b-col>
           <b-col cols="12" lg="12" md="12" sm="12">
@@ -68,6 +70,7 @@
               id="textarea"
               placeholder="Address Line"
               v-model="seller.address"
+               @blur="changedStatus=true"
               :class="addressErrorFlag ? 'errorInput' : ' '"
               rows="3"
               max-rows="6"
@@ -193,6 +196,15 @@ width:100px ;
   .profileMain{
     margin-top: -15%;
 }
+
+  
+}
+@media screen and (max-width:600px) {
+ 
+.profileContent
+{
+  display: none;
+}
   
 }
 .yesButton
@@ -227,8 +239,14 @@ width:100px ;
 
 </style>
 <script>
+import showModal from '@/mixins/actions'
+import hideModal from '@/mixins/actions'
 import {getSellerDetails,updateSellerDetails,deleteSellerAccount} from '../service/SellerAccountService'
 import logOut from '@/mixins/logout'
+import trimValue from '@/mixins/actions'
+import userNameRegisterCheck from '@/mixins/registerValidation'
+import contactCheck from '@/mixins/registerValidation'
+import addressCheck from '@/mixins/registerValidation'
 export default {
     name:"SettingComponent",
     data()
@@ -258,6 +276,7 @@ export default {
         isRegisterSuccess: false,
         userMessage:"",
         alertMessage: "",
+         changedStatus:false,
            
             emailErrorMessage: "",
             contactErrorMessage: "",
@@ -271,6 +290,8 @@ export default {
             
     }
     },
+    
+   
     mounted()
     {
         console.log("mounted")
@@ -288,7 +309,7 @@ export default {
             }
         })
     },
-    mixins:[logOut],
+    mixins:[logOut,userNameRegisterCheck,contactCheck,addressCheck,showModal,hideModal],
    methods:{
      deleteAccount()
     {
@@ -315,79 +336,23 @@ export default {
           showAlert() {
             this.dismissCountDown = this.dismissSecs;
           },
-          showModal() {
-            this.$refs['my-modal'].show()
-          },
-          hideModal() {
-            this.$refs['my-modal'].hide()
-          },
-          nameCheck() {
-            if (this.userNameCheck(this.seller.name) != 'true') {
-                this.nameErrorFlag = true;
-                this.nameErrorMessage = this.userNameCheck(this.seller.name)
-            } else {
-                this.nameErrorFlag = false
-                this.nameErrorMessage = ''
-            }
-        },
-        trimValue(varible) {
-
-            this.seller[varible] = this.seller[varible].replace(/^\s+|\s+$/gm, '')
-        },
-        
-         addressCheck()
-        {
-             if (this.seller.address.length < 15  ) {
-                this.addressErrorFlag = true;
-                this.addressErrorMessage = "Invalid Address"
-            }
-            else if(this.seller.address.length >= 150)
-            {
-                this.addressErrorFlag = true;
-                this.addressErrorMessage = "Maximum 150 characters"
-            }
-            else{
-                this.addressErrorFlag = false;
-                this.addressErrorMessage = ""
-            }
-
-        },
-        userNameCheck(name) {
-            var userName = new RegExp('^[a-zA-Z . ]+$')
-            if ( name.length < 3) return "Required atleast 3 characters"
-            if (!userName.test(name)) return "must contain alphabets only"
-            if (name[0] == '.') return "Name must not start with dot"
-            if (name[name.length - 1] == '.') return "Name must not end with dot"
-            if (name.length>15) return "Maximum 15 characters"
-            return "true"
-        },
-
-        contactCheck() {
-            if (this.seller.contact.match(/^(\+\d{2}[- ]?)?\d{10}$/g, "") === null) {
-
-                this.contactErrorMessage = 'Invalid '
-                this.contactErrorFlag = true;
-            }
-            else{
-                this.contactErrorMessage = ''
-                this.contactErrorFlag = false;
-
-            }
-        },
-      updateSeller(){
+        mixins:[showModal,hideModal,trimValue],
           
-          this.nameCheck()
+      updateSeller(){
+          if(this.changedStatus==true)
+          {
+          this.userNameRegisterCheck()
       
            this.contactCheck()
         
            this.addressCheck()
 
             
-            console.log(this.contactErrorFlag);
+            // console.log(this.contactErrorFlag);
           
-            console.log(this.addressErrorFlag);
+            // console.log(this.addressErrorFlag);
             
-            console.log(this.nameErrorFlag);
+            // console.log(this.nameErrorFlag);
             if ((!this.contactErrorFlag)  && (!this.nameErrorFlag) && (!this.addressErrorFlag)) {
                
           
@@ -418,16 +383,25 @@ export default {
                         console.log(data)
                         this.showAlert()
                         this.userMessage="Updated Successfully"
+                        this.changedStatus=false
                        
                     },
                     error: (e) => {
                        
                         console.warn(e);
+                         this.showAlert()
+                        this.userMessage="Something went wrong"
                     }
                     ,
                     payload:this.seller
                 })
             }
+          }
+          else{
+
+            this.showAlert()
+                        this.userMessage="No changes"
+          }
             
         },
    }

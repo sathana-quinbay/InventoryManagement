@@ -1,3 +1,5 @@
+import showModal from '@/mixins/actions'
+import hideModal from '@/mixins/actions'
 export default {
     name:"OpenProductComponent",
     props:['modalShowProp','product'],
@@ -35,13 +37,7 @@ if(this.modalShowProp==true)
         this.hideModal()
       }
       },
-      showModal() {
-        this.$refs['my-modal'].show()
-      },
-      hideModal() {
-        this.$refs['my-modal'].hide()
-        this.$emit('hideModal',false)
-      },
+      mixins:[showModal,hideModal],
      
     }
   }

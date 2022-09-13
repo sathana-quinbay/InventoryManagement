@@ -214,8 +214,14 @@ button.editIcon:hover {
 </style>
 <script>
 import {editsellerproducts} from '@/service/SellerProductService'
+import nameCheck from "@/mixins/productValidation"
+import categoryCheck from "@/mixins/productValidation"
+import showModal from '@/mixins/actions'
+import hideModal from '@/mixins/actions'
+import descriptionCheck from "@/mixins/productValidation"
 export default {
   name: "OpenProductComponent",
+  
   props: ["modalShowProp", "productItem"],
   data() {
     return {
@@ -249,9 +255,7 @@ export default {
       this.product = this.productItem;
     },
   
-  price(newvalue, olvalue) {
-      console.log(typeof newvalue, newvalue, typeof olvalue, olvalue);
-      console.log(typeof this.price, this.price);
+  price(){
       if (this.price < 0) {
         this.price = 1;
       }
@@ -264,6 +268,7 @@ export default {
       }
   }
 },
+ mixins:[nameCheck,categoryCheck,descriptionCheck,showModal,hideModal],
   mounted() {
     console.log(this.modalShowProp);
     this.check();
@@ -272,73 +277,11 @@ export default {
     this.quantity=this.product.quantity;
     console.log("inside open",this.product)
   },
+
   methods: {
-      roundOff() {
-      if (
-        this.quantity == "" ||
-        this.quantity < 0 ||
-        this.quantity == undefined
-      ) {
-        this.quantity = 0;
-      } else {
-        this.quantity = parseInt(this.quantity);
-      }
-    },
-     nameCheck()
-        {
-          
-          console.log("***** inside name check")
-          this.nameError=true
-           this.nameSpanError=''
-           if(!(this.product.productName[0]>='a'&&this.product.productName[0]<='z')&&(!(this.product.productName[0]>='A'&&this.product.productName[0]<='Z')))
-           this.nameSpanError="Must start with alphabet"
-           else if(this.product.productName.length<2)
-           this.nameSpanError="Minimum 2 characters"
-           else if(this.product.productName.length>20)
-           this.nameSpanError="Maximum 20 characters"
-          //  if (this.seller.password.search(/[^A-Za-z0-9]/) > 0) {
-          //      this.nameSpanError='must not contain special characters'
-          //   }
-           else{ 
-            this.nameSpanError=''
-            this.nameError=false
-           }
-        },
-        categoryCheck()
-        {
-           var categoryRegx = new RegExp('^[a-zA-Z . ]+$')
-          this.categoryError=true
-           this.categorySpanError=''
-           if(this.product.category.length<2)
-           this.categorySpanError="Minimum 2 characters"
-           else if(this.product.category.length>20)
-           this.categorySpanError="Maximum 20 characters"
-          else if (!categoryRegx.test(this.product.category))
-             this.categorySpanError="Must contain Alphabets only"
-          //  if (this.seller.password.search(/[^A-Za-z0-9]/) > 0) {
-          //      this.nameSpanError='must not contain special characters'
-          //   }
-           else{ 
-            this.categorySpanError=''
-            this.categoryError=false
-           }
-        },
-        descriptionCheck()
-        {
-          this.descriptionError=true
-           this.descriptionSpanError=''
-           if(this.product.description.length<10)
-           this.descriptionSpanError="Give more information"
-           else if(this.product.description.length>350)
-           this.descriptionSpanError="Limit execeded"
-          //  if (this.seller.password.search(/[^A-Za-z0-9]/) > 0) {
-          //      this.descriptionSpanError='must not contain special characters'
-          //   }
-           else{ 
-            this.descriptionSpanError=''
-            this.descriptionError=false
-           }
-        },
+      
+   
+       
     check() {
       if (this.modalShowProp == true) {
         this.showModal();
@@ -346,13 +289,8 @@ export default {
         this.hideModal();
       }
     },
-    showModal() {
-      this.$refs["my-modal"].show();
-    },
-    hideModal() {
-      this.$refs["my-modal"].hide();
-      this.$emit("hideModal", false);
-    },
+    
+  
     updateForm()
     {
         this.nameError = false;

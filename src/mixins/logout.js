@@ -7,7 +7,7 @@ export default {
             localStorage.removeItem("emailId");
       
             
-            this.$store.dispatch('LOG_OUT_USER');
+            this.$store.dispatch('LOGOUT');
             this.$router.push({path: '/login'});
           },
     }

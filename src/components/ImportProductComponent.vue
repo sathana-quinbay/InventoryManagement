@@ -36,7 +36,7 @@
                 
               <div v-cloak @drop.prevent="addFile" @dragover.prevent @click="$refs.file.click()">
                 <b-icon-cloud-arrow-up></b-icon-cloud-arrow-up>
-                <h6>Drag and drop a fileto upload</h6>
+                <h6>Drag and drop a file to upload</h6>
               </div>
             </div>
 

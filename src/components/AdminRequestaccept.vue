@@ -2,7 +2,7 @@
 <div>           <!--class="adminrequest"-->
     <div class="cont"><div class="bag"><h5 style="padding:5px;margin-left:40px;"><ion-icon style="color:#1b2850;" name="newspaper-outline"></ion-icon>&nbsp;Requests</h5></div></div>
     <div class="tab">
-    <b-table style="font-size:12px;" :items="requests" :fields="fields" responsive>
+    <b-table style="font-size:12px;" :items="desc" :fields="fields" responsive>
          <!-- <template #cell(Description)="">
             <button @click="desc()">View Details</button> -->
              <!-- Name:{{desc.name}}<br> -->
@@ -42,21 +42,22 @@ export default {
 //  },
    computed:{
        ...mapGetters({
-           desc:'getSellers'
+           desc:'getSellerList'
        })
    },
  created()
  {
-    // this.$store.dispatch('REQUEST_LIST');
-     axios.get(`http://10.30.1.2:8002/admin/get/requestlist`)
-         .then((response)=>{
-            console.log("service request success"+response.data.data);
-            this.requests=response.data.data
-         })
-         .catch((err)=>{
-            console.log(err);
-         })
+    this.$store.dispatch('GET_SELLERS');
+   //   axios.get(`http://10.30.1.2:8002/admin/get/requestlist`)
+   //       .then((response)=>{
+   //          console.log("service request success"+response.data.data);
+   //          this.requests=response.data.data
+   //       })
+   //       .catch((err)=>{
+   //          console.log(err);
+   //       })
  },
+ 
  mounted()
  {
    if(this.requests==null)
@@ -75,14 +76,7 @@ export default {
       this.i=1;
     console.log(item.item.userid);
      this.$store.dispatch('POST_REQUEST',item.item.userid); 
-    axios.get(`http://10.30.1.2:8002/admin/get/requestlist`)
-         .then((response)=>{
-            console.log("service request success"+response.data.data);
-             this.requests=response.data.data;
-         })
-         .catch((err)=>{
-            console.log(err);
-         })
+     
 },
    DisApproved(item)
    {

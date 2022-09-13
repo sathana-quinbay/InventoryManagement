@@ -133,13 +133,14 @@ input{
     background-clip: padding-box;
     border: 1px solid #ced4da;
     appearance: none;
-    border-radius: 0.25rem;
+    border-radius: 0.2rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
 }
 .formLabels {
   padding-top: 0%;
 }
+
 .main-container-row
 {
 

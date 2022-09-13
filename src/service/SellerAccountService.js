@@ -33,7 +33,6 @@ export const isSellerActive = ({success, error})=>{
    axios.get(GET_SELLER_API)
         .then(response =>{
            console.log(response)
-           
            success && success(response);
         })
         .catch(err =>{

@@ -7,7 +7,7 @@ export default{
           dismissCountDown: 0,
           userMessage:"",
             csvFileData: [
-                ['Samsung A3','New product added succesfully','Mobile','50000.00','45','imageul.png'],
+                ['Samsung A3','New product added succesfully','Mobile','50000.00','45','https://auspost.com.au/shop/static/WFS/AusPost-Shop-Site/-/AusPost-Shop-auspost-B2CWebShop/en_AU/feat-cat/category-tiles/MP_UnlockedPhones_3.jpg'],
                
              ],
              fileMessage:"",

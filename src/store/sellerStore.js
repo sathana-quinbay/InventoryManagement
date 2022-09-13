@@ -122,6 +122,7 @@ export default {
                 userId
             })
         },
+        
         GET_SELLER_BY_ID(context, {success, error, userId}){
             getSellerById({
                 success: (response)=>{

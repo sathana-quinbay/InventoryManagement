@@ -46,7 +46,7 @@ export default{
       localStorage.removeItem("role");
       localStorage.removeItem("emailId");
 
-      
+      this.$store.dispatch('LOGOUT')
      
       this.$router.replace('/login');
     },

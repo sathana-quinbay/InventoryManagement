@@ -2,23 +2,8 @@
 <div>
      
       
-     <!-- <select v-model="sortBy">
-        <option disabled value="">Please select one</option>
-        <option value="name">Name</option>
-        <option value="price">Price</option>
-      </select> 
-      <button @click="sortData()">Submit</button>
-      <br>
-      <p>Price Range</p>
-<div class="range-slider">
-  <span class="rangeValues">{{minRange}} - {{maxRange}}</span>
-  <input value="1000" v-model="minRange" min="1000" max="50000" step="500" type="range">
-  <input value="50000" v-model="maxRange" min="1000" max="50000" step="500" type="range">
-  <button @click="findPrice">Find</button>
-</div>
-<button @click="viewType='list'">List</button>
-          <button @click="viewType='table'">Table</button> 
- -->   
+     
+
 <!--        
     <b-button v-if="!addDialog" @click="addDialog=true" class="addButton" variant="info">Add</b-button>
      <div v-if="addDialog">
@@ -110,7 +95,10 @@ export default {
       }
       
   },
-
+beforeDestroy()
+{
+   this.dispatch('LOGOUT')
+},
   created()
   {
     const userId = localStorage.getItem('userId');
@@ -118,11 +106,24 @@ export default {
     console.log(userId)
       this.$store.dispatch('getsellerproductsfromservice', userId);
   },
+  mounted()
+  {
+     const userId = localStorage.getItem('userId');
+     console.log(userId)
+this.$store.dispatch('getsellerproductsfromservice', userId);
+  },
 
   watch:{
     search()
     {
+      if(this.search!='')
       this.findData()
+      else
+       {
+        var userId = localStorage.getItem('userId');
+        userId=1
+          this.$store.dispatch('getsellerproductsfromservice',userId)
+       }
     },
     sortBy()
     {
@@ -158,7 +159,7 @@ export default {
         maxRange:this.maxRange
       }
 
-      this.$store.dispatch('searchProductByPric',payload);
+      this.$store.dispatch('searchProductByPrice',payload);
     },
    
     

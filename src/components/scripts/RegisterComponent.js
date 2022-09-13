@@ -1,4 +1,9 @@
 import { reactivateSellerAccount, deleteAndCreateSellerAccount } from '@/service/SellerAccountService'
+import userNameRegisterCheck from '@/mixins/registerValidation'
+import contactCheck from '@/mixins/registerValidation'
+import showModal from '@/mixins/actions'
+import hideModal from '@/mixins/actions'
+import addressCheck from '@/mixins/registerValidation'
 export default {
     name: 'RegisterComponent',
     data() {
@@ -34,7 +39,7 @@ export default {
     watch: {
         "seller.name"() {
 
-            this.nameCheck()
+            this.userNameRegisterCheck()
         },
         "seller.emailId"() {
             this.checkEmailId()
@@ -45,39 +50,20 @@ export default {
         },
         "seller.password"() {
             this.passwordCheckCall()
-            
+
         },
-        "checkPassword"()
-        {
+        "checkPassword"() {
             this.confirmCheck()
         },
-        "seller.address"()
-        {
+        "seller.address"() {
             this.addressCheck()
         }
     },
+    mixins: [userNameRegisterCheck, contactCheck, addressCheck,showModal,hideModal],
+
     methods: {
-        nameCheck() {
-            if (this.userNameCheck(this.seller.name) != 'true') {
-                this.nameErrorFlag = true;
-                this.nameErrorMessage = this.userNameCheck(this.seller.name)
-            } else {
-                this.nameErrorFlag = false
-                this.nameErrorMessage = ''
-            }
-        },
-        contactCheck() {
-            if (this.seller.contact.match(/^(\+\d{2}[- ]?)?\d{10}$/g, "") === null) {
 
-                this.contactErrorMessage = 'Invalid '
-                this.contactErrorFlag = true;
-            }
-            else{
-                this.contactErrorMessage = ''
-                this.contactErrorFlag = false;
 
-            }
-        },
         checkEmailId() {
             if (this.seller.emailId.length == 0) {
                 this.emailIdErrorFlag = true;
@@ -94,13 +80,13 @@ export default {
             }
         },
         confirmCheck() {
-            if (this.checkPassword.length==0 || this.seller.password.length==0) {
+            if (this.checkPassword.length == 0 || this.seller.password.length == 0) {
 
-               
+
                 this.confirmPasswordErrorFlag = true;
                 this.passwordError = "Please enter fields"
             }
-            else{
+            else {
                 if (this.checkPassword != this.seller.password) {
 
                     console.log(this.checkPassword, " ", this.seller.password)
@@ -108,16 +94,16 @@ export default {
                     this.passwordError = "Does not match"
                 }
                 else {
-    
-                    this.confirmPasswordErrorFlag = false;
-                    
-                        this.passwordError=""
 
-                   
+                    this.confirmPasswordErrorFlag = false;
+
+                    this.passwordError = ""
+
+
                 }
 
             }
-            
+
         },
         passwordCheckCall() {
             if (this.passwordCheck() != 'true') {
@@ -166,17 +152,7 @@ export default {
             return error;
 
         },
-        trimValue(varible) {
-
-            this.seller[varible] = this.seller[varible].replace(/^\s+|\s+$/gm, '')
-        },
-
-        showModal() {
-            this.$refs['my-modal'].show()
-        },
-        hideModal() {
-            this.$refs['my-modal'].hide()
-        },
+       
         clearForm() {
             this.seller = {
                 name: '',
@@ -186,8 +162,7 @@ export default {
                 password: ''
 
             }
-            this.checkPassword = '';
-           
+            this.checkPassword = ''
         },
         checkEmail(emailCheck) {
             var regexLetters = new RegExp('^[a-zA-Z]')
@@ -222,45 +197,21 @@ export default {
             if (dot == atSymbol + 1) return false
             return true;
         },
-        addressCheck()
-        {
-             if (this.seller.address.length < 15  ) {
-                this.addressErrorFlag = true;
-                this.addressErrorMessage = "Invalid Address"
-            }
-            else if(this.seller.address.length >= 150)
-            {
-                this.addressErrorFlag = true;
-                this.addressErrorMessage = "Maximum 150 characters"
-            }
-            else{
-                this.addressErrorFlag = false;
-                this.addressErrorMessage = ""
-            }
 
-        },
-        userNameCheck(name) {
-            var userName = new RegExp('^[a-zA-Z . ]+$')
-            if ( name.length < 3) return "Required atleast 3 characters"
-            if (!userName.test(name)) return "must contain alphabets only"
-            if (name[0] == '.') return "Name must not start with dot"
-            if (name[name.length - 1] == '.') return "Name must not end with dot"
-            if (name.length>15) return "Maximum 15 characters"
-            return "true"
-        },
+
 
         registerNewSeller() {
-            
-           this.nameCheck()
-           this.checkEmailId()
-           this.contactCheck()
-           this.passwordCheckCall()
-           
-           this.addressCheck()
+
+            this.userNameRegisterCheck()
+            this.checkEmailId()
+            this.contactCheck()
+            this.passwordCheckCall()
+
+            this.addressCheck()
 
             console.log(this.seller.emailId)
 
-  
+
 
             // if (this.seller.contact.match(/^(\+\d{2}[- ]?)?\d{10}$/g, "") === null) {
 
@@ -269,41 +220,40 @@ export default {
 
             // }
 
-           
 
-            console.log(this.emailIdErrorFlag)
-            console.log(this.contactErrorFlag);
-            console.log(this.confirmPasswordErrorFlag);
-            console.log(this.addressErrorFlag);
-            console.log(this.passwordErrorFlag)
-            console.log(this.nameErrorFlag);
+
+            // console.log(this.emailIdErrorFlag)
+            // console.log(this.contactErrorFlag);
+            // console.log(this.confirmPasswordErrorFlag);
+            // console.log(this.addressErrorFlag);
+            // console.log(this.passwordErrorFlag)
+            // console.log(this.nameErrorFlag);
             if (!this.emailIdErrorFlag && (!this.passwordErrorFlag) && (!this.contactErrorFlag) && (!this.confirmPasswordErrorFlag) && (!this.nameErrorFlag) && (!this.addressErrorFlag)) {
                 console.log("inside register call")
                 this.confirmPasswordErrorFlag = false;
                 this.passwordError = " "
                 this.contactErrorFlag = this.passwordErrorFlag = false;
-               
+
                 this.$store.dispatch('REGISTER_NEW_SELLER', {
                     success: (response) => {
                         console.log("sucessregister", response);
-                        
-                        if(response.data.httpStatusCode==400)
-                        {
+
+                        if (response.data.httpStatusCode == 400) {
 
                             this.userMessage = response.data.message
                             this.showAlert()
                         }
-                        else if(response.data.httpStatusCode==200) {
+                        else if (response.data.httpStatusCode == 200) {
                             if (response.data.message == 'reactivate') {
                                 this.showModal()
                             }
                             else if (response.data.message == 'Created successfully ..') {
                                 this.userMessage = "successfully registered"
-                                this.$router.push({path:'/login'})
+                                this.$router.push({ path: '/login' })
 
                             }
-                           
-                            
+
+
                         }
 
 
@@ -325,7 +275,7 @@ export default {
                     this.userMessage = "Your old account is reactivated try to login"
                     this.showAlert()
                     console.log(response);
-                    this.$router.push({path:"/login"})
+                    this.$router.push({ path: "/login" })
                 },
                 error: (err) => {
                     console.warn(err);
@@ -341,15 +291,14 @@ export default {
             this.hideModal()
             deleteAndCreateSellerAccount({
                 success: (response) => {
-                    if(response.data.httpStatusCode==400)
-                    {
+                    if (response.data.httpStatusCode == 400) {
                         this.showAlert()
-                        this.userMessage=response.data.message
+                        this.userMessage = response.data.message
                     }
                     console.log(response);
                     this.userMessage = "Created account successfully"
                     this.showAlert()
-                   
+
                     this.registerNewSeller()
 
                 },

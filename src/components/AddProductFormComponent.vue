@@ -119,6 +119,9 @@
   </div>
 </template>
 <script>
+import nameCheck from "@/mixins/productValidation"
+import categoryCheck from "@/mixins/productValidation"
+import descriptionCheck from "@/mixins/productValidation"
 import { postsellerproducts } from "@/service/SellerProductService";
 export default {
   name: "AddProductComponent",
@@ -155,82 +158,15 @@ export default {
   },
 
   watch: {
-    price(newvalue, olvalue) {
-      console.log(typeof newvalue, newvalue, typeof olvalue, olvalue);
-      console.log(typeof this.price, this.price);
+    price() {
+      
       if (this.price < 0) {
         this.price = 1;
       }
     },
   },
+  mixins:[nameCheck,categoryCheck,descriptionCheck],
   methods: {
-    roundOff() {
-      if (
-        this.quantity == "" ||
-        this.quantity < 0 ||
-        this.quantity == undefined
-      ) {
-        this.quantity = 0;
-      } else {
-        this.quantity = parseInt(this.quantity);
-      }
-    },
-     nameCheck()
-        {
-          this.nameError=true
-           this.nameSpanError=''
-           if(this.product.productName.length<2)
-           this.nameSpanError="Minimum 2 characters"
-           else if(this.product.productName.length>20)
-           this.nameSpanError="Maximum 20 characters"
-          //  if (this.seller.password.search(/[^A-Za-z0-9]/) > 0) {
-          //      this.nameSpanError='must not contain special characters'
-          //   }
-           else{ 
-            this.nameSpanError=''
-            this.nameError=false
-           }
-        },
-        categoryCheck()
-        {
-           var categoryRegx = new RegExp('^[a-zA-Z . ]+$')
-      
-            
-          this.categoryError=true
-           this.categorySpanError=''
-           if(this.product.category.length<2)
-           this.categorySpanError="Minimum 2 characters"
-           else if(this.product.category.length>20)
-           this.categorySpanError="Maximum 20 characters"
-          //  if (this.seller.password.search(/[^A-Za-z0-9]/) > 0) {
-          //      this.nameSpanError='must not contain special characters'
-          //   }
-          else if (!categoryRegx.test(this.product.category)){
-
-             this.categorySpanError="Must contain Alphabets only"
-          
-          }
-           else{ 
-            this.categorySpanError=''
-            this.categoryError=false
-           }
-        },
-        descriptionCheck()
-        {
-          this.descriptionError=true
-           this.descriptionSpanError=''
-           if(this.product.description.length<10)
-           this.descriptionSpanError="Give more information"
-           else if(this.product.description.length>350)
-           this.descriptionSpanError="Limit execeded"
-          //  if (this.seller.password.search(/[^A-Za-z0-9]/) > 0) {
-          //      this.descriptionSpanError='must not contain special characters'
-          //   }
-           else{ 
-            this.descriptionSpanError=''
-            this.descriptionError=false
-           }
-        },
     addProduct() {
       this.nameError = false;
       this.categoryError = false;
@@ -246,8 +182,8 @@ export default {
         this.errorSpanMessage=''
         console.log("inside")
         this.nameCheck();
-        this.categoryCheck()
-        this.descriptionCheck()
+         this.categoryCheck()
+         this.descriptionCheck()
          if(!this.nameError&&(!this.categoryError)&&(!this.imageError)&&(!this.descriptionError))
       {
       this.product.sellerId = localStorage.getItem("userId");
